@@ -1,8 +1,8 @@
-import 'dart:html';
-
 import 'package:fancy_drawer/fancy_drawer.dart';
 import 'package:flutter/material.dart';
 
+import '../Classes/Constants.dart';
+import '../Classes/Constants.dart';
 import 'Bookmarks.dart';
 import 'Invite.dart';
 
@@ -208,23 +208,79 @@ class _DrawerScreenState extends State<DrawerScreen>
         ],
         child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            title: Text(
-              "Some appbar",
-              style: TextStyle(color: Colors.black),
-            ),
-            backgroundColor: Colors.white,
-            leading: IconButton(
-              icon: Icon(
-                Icons.menu,
-                color: Colors.black,
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Container(
+                height: pHeight * 0.22,
+                width: pWidth,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      kPrimaryColor,
+                      Color(0xFFF26969),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: pHeight * 0.04,
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.menu,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        _controller.toggle();
+                      },
+                    ),
+                    SizedBox(
+                      height: pHeight * 0.01,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Text(
+                        'Solve case',
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: pHeight * 0.035,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(
+                      height: pHeight * 0.01,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Text(
+                        'Here to help you with all your problems',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: pHeight * 0.025,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white.withOpacity(0.85),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
-              onPressed: () {
-                _controller.toggle();
-              },
-            ),
+              Container(
+                width: pWidth,
+                color: Colors.white,
+                height: pHeight * 0.78,
+                child: myWidgets[index],
+              ),
+            ],
           ),
-          body: myWidgets[index],
         ),
       ),
     );
