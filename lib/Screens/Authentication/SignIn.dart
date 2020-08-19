@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:solvecase/Screens/Authentication/ForgotPassword.dart';
 
+import '../DrawerScreen.dart';
+
 class SignIn extends StatefulWidget {
   @override
   _SignInState createState() => _SignInState();
@@ -189,12 +191,12 @@ class _SignInState extends State<SignIn> {
                     ),
                     InkWell(
                       onTap: () {
-//                      Navigator.push(
-//                        context,
-//                        CupertinoPageRoute(
-//                          builder: (context) => PersonalDetails(),
-//                        ),
-//                      );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DrawerScreen(),
+                          ),
+                        );
                       },
                       child: Container(
                         width: pWidth * 0.9,
