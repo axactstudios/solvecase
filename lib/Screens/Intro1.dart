@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:solvecase/Classes/Constants.dart';
+import 'package:solvecase/Screens/Authentication/AcademicDetails.dart';
+import 'package:solvecase/Screens/Authentication/SignIn.dart';
 
 class Intro1 extends StatefulWidget {
   @override
@@ -359,45 +361,65 @@ class _Intro3State extends State<Intro3> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Container(
-                  width: pWidth * 0.35,
-                  height: pHeight * 0.06,
-                  decoration: BoxDecoration(
-                    gradient: new LinearGradient(
-                      colors: [
-                        kPrimaryColor,
-                        Color(0xFFFFb199),
-                      ],
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignIn(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: pWidth * 0.35,
+                    height: pHeight * 0.06,
+                    decoration: BoxDecoration(
+                      gradient: new LinearGradient(
+                        colors: [
+                          kPrimaryColor,
+                          Color(0xFFFFb199),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(pHeight * 0.01),
                     ),
-                    borderRadius: BorderRadius.circular(pHeight * 0.01),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Sign In',
-                      style: TextStyle(
-                          fontFamily: 'Circular',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.03),
+                    child: Center(
+                      child: Text(
+                        'Sign In',
+                        style: TextStyle(
+                            fontFamily: 'Circular',
+                            color: Colors.white,
+                            fontSize: pHeight * 0.03),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   width: pWidth * 0.14,
                 ),
-                Container(
-                  width: pWidth * 0.35,
-                  height: pHeight * 0.06,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: kPrimaryColor, width: 2.0),
-                    borderRadius: BorderRadius.circular(pHeight * 0.01),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(
-                          fontFamily: 'Circular',
-                          color: kPrimaryColor,
-                          fontSize: pHeight * 0.03),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AcademicDetails(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: pWidth * 0.35,
+                    height: pHeight * 0.06,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor, width: 2.0),
+                      borderRadius: BorderRadius.circular(pHeight * 0.01),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(
+                            fontFamily: 'Circular',
+                            color: kPrimaryColor,
+                            fontSize: pHeight * 0.03),
+                      ),
                     ),
                   ),
                 ),

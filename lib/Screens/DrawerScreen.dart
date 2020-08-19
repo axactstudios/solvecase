@@ -1,9 +1,13 @@
+import 'dart:html';
+
 import 'package:fancy_drawer/fancy_drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:solvecase/Screens/Bookmarks.dart';
-import 'package:solvecase/Screens/History.dart';
-import 'package:solvecase/Screens/Invite.dart';
-import 'package:solvecase/Screens/MainScreen.dart';
+
+import 'Bookmarks.dart';
+import 'Invite.dart';
+
+import 'History.dart';
+import 'MainScreen.dart';
 
 class DrawerScreen extends StatefulWidget {
   @override
