@@ -21,15 +21,15 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   PersistentTabController _controller =
-      PersistentTabController(initialIndex: 1);
+      PersistentTabController(initialIndex: 0);
 
   List<Widget> _buildScreens() {
     return [
-      MaterialScreen(
+      SolutionScreen(
         enroll: widget.enroll,
         sem: widget.sem,
       ),
-      SolutionScreen(
+      MaterialScreen(
         enroll: widget.enroll,
         sem: widget.sem,
       ),
