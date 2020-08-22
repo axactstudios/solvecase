@@ -1,6 +1,7 @@
 import 'package:fancy_drawer/fancy_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:solvecase/Screens/DrawerScreen.dart';
 
 import '../Classes/Constants.dart';
 import '../Classes/Constants.dart';
@@ -25,6 +26,8 @@ class _MaterialScreenState extends State<MaterialScreen> {
   String selected;
   int year = 0;
 
+  TextEditingController search = new TextEditingController(text: '');
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int index = 0;
 
   @override
@@ -38,131 +41,209 @@ class _MaterialScreenState extends State<MaterialScreen> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: DrawerScreen(),
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Container(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: pHeight * 0.01,
+      body: Container(
+        color: Colors.white,
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: pHeight * 0.22,
+              width: pWidth,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    kPrimaryColor,
+                    Color(0xFFF26969),
+                  ],
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      InkWell(
-                        onTap: () {
-                          selected = 'First Year';
-                          year = 0;
-                          setState(() {
-                            print('First Year');
-                          });
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: selected == 'First Year'
-                                ? kPrimaryColor
-                                : Colors.white,
-                            borderRadius: BorderRadius.circular(25),
-                            border: selected != 'First Year'
-                                ? Border.all(color: kPrimaryColor, width: 1.0)
-                                : Border.all(color: kPrimaryColor),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'First Year',
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  color: selected == 'First Year'
-                                      ? Colors.white
-                                      : kPrimaryColor,
-                                  fontSize: pHeight * 0.025),
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          selected = 'Second Year';
-                          year = 1;
-                          setState(() {
-                            print('Second Year');
-                          });
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(left: 10),
-                          decoration: BoxDecoration(
-                            color: selected == 'Second Year'
-                                ? kPrimaryColor
-                                : Colors.white,
-                            borderRadius: BorderRadius.circular(25),
-                            border: selected != 'Second Year'
-                                ? Border.all(color: kPrimaryColor, width: 1.0)
-                                : Border.all(color: kPrimaryColor),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Second Year',
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  color: selected == 'Second Year'
-                                      ? Colors.white
-                                      : kPrimaryColor,
-                                  fontSize: pHeight * 0.025),
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          selected = 'Third Year';
-                          year = 2;
-                          setState(() {
-                            print('Third Year');
-                          });
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(left: 10),
-                          decoration: BoxDecoration(
-                            color: selected == 'Third Year'
-                                ? kPrimaryColor
-                                : Colors.white,
-                            borderRadius: BorderRadius.circular(25),
-                            border: selected != 'Third Year'
-                                ? Border.all(color: kPrimaryColor, width: 1.0)
-                                : Border.all(color: kPrimaryColor),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Third Year',
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  color: selected == 'Third Year'
-                                      ? Colors.white
-                                      : kPrimaryColor,
-                                  fontSize: pHeight * 0.025),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(30),
+                  bottomLeft: Radius.circular(30),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: pHeight * 0.04,
                   ),
-                ),
-                SizedBox(
-                  height: pHeight * 0.01,
-                ),
-                years[year],
-              ],
+                  IconButton(
+                    icon: Icon(
+                      Icons.menu,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      _scaffoldKey.currentState.openDrawer();
+                    },
+                  ),
+                  SizedBox(
+                    height: pHeight * 0.01,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Text(
+                      'Study Material',
+                      style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: pHeight * 0.035,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(
+                    height: pHeight * 0.005,
+                  ),
+                  Center(
+                    child: Container(
+                      width: pWidth * 0.92,
+                      height: pHeight * 0.05,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF7A1A1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Center(
+                        child: TextFormField(
+                          controller: search,
+                          decoration: InputDecoration(
+                            suffixIcon: Icon(
+                              Icons.search,
+                              color: kPrimaryColor,
+                            ),
+                            hintText: 'Search',
+                            hintStyle: TextStyle(
+                                color: kPrimaryColor,
+                                fontSize: pHeight * 0.02,
+                                fontFamily: 'Poppins'),
+                            border:
+                                OutlineInputBorder(borderSide: BorderSide.none),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
+            SizedBox(
+              height: pHeight * 0.005,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                        selected = 'First Year';
+                        year = 0;
+                        setState(() {
+                          print('First Year');
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: selected == 'First Year'
+                              ? kPrimaryColor
+                              : Colors.white,
+                          borderRadius: BorderRadius.circular(25),
+                          border: selected != 'First Year'
+                              ? Border.all(color: kPrimaryColor, width: 1.0)
+                              : Border.all(color: kPrimaryColor),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'First Year',
+                            style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: selected == 'First Year'
+                                    ? Colors.white
+                                    : kPrimaryColor,
+                                fontSize: pHeight * 0.025),
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        selected = 'Second Year';
+                        year = 1;
+                        setState(() {
+                          print('Second Year');
+                        });
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(left: 10),
+                        decoration: BoxDecoration(
+                          color: selected == 'Second Year'
+                              ? kPrimaryColor
+                              : Colors.white,
+                          borderRadius: BorderRadius.circular(25),
+                          border: selected != 'Second Year'
+                              ? Border.all(color: kPrimaryColor, width: 1.0)
+                              : Border.all(color: kPrimaryColor),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Second Year',
+                            style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: selected == 'Second Year'
+                                    ? Colors.white
+                                    : kPrimaryColor,
+                                fontSize: pHeight * 0.025),
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        selected = 'Third Year';
+                        year = 2;
+                        setState(() {
+                          print('Third Year');
+                        });
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(left: 10),
+                        decoration: BoxDecoration(
+                          color: selected == 'Third Year'
+                              ? kPrimaryColor
+                              : Colors.white,
+                          borderRadius: BorderRadius.circular(25),
+                          border: selected != 'Third Year'
+                              ? Border.all(color: kPrimaryColor, width: 1.0)
+                              : Border.all(color: kPrimaryColor),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Third Year',
+                            style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: selected == 'Third Year'
+                                    ? Colors.white
+                                    : kPrimaryColor,
+                                fontSize: pHeight * 0.025),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: years[year],
+            ),
+          ],
         ),
       ),
     );
@@ -183,222 +264,226 @@ class _FirstYearState extends State<FirstYear> {
   Widget build(BuildContext context) {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
-    return Column(
-      children: <Widget>[
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'SDF',
-                ),
-              ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFFF8787),
-                  Color(0xFFC16A6A),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 9.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'SDF',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+    return Container(
+      height: pHeight * 0.62,
+      child: ListView(
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Materials(
+                        sub: 'SDF',
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  height: pHeight * 0.12,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFFFF8787),
+                        Color(0xFFC16A6A),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/Ellipse 9.png'),
+                      ),
+                      Positioned(
+                        top: pHeight * 0.035,
+                        left: pWidth * 0.08,
+                        child: Text(
+                          'SDF',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: pHeight * 0.035),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'Maths',
-                ),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFF87F0FF),
-                  Color(0xFF3AA2B1),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 1.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Mathematics',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Materials(
+                        sub: 'Maths',
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 15),
+                  height: pHeight * 0.12,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFF87F0FF),
+                        Color(0xFF3AA2B1),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/Ellipse 1.png'),
+                      ),
+                      Positioned(
+                        top: pHeight * 0.035,
+                        left: pWidth * 0.08,
+                        child: Text(
+                          'Mathematics',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: pHeight * 0.035),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'Physics',
-                ),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFFFCF87),
-                  Color(0xFFCA9547),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 2.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Physics',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Materials(
+                        sub: 'Physics',
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 15),
+                  height: pHeight * 0.12,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFFFFCF87),
+                        Color(0xFFCA9547),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/Ellipse 2.png'),
+                      ),
+                      Positioned(
+                        top: pHeight * 0.035,
+                        left: pWidth * 0.08,
+                        child: Text(
+                          'Physics',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: pHeight * 0.035),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'EDD',
-                ),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFE09FFF),
-                  Color(0xFF8A46AB),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 3.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'EDD',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Materials(
+                        sub: 'EDD',
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 15),
+                  height: pHeight * 0.12,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFFE09FFF),
+                        Color(0xFF8A46AB),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/Ellipse 3.png'),
+                      ),
+                      Positioned(
+                        top: pHeight * 0.035,
+                        left: pWidth * 0.08,
+                        child: Text(
+                          'EDD',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: pHeight * 0.035),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'ES',
-                ),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFFF8787),
-                  Color(0xFFC16A6A),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 9.png'),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Materials(
+                        sub: 'ES',
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 15),
+                  height: pHeight * 0.12,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFFFF8787),
+                        Color(0xFFC16A6A),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/Ellipse 9.png'),
 //                    Container(
 //                      height: pHeight * 0.1,
 //                      width: pWidth * 0.6,
@@ -406,190 +491,190 @@ class _FirstYearState extends State<FirstYear> {
 //                        color: Color(0xFFF78C8C),
 //                      ),
 //                    ),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Electrical Science',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+                      ),
+                      Positioned(
+                        top: pHeight * 0.035,
+                        left: pWidth * 0.08,
+                        child: Text(
+                          'Electrical Science',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: pHeight * 0.035),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'Workshop',
-                ),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFF87F0FF),
-                  Color(0xFF3AA2B1),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 1.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Workshop',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Materials(
+                        sub: 'Workshop',
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 15),
+                  height: pHeight * 0.12,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFF87F0FF),
+                        Color(0xFF3AA2B1),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/Ellipse 1.png'),
+                      ),
+                      Positioned(
+                        top: pHeight * 0.035,
+                        left: pWidth * 0.08,
+                        child: Text(
+                          'Workshop',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: pHeight * 0.035),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'Physics Lab - 1',
-                ),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFFFCF87),
-                  Color(0xFFCA9547),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 2.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Physics Lab - 1',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Materials(
+                        sub: 'Physics Lab - 1',
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 15),
+                  height: pHeight * 0.12,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFFFFCF87),
+                        Color(0xFFCA9547),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/Ellipse 2.png'),
+                      ),
+                      Positioned(
+                        top: pHeight * 0.035,
+                        left: pWidth * 0.08,
+                        child: Text(
+                          'Physics Lab - 1',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: pHeight * 0.035),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'SDF Lab - 1',
-                ),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFE09FFF),
-                  Color(0xFF8A46AB),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 3.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'SDF Lab - 1',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Materials(
+                        sub: 'SDF Lab - 1',
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 15),
+                  height: pHeight * 0.12,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFFE09FFF),
+                        Color(0xFF8A46AB),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/Ellipse 3.png'),
+                      ),
+                      Positioned(
+                        top: pHeight * 0.035,
+                        left: pWidth * 0.08,
+                        child: Text(
+                          'SDF Lab - 1',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: pHeight * 0.035),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'ES Lab - 1',
-                ),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFFF8787),
-                  Color(0xFFC16A6A),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 9.png'),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Materials(
+                        sub: 'ES Lab - 1',
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 15),
+                  height: pHeight * 0.12,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFFFF8787),
+                        Color(0xFFC16A6A),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/Ellipse 9.png'),
 //                    Container(
 //                      height: pHeight * 0.1,
 //                      width: pWidth * 0.6,
@@ -597,115 +682,118 @@ class _FirstYearState extends State<FirstYear> {
 //                        color: Color(0xFFF78C8C),
 //                      ),
 //                    ),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'ES Lab - 1',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+                      ),
+                      Positioned(
+                        top: pHeight * 0.035,
+                        left: pWidth * 0.08,
+                        child: Text(
+                          'ES Lab - 1',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: pHeight * 0.035),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'Physics Lab - 2',
-                ),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFF87F0FF),
-                  Color(0xFF3AA2B1),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 1.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Physics Lab - 2',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Materials(
+                        sub: 'Physics Lab - 2',
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 15),
+                  height: pHeight * 0.12,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFF87F0FF),
+                        Color(0xFF3AA2B1),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/Ellipse 1.png'),
+                      ),
+                      Positioned(
+                        top: pHeight * 0.035,
+                        left: pWidth * 0.08,
+                        child: Text(
+                          'Physics Lab - 2',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: pHeight * 0.035),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'SDF Lab - 2',
-                ),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15, bottom: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFFFCF87),
-                  Color(0xFFCA9547),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 2.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'SDF Lab - 2',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Materials(
+                        sub: 'SDF Lab - 2',
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 15, bottom: 15),
+                  height: pHeight * 0.12,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFFFFCF87),
+                        Color(0xFFCA9547),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/Ellipse 2.png'),
+                      ),
+                      Positioned(
+                        top: pHeight * 0.035,
+                        left: pWidth * 0.08,
+                        child: Text(
+                          'SDF Lab - 2',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: pHeight * 0.035),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -724,193 +812,195 @@ class _SecondYearState extends State<SecondYear> {
   Widget build(BuildContext context) {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
-    return Column(
-      children: <Widget>[
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'Data Structures',
-                ),
-              ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFFF8787),
-                  Color(0xFFC16A6A),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 9.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Data Structures',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+    return Container(
+      height: pHeight * 0.62,
+      child: ListView(
+        children: <Widget>[
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Materials(
+                    sub: 'Data Structures',
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'Economics',
+              );
+            },
+            child: Container(
+              height: pHeight * 0.12,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFFF8787),
+                    Color(0xFFC16A6A),
+                  ],
                 ),
+                borderRadius: BorderRadius.circular(15),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFF87F0FF),
-                  Color(0xFF3AA2B1),
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Image.asset('assets/images/Ellipse 9.png'),
+                  ),
+                  Positioned(
+                    top: pHeight * 0.035,
+                    left: pWidth * 0.08,
+                    child: Text(
+                      'Data Structures',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          color: Colors.white,
+                          fontSize: pHeight * 0.035),
+                    ),
+                  ),
                 ],
               ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 1.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Economics',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
-                  ),
-                ),
-              ],
             ),
           ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'ES 2',
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Materials(
+                    sub: 'Economics',
+                  ),
                 ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: 15),
+              height: pHeight * 0.12,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFF87F0FF),
+                    Color(0xFF3AA2B1),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(15),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFFFCF87),
-                  Color(0xFFCA9547),
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Image.asset('assets/images/Ellipse 1.png'),
+                  ),
+                  Positioned(
+                    top: pHeight * 0.035,
+                    left: pWidth * 0.08,
+                    child: Text(
+                      'Economics',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          color: Colors.white,
+                          fontSize: pHeight * 0.035),
+                    ),
+                  ),
                 ],
               ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 2.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Electrical Science - 2',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
-                  ),
-                ),
-              ],
             ),
           ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'Database',
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Materials(
+                    sub: 'ES 2',
+                  ),
                 ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: 15),
+              height: pHeight * 0.12,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFFFCF87),
+                    Color(0xFFCA9547),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(15),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFE09FFF),
-                  Color(0xFF8A46AB),
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Image.asset('assets/images/Ellipse 2.png'),
+                  ),
+                  Positioned(
+                    top: pHeight * 0.035,
+                    left: pWidth * 0.08,
+                    child: Text(
+                      'Electrical Science - 2',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          color: Colors.white,
+                          fontSize: pHeight * 0.035),
+                    ),
+                  ),
                 ],
               ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 3.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'DB & Web Structures',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
-                  ),
-                ),
-              ],
             ),
           ),
-        ),
-      ],
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Materials(
+                    sub: 'Database',
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: 15),
+              height: pHeight * 0.12,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFE09FFF),
+                    Color(0xFF8A46AB),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Image.asset('assets/images/Ellipse 3.png'),
+                  ),
+                  Positioned(
+                    top: pHeight * 0.035,
+                    left: pWidth * 0.08,
+                    child: Text(
+                      'DB & Web Structures',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          color: Colors.white,
+                          fontSize: pHeight * 0.035),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -925,193 +1015,195 @@ class _ThirdYearState extends State<ThirdYear> {
   Widget build(BuildContext context) {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
-    return Column(
-      children: <Widget>[
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'Algorithms',
-                ),
-              ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFFF8787),
-                  Color(0xFFC16A6A),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 9.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Algorithms',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
+    return Container(
+      height: pHeight * 0.62,
+      child: ListView(
+        children: <Widget>[
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Materials(
+                    sub: 'Algorithms',
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'OS',
+              );
+            },
+            child: Container(
+              height: pHeight * 0.12,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFFF8787),
+                    Color(0xFFC16A6A),
+                  ],
                 ),
+                borderRadius: BorderRadius.circular(15),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFF87F0FF),
-                  Color(0xFF3AA2B1),
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Image.asset('assets/images/Ellipse 9.png'),
+                  ),
+                  Positioned(
+                    top: pHeight * 0.035,
+                    left: pWidth * 0.08,
+                    child: Text(
+                      'Algorithms',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          color: Colors.white,
+                          fontSize: pHeight * 0.035),
+                    ),
+                  ),
                 ],
               ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 1.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Operating Systems',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
-                  ),
-                ),
-              ],
             ),
           ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'Open Source',
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Materials(
+                    sub: 'OS',
+                  ),
                 ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: 15),
+              height: pHeight * 0.12,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFF87F0FF),
+                    Color(0xFF3AA2B1),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(15),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFFFCF87),
-                  Color(0xFFCA9547),
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Image.asset('assets/images/Ellipse 1.png'),
+                  ),
+                  Positioned(
+                    top: pHeight * 0.035,
+                    left: pWidth * 0.08,
+                    child: Text(
+                      'Operating Systems',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          color: Colors.white,
+                          fontSize: pHeight * 0.035),
+                    ),
+                  ),
                 ],
               ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 2.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Open Source Softwares',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
-                  ),
-                ),
-              ],
             ),
           ),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Materials(
-                  sub: 'Information Security',
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Materials(
+                    sub: 'Open Source',
+                  ),
                 ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: 15),
+              height: pHeight * 0.12,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFFFCF87),
+                    Color(0xFFCA9547),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(15),
               ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: 15),
-            height: pHeight * 0.12,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFE09FFF),
-                  Color(0xFF8A46AB),
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Image.asset('assets/images/Ellipse 2.png'),
+                  ),
+                  Positioned(
+                    top: pHeight * 0.035,
+                    left: pWidth * 0.08,
+                    child: Text(
+                      'Open Source Softwares',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          color: Colors.white,
+                          fontSize: pHeight * 0.035),
+                    ),
+                  ),
                 ],
               ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Image.asset('assets/images/Ellipse 3.png'),
-                ),
-                Positioned(
-                  top: pHeight * 0.035,
-                  left: pWidth * 0.08,
-                  child: Text(
-                    'Information Security',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: pHeight * 0.035),
-                  ),
-                ),
-              ],
             ),
           ),
-        ),
-      ],
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Materials(
+                    sub: 'Information Security',
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: 15),
+              height: pHeight * 0.12,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFE09FFF),
+                    Color(0xFF8A46AB),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Image.asset('assets/images/Ellipse 3.png'),
+                  ),
+                  Positioned(
+                    top: pHeight * 0.035,
+                    left: pWidth * 0.08,
+                    child: Text(
+                      'Information Security',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          color: Colors.white,
+                          fontSize: pHeight * 0.035),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

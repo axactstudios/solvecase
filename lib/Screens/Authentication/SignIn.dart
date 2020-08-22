@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:solvecase/Screens/Authentication/ForgotPassword.dart';
+import 'package:solvecase/Screens/MainScreen.dart';
 
 import '../DrawerScreen.dart';
 
@@ -194,7 +195,7 @@ class _SignInState extends State<SignIn> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DrawerScreen(),
+                            builder: (context) => MainScreen(),
                           ),
                         );
                       },

@@ -1,26 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:solvecase/Classes/Constants.dart';
-import 'package:solvecase/Screens/DrawerScreen.dart';
 
-class Solutions extends StatefulWidget {
-  String sub;
-  Solutions({this.sub});
-
+class FAQ extends StatefulWidget {
   @override
-  _SolutionsState createState() => _SolutionsState();
+  _FAQState createState() => _FAQState();
 }
 
-class _SolutionsState extends State<Solutions> {
+class _FAQState extends State<FAQ> {
   TextEditingController search = new TextEditingController(text: '');
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: DrawerScreen(),
-      key: _scaffoldKey,
       backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
@@ -47,11 +40,11 @@ class _SolutionsState extends State<Solutions> {
                 ),
                 IconButton(
                   icon: Icon(
-                    Icons.menu,
+                    Icons.arrow_back,
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    _scaffoldKey.currentState.openDrawer();
+                    Navigator.pop(context);
                   },
                 ),
                 SizedBox(
@@ -60,7 +53,7 @@ class _SolutionsState extends State<Solutions> {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
-                    'Solutions - ${widget.sub}',
+                    'FAQ',
                     style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: pHeight * 0.035,
@@ -122,14 +115,24 @@ class _SolutionsState extends State<Solutions> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            '${widget.sub} Solutions - Assignment ${index + 1}',
-                            style: TextStyle(
-                                color: Colors.black.withOpacity(0.75),
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.bold,
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.025),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'FAQ ${index + 1}',
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.75),
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.025),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.black,
+                              )
+                            ],
                           ),
                         ),
                       ),
