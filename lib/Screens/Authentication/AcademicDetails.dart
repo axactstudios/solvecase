@@ -210,7 +210,11 @@ class _AcademicDetailsState extends State<AcademicDetails> {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => PersonalDetails(),
+                          builder: (context) => PersonalDetails(
+                            college: college,
+                            course: course,
+                            year: year,
+                          ),
                         ),
                       );
                     },

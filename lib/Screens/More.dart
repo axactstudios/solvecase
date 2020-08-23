@@ -1,9 +1,14 @@
+import 'package:device_info/device_info.dart';
 import 'package:fancy_drawer/fancy_drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:solvecase/Screens/Authentication/SignIn.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
+import 'package:solvecase/Screens/Intro1.dart';
 import 'package:solvecase/Screens/MorePageScreens/AboutUs.dart';
 import 'package:solvecase/Screens/MorePageScreens/ContactSupport.dart';
 import 'package:solvecase/Screens/MorePageScreens/FAQ.dart';
@@ -22,6 +27,7 @@ class More extends StatefulWidget {
 
 class _MoreState extends State<More> with TickerProviderStateMixin {
   FancyDrawerController _controller;
+  String deviceUid, deviceType;
 
   @override
   void initState() {
@@ -32,6 +38,8 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
     )..addListener(() {
         setState(() {});
       });
+    deviceUid = '';
+    deviceType = '';
   }
 
   @override
@@ -278,22 +286,36 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
               Spacer(),
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Container(
-                  margin: EdgeInsets.only(top: 25),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: kPrimaryColor, width: 2.5),
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text(
-                        'Sign Out',
-                        style: TextStyle(
-                            color: kPrimaryColor,
-                            fontSize: pHeight * 0.03,
-                            fontFamily: 'Circular',
-                            fontWeight: FontWeight.w600),
+                child: InkWell(
+                  onTap: () async {
+                    FirebaseUser user =
+                        await FirebaseAuth.instance.currentUser();
+                    await _getId();
+                    var dbRef = FirebaseDatabase.instance
+                        .reference()
+                        .child('Users')
+                        .child(user.uid)
+                        .update({'is${deviceType}SignedIn': false});
+                    FirebaseAuth.instance.signOut();
+                    pushNewScreen(context, screen: Intro1(), withNavBar: false);
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top: 25),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: kPrimaryColor, width: 2.5),
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(
+                          'Sign Out',
+                          style: TextStyle(
+                              color: kPrimaryColor,
+                              fontSize: pHeight * 0.03,
+                              fontFamily: 'Circular',
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
                   ),
@@ -304,5 +326,24 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
         ],
       ),
     );
+  }
+
+  Future<String> _getId() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    if (Theme.of(context).platform == TargetPlatform.iOS) {
+      IosDeviceInfo iosDeviceInfo = await deviceInfo.iosInfo;
+      deviceUid = iosDeviceInfo.identifierForVendor; // unique ID on iOS
+      deviceType = 'iPhone';
+      setState(() {
+        print('Device uid found');
+      });
+    } else {
+      AndroidDeviceInfo androidDeviceInfo = await deviceInfo.androidInfo;
+      deviceUid = androidDeviceInfo.androidId; // unique ID on Android
+      deviceType = 'Android';
+      setState(() {
+        print('Device uid found');
+      });
+    }
   }
 }
