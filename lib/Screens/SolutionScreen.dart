@@ -145,7 +145,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                               color: selected == 'First Year'
                                   ? kPrimaryColor
                                   : Colors.white,
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(10),
                               border: selected != 'First Year'
                                   ? Border.all(color: kPrimaryColor, width: 1.0)
                                   : Border.all(color: kPrimaryColor),
@@ -159,7 +159,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                     color: selected == 'First Year'
                                         ? Colors.white
                                         : kPrimaryColor,
-                                    fontSize: pHeight * 0.025),
+                                    fontSize: pHeight * 0.02),
                               ),
                             ),
                           ),
@@ -178,7 +178,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                               color: selected == 'Second Year'
                                   ? kPrimaryColor
                                   : Colors.white,
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(10),
                               border: selected != 'Second Year'
                                   ? Border.all(color: kPrimaryColor, width: 1.0)
                                   : Border.all(color: kPrimaryColor),
@@ -192,7 +192,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                     color: selected == 'Second Year'
                                         ? Colors.white
                                         : kPrimaryColor,
-                                    fontSize: pHeight * 0.025),
+                                    fontSize: pHeight * 0.02),
                               ),
                             ),
                           ),
@@ -211,7 +211,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                               color: selected == 'Third Year'
                                   ? kPrimaryColor
                                   : Colors.white,
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(10),
                               border: selected != 'Third Year'
                                   ? Border.all(color: kPrimaryColor, width: 1.0)
                                   : Border.all(color: kPrimaryColor),
@@ -225,7 +225,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                     color: selected == 'Third Year'
                                         ? Colors.white
                                         : kPrimaryColor,
-                                    fontSize: pHeight * 0.025),
+                                    fontSize: pHeight * 0.02),
                               ),
                             ),
                           ),
@@ -262,7 +262,7 @@ class _FirstYearState extends State<FirstYear> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: pHeight * 0.62,
+      height: pHeight * 0.6,
       child: ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
@@ -811,7 +811,7 @@ class _SecondYearState extends State<SecondYear> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: pHeight * 0.62,
+      height: pHeight * 0.6,
       child: ListView(
         children: <Widget>[
           Column(
@@ -1019,7 +1019,7 @@ class _ThirdYearState extends State<ThirdYear> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: pHeight * 0.62,
+      height: pHeight * 0.6,
       child: ListView(
         children: <Widget>[
           Column(

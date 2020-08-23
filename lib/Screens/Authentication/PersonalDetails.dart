@@ -369,6 +369,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                 ],
               );
             });
+        print('Email already in use');
       }
     });
   }
