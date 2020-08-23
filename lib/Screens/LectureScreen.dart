@@ -40,206 +40,205 @@ class _LectureScreenState extends State<LectureScreen> {
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _scaffoldKey,
-      drawer: DrawerScreen(),
       backgroundColor: Colors.white,
-      body: Container(
-        color: Colors.white,
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: pHeight * 0.22,
-              width: pWidth,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    kPrimaryColor,
-                    Color(0xFFF26969),
-                  ],
-                ),
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(30),
-                  bottomLeft: Radius.circular(30),
-                ),
+      drawer: DrawerScreen(),
+      body: Column(
+        children: <Widget>[
+          Container(
+            height: pHeight * 0.25,
+            width: pWidth,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  kPrimaryColor,
+                  Color(0xFFF26969),
+                ],
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: pHeight * 0.04,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(20),
+                bottomLeft: Radius.circular(20),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: pHeight * 0.04,
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.white,
                   ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.menu,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      _scaffoldKey.currentState.openDrawer();
-                    },
+                  onPressed: () {
+                    _scaffoldKey.currentState.openDrawer();
+                  },
+                ),
+                SizedBox(
+                  height: pHeight * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    'Video Lectures',
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: pHeight * 0.04,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
-                  SizedBox(
-                    height: pHeight * 0.01,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
-                    child: Text(
-                      'Video Lectures',
-                      style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: pHeight * 0.035,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  ),
-                  SizedBox(
-                    height: pHeight * 0.005,
-                  ),
-                  Center(
-                    child: Container(
-                      width: pWidth * 0.92,
-                      height: pHeight * 0.05,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFF7A1A1),
-                        borderRadius: BorderRadius.circular(8),
+                ),
+                SizedBox(
+                  height: pHeight * 0.005,
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 20,
                       ),
-                      child: Center(
-                        child: TextFormField(
-                          controller: search,
-                          decoration: InputDecoration(
-                            suffixIcon: Icon(
-                              Icons.search,
-                              color: kPrimaryColor,
+                      InkWell(
+                        onTap: () {
+                          selected = 'First Year';
+                          year = 0;
+                          setState(() {
+                            print('First Year');
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: selected == 'First Year'
+                                ? kPrimaryColor
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            border: selected != 'First Year'
+                                ? Border.all(color: kPrimaryColor, width: 1.0)
+                                : Border.all(color: Colors.white, width: 1),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'First Year',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  color: selected == 'First Year'
+                                      ? Colors.white
+                                      : kPrimaryColor,
+                                  fontSize: pHeight * 0.02),
                             ),
-                            hintText: 'Search',
-                            hintStyle: TextStyle(
-                                color: kPrimaryColor,
-                                fontSize: pHeight * 0.02,
-                                fontFamily: 'Poppins'),
-                            border:
-                                OutlineInputBorder(borderSide: BorderSide.none),
                           ),
                         ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: pHeight * 0.01,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      selected = 'First Year';
-                      year = 0;
-                      setState(() {
-                        print('First Year');
-                      });
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: selected == 'First Year'
-                            ? kPrimaryColor
-                            : Colors.white,
-                        borderRadius: BorderRadius.circular(25),
-                        border: selected != 'First Year'
-                            ? Border.all(color: kPrimaryColor, width: 1.0)
-                            : Border.all(color: kPrimaryColor),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'First Year',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: selected == 'First Year'
-                                  ? Colors.white
-                                  : kPrimaryColor,
-                              fontSize: pHeight * 0.025),
+                      InkWell(
+                        onTap: () {
+                          selected = 'Second Year';
+                          year = 1;
+                          setState(() {
+                            print('Second Year');
+                          });
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10),
+                          decoration: BoxDecoration(
+                            color: selected == 'Second Year'
+                                ? kPrimaryColor
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            border: selected != 'Second Year'
+                                ? Border.all(color: kPrimaryColor, width: 1.0)
+                                : Border.all(color: Colors.white),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Second Year',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  color: selected == 'Second Year'
+                                      ? Colors.white
+                                      : kPrimaryColor,
+                                  fontSize: pHeight * 0.02),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      selected = 'Second Year';
-                      year = 1;
-                      setState(() {
-                        print('Second Year');
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(left: 10),
-                      decoration: BoxDecoration(
-                        color: selected == 'Second Year'
-                            ? kPrimaryColor
-                            : Colors.white,
-                        borderRadius: BorderRadius.circular(25),
-                        border: selected != 'Second Year'
-                            ? Border.all(color: kPrimaryColor, width: 1.0)
-                            : Border.all(color: kPrimaryColor),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Second Year',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: selected == 'Second Year'
-                                  ? Colors.white
-                                  : kPrimaryColor,
-                              fontSize: pHeight * 0.025),
+                      InkWell(
+                        onTap: () {
+                          selected = 'Third Year';
+                          year = 2;
+                          setState(() {
+                            print('Third Year');
+                          });
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10),
+                          decoration: BoxDecoration(
+                            color: selected == 'Third Year'
+                                ? kPrimaryColor
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            border: selected != 'Third Year'
+                                ? Border.all(color: kPrimaryColor, width: 1.0)
+                                : Border.all(color: Colors.white),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Third Year',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  color: selected == 'Third Year'
+                                      ? Colors.white
+                                      : kPrimaryColor,
+                                  fontSize: pHeight * 0.02),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  InkWell(
-                    onTap: () {
-                      selected = 'Third Year';
-                      year = 2;
-                      setState(() {
-                        print('Third Year');
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(left: 10),
-                      decoration: BoxDecoration(
-                        color: selected == 'Third Year'
-                            ? kPrimaryColor
-                            : Colors.white,
-                        borderRadius: BorderRadius.circular(25),
-                        border: selected != 'Third Year'
-                            ? Border.all(color: kPrimaryColor, width: 1.0)
-                            : Border.all(color: kPrimaryColor),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Third Year',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: selected == 'Third Year'
-                                  ? Colors.white
-                                  : kPrimaryColor,
-                              fontSize: pHeight * 0.025),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+//                Center(
+//                  child: Container(
+//                    width: pWidth * 0.92,
+//                    height: pHeight * 0.05,
+//                    decoration: BoxDecoration(
+//                      color: Color(0xFFF7A1A1),
+//                      borderRadius: BorderRadius.circular(10),
+//                    ),
+//                    child: Center(
+//                      child: TextFormField(
+//                        controller: search,
+//                        textAlignVertical: TextAlignVertical.center,
+//                        decoration: InputDecoration(
+//                          suffixIcon: Icon(
+//                            Icons.search,
+//                            color: kPrimaryColor,
+//                          ),
+//                          hintText: 'Search',
+//                          hintStyle: TextStyle(
+//                              color: kPrimaryColor,
+//                              fontSize: pHeight * 0.02,
+//                              fontFamily: 'Poppins'),
+//                          border:
+//                              OutlineInputBorder(borderSide: BorderSide.none),
+//                        ),
+//                      ),
+//                    ),
+//                  ),
+//                )
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: years[year],
-            ),
-          ],
-        ),
+          ),
+          Expanded(
+              child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: years[year],
+          )),
+        ],
       ),
     );
   }
