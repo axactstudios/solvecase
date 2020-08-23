@@ -1,4 +1,5 @@
 import 'package:device_info/device_info.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:solvecase/Screens/Intro1.dart';
@@ -87,13 +88,22 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   // ignore: must_call_super
   void initState() {
+    FirebaseAuth mAuth = FirebaseAuth.instance;
     new Future.delayed(Duration(seconds: 3), () async {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Intro1(),
-        ),
-      );
+      FirebaseUser user = await mAuth.currentUser();
+      user == null
+          ? Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Intro1(),
+              ),
+            )
+          : Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MainScreen(),
+              ),
+            );
     });
   }
 

@@ -67,12 +67,7 @@ class _ResetLinkSentState extends State<ResetLinkSent> {
                     ),
                     InkWell(
                       onTap: () {
-//                      Navigator.push(
-//                        context,
-//                        CupertinoPageRoute(
-//                          builder: (context) => PersonalDetails(),
-//                        ),
-//                      );
+                        Navigator.pop(context);
                       },
                       child: Container(
                         width: pWidth * 0.9,
