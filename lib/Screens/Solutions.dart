@@ -69,6 +69,11 @@ class _SolutionsState extends State<Solutions> {
   List<Solution> solutions = [];
 
   getDatabaseRef() async {
+    print(widget.year);
+    print("--------------------------$course");
+
+    print(subject);
+
     DatabaseReference dbref = FirebaseDatabase.instance
         .reference()
         .child(college)
@@ -115,7 +120,7 @@ class _SolutionsState extends State<Solutions> {
       body: Column(
         children: <Widget>[
           Container(
-            height: pHeight * 0.22,
+            height: pHeight * 0.18,
             width: pWidth,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -137,11 +142,11 @@ class _SolutionsState extends State<Solutions> {
                 ),
                 IconButton(
                   icon: Icon(
-                    Icons.menu,
+                    Icons.arrow_back,
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    _scaffoldKey.currentState.openDrawer();
+                    Navigator.pop(context);
                   },
                 ),
                 SizedBox(
@@ -161,41 +166,39 @@ class _SolutionsState extends State<Solutions> {
                 SizedBox(
                   height: pHeight * 0.005,
                 ),
-                Center(
-                  child: Container(
-                    width: pWidth * 0.92,
-                    height: pHeight * 0.05,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFF7A1A1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Center(
-                      child: TextFormField(
-                        controller: search,
-                        decoration: InputDecoration(
-                          suffixIcon: Icon(
-                            Icons.search,
-                            color: kPrimaryColor,
-                          ),
-                          hintText: 'Search',
-                          hintStyle: TextStyle(
-                              color: kPrimaryColor,
-                              fontSize: pHeight * 0.02,
-                              fontFamily: 'Poppins'),
-                          border:
-                              OutlineInputBorder(borderSide: BorderSide.none),
-                        ),
-                      ),
-                    ),
-                  ),
-                )
+//                Center(
+//                  child: Container(
+//                    width: pWidth * 0.92,
+//                    height: pHeight * 0.05,
+//                    decoration: BoxDecoration(
+//                      color: Color(0xFFF7A1A1),
+//                      borderRadius: BorderRadius.circular(8),
+//                    ),
+//                    child: Center(
+//                      child: TextFormField(
+//                        controller: search,
+//                        decoration: InputDecoration(
+//                          suffixIcon: Icon(
+//                            Icons.search,
+//                            color: kPrimaryColor,
+//                          ),
+//                          hintText: 'Search',
+//                          hintStyle: TextStyle(
+//                              color: kPrimaryColor,
+//                              fontSize: pHeight * 0.02,
+//                              fontFamily: 'Poppins'),
+//                          border:
+//                              OutlineInputBorder(borderSide: BorderSide.none),
+//                        ),
+//                      ),
+//                    ),
+//                  ),
+//                )
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          Expanded(
             child: Container(
-              height: pHeight * 0.7,
               child: ListView.builder(
                   itemCount: solutions.length,
                   itemBuilder: (context, index) {

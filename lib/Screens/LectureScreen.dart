@@ -1,9 +1,9 @@
 import 'package:fancy_drawer/fancy_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:solvecase/Material.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
 
 import '../Classes/Constants.dart';
-import 'Authentication/Materials.dart';
 import 'Bookmarks.dart';
 import 'History.dart';
 import 'Invite.dart';
@@ -165,39 +165,39 @@ class _LectureScreenState extends State<LectureScreen> {
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          selected = 'Third Year';
-                          year = 2;
-                          setState(() {
-                            print('Third Year');
-                          });
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(left: 10),
-                          decoration: BoxDecoration(
-                            color: selected == 'Third Year'
-                                ? kPrimaryColor
-                                : Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: selected != 'Third Year'
-                                ? Border.all(color: kPrimaryColor, width: 1.0)
-                                : Border.all(color: Colors.white),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Third Year',
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  color: selected == 'Third Year'
-                                      ? Colors.white
-                                      : kPrimaryColor,
-                                  fontSize: pHeight * 0.02),
-                            ),
-                          ),
-                        ),
-                      ),
+//                      InkWell(
+//                        onTap: () {
+//                          selected = 'Third Year';
+//                          year = 2;
+//                          setState(() {
+//                            print('Third Year');
+//                          });
+//                        },
+//                        child: Container(
+//                          margin: EdgeInsets.only(left: 10),
+//                          decoration: BoxDecoration(
+//                            color: selected == 'Third Year'
+//                                ? kPrimaryColor
+//                                : Colors.white,
+//                            borderRadius: BorderRadius.circular(10),
+//                            border: selected != 'Third Year'
+//                                ? Border.all(color: kPrimaryColor, width: 1.0)
+//                                : Border.all(color: Colors.white),
+//                          ),
+//                          child: Padding(
+//                            padding: const EdgeInsets.all(8.0),
+//                            child: Text(
+//                              'Third Year',
+//                              style: TextStyle(
+//                                  fontFamily: 'Poppins',
+//                                  color: selected == 'Third Year'
+//                                      ? Colors.white
+//                                      : kPrimaryColor,
+//                                  fontSize: pHeight * 0.02),
+//                            ),
+//                          ),
+//                        ),
+//                      ),
                     ],
                   ),
                 ),
@@ -259,528 +259,239 @@ class _FirstYearState extends State<FirstYear> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: pHeight * 0.62,
-      child: ListView(
+      height: pHeight * 0.6,
+      child: GridView.count(
+        childAspectRatio: 1.6,
+        crossAxisCount: 2,
         children: <Widget>[
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'SDF',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StudyMaterial(sub: 'SDF', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/SDFButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFFF8787),
-                    Color(0xFFC16A6A),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 9.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'SDF',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'Maths',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Maths', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/MathsButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFF87F0FF),
-                    Color(0xFF3AA2B1),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 1.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Mathematics',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'Physics',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Physics', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/PhyButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFFFCF87),
-                    Color(0xFFCA9547),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 2.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Physics',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'EDD',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StudyMaterial(sub: 'ES', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/ESButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFE09FFF),
-                    Color(0xFF8A46AB),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 3.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'EDD',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'ES',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StudyMaterial(sub: 'EDD', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/EDDButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFFF8787),
-                    Color(0xFFC16A6A),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 9.png'),
-//                    Container(
-//                      height: pHeight * 0.1,
-//                      width: pWidth * 0.6,
-//                      decoration: BoxDecoration(
-//                        color: Color(0xFFF78C8C),
-//                      ),
-//                    ),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Electrical Science',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'Workshop',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Workshop', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/WorkshopButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFF87F0FF),
-                    Color(0xFF3AA2B1),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 1.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Workshop',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'Physics Lab - 1',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Physics Lab - 1', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/PhysicsLabButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFFFCF87),
-                    Color(0xFFCA9547),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 2.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Physics Lab - 1',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'SDF Lab - 1',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'SDF Lab - 1', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/SDFLabButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFE09FFF),
-                    Color(0xFF8A46AB),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 3.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'SDF Lab - 1',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'ES Lab - 1',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Physics Lab - 2', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/PhysicsLab2ButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFFF8787),
-                    Color(0xFFC16A6A),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 9.png'),
-//                    Container(
-//                      height: pHeight * 0.1,
-//                      width: pWidth * 0.6,
-//                      decoration: BoxDecoration(
-//                        color: Color(0xFFF78C8C),
-//                      ),
-//                    ),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'ES Lab - 1',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'Physics Lab - 2',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'SDF Lab - 2', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/SDFLab2ButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFF87F0FF),
-                    Color(0xFF3AA2B1),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 1.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Physics Lab - 2',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'SDF Lab - 2',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'ES Lab - 1', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/ESLabButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15, bottom: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFFFCF87),
-                    Color(0xFFCA9547),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 2.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'SDF Lab - 2',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
-          ),
+          )
         ],
       ),
     );
@@ -802,190 +513,91 @@ class _SecondYearState extends State<SecondYear> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: pHeight * 0.62,
-      child: ListView(
+      height: pHeight * 0.6,
+      child: GridView.count(
+        childAspectRatio: 1.6,
+        crossAxisCount: 2,
         children: <Widget>[
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'Data Structures',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Data Structures', year: '2'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/DSAlgoV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFFF8787),
-                    Color(0xFFC16A6A),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 9.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Data Structures',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'Economics',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Economics', year: '2'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/EcoV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFF87F0FF),
-                    Color(0xFF3AA2B1),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 1.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Economics',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'ES 2',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StudyMaterial(sub: 'ES 2', year: '2'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/ESV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFFFCF87),
-                    Color(0xFFCA9547),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 2.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Electrical Science - 2',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'Database',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Database', year: '2'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/DSWV2.png'),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFE09FFF),
-                    Color(0xFF8A46AB),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 3.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'DB & Web Structures',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
@@ -1006,195 +618,210 @@ class _ThirdYearState extends State<ThirdYear> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: pHeight * 0.62,
-      child: ListView(
-        children: <Widget>[
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'Algorithms',
-                  ),
-                ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFFF8787),
-                    Color(0xFFC16A6A),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 9.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Algorithms',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'OS',
-                  ),
-                ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFF87F0FF),
-                    Color(0xFF3AA2B1),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 1.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Operating Systems',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'Open Source',
-                  ),
-                ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFFFCF87),
-                    Color(0xFFCA9547),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 2.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Open Source Softwares',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Lectures(
-                    sub: 'Information Security',
-                  ),
-                ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              height: pHeight * 0.12,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFE09FFF),
-                    Color(0xFF8A46AB),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Image.asset('assets/images/Ellipse 3.png'),
-                  ),
-                  Positioned(
-                    top: pHeight * 0.035,
-                    left: pWidth * 0.08,
-                    child: Text(
-                      'Information Security',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: pHeight * 0.035),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+      height: pHeight * 0.6,
+      child: Center(
+        child: Text('Coming Soon...'),
       ),
+//      child: ListView(
+//        children: <Widget>[
+//          Column(
+//            children: <Widget>[
+//              InkWell(
+//                onTap: () {
+//                  Navigator.push(
+//                    context,
+//                    MaterialPageRoute(
+//                      builder: (context) => StudyMaterial
+//                      (
+//                        sub: 'Algorithms',
+//                      ),
+//                    ),
+//                  );
+//                },
+//                child: Container(
+//                  margin: EdgeInsets.only(top: 15),
+//                  height: pHeight * 0.10
+//                  ,
+//
+//                  decoration: BoxDecoration(
+//                    gradient: LinearGradient(
+//                      colors: [
+//                        Color(0xFFFF8787),
+//                        Color(0xFFC16A6A),
+//                      ],
+//                    ),
+//                    borderRadius: BorderRadius.circular(15),
+//                  ),
+//                  child: Stack(
+//                    children: <Widget>[
+//                      Positioned(
+//                        top: 0,
+//                        left: 0,
+//                        child: Image.asset('assets/images/Ellipse 9.png'),
+//                      ),
+//                      Positioned(
+//                        top: pHeight * 0.035,
+//                        left: pWidth * 0.08,
+//                        child: Text(
+//                          'Algorithms',
+//                          style: TextStyle(
+//                              fontFamily: 'Montserrat',
+//                              color: Colors.white,
+//                              fontSize: pHeight * 0.035),
+//                        ),
+//                      ),
+//                    ],
+//                  ),
+//                ),
+//              ),
+//              InkWell(
+//                onTap: () {
+//                  Navigator.push(
+//                    context,
+//                    MaterialPageRoute(
+//                      builder: (context) => StudyMaterial
+//                      (
+//                        sub: 'OS',
+//                      ),
+//                    ),
+//                  );
+//                },
+//                child: Container(
+//                  margin: EdgeInsets.only(top: 15),
+//                  height: pHeight * 0.10
+//                  ,
+//
+//                  decoration: BoxDecoration(
+//                    gradient: LinearGradient(
+//                      colors: [
+//                        Color(0xFF87F0FF),
+//                        Color(0xFF3AA2B1),
+//                      ],
+//                    ),
+//                    borderRadius: BorderRadius.circular(15),
+//                  ),
+//                  child: Stack(
+//                    children: <Widget>[
+//                      Positioned(
+//                        top: 0,
+//                        left: 0,
+//                        child: Image.asset('assets/images/Ellipse 1.png'),
+//                      ),
+//                      Positioned(
+//                        top: pHeight * 0.035,
+//                        left: pWidth * 0.08,
+//                        child: Text(
+//                          'Operating Systems',
+//                          style: TextStyle(
+//                              fontFamily: 'Montserrat',
+//                              color: Colors.white,
+//                              fontSize: pHeight * 0.035),
+//                        ),
+//                      ),
+//                    ],
+//                  ),
+//                ),
+//              ),
+//              InkWell(
+//                onTap: () {
+//                  Navigator.push(
+//                    context,
+//                    MaterialPageRoute(
+//                      builder: (context) => StudyMaterial
+//                      (
+//                        sub: 'Open Source',
+//                      ),
+//                    ),
+//                  );
+//                },
+//                child: Container(
+//                  margin: EdgeInsets.only(top: 15),
+//                  height: pHeight * 0.10
+//                  ,
+//
+//                  decoration: BoxDecoration(
+//                    gradient: LinearGradient(
+//                      colors: [
+//                        Color(0xFFFFCF87),
+//                        Color(0xFFCA9547),
+//                      ],
+//                    ),
+//                    borderRadius: BorderRadius.circular(15),
+//                  ),
+//                  child: Stack(
+//                    children: <Widget>[
+//                      Positioned(
+//                        top: 0,
+//                        left: 0,
+//                        child: Image.asset('assets/images/Ellipse 2.png'),
+//                      ),
+//                      Positioned(
+//                        top: pHeight * 0.035,
+//                        left: pWidth * 0.08,
+//                        child: Text(
+//                          'Open Source Softwares',
+//                          style: TextStyle(
+//                              fontFamily: 'Montserrat',
+//                              color: Colors.white,
+//                              fontSize: pHeight * 0.035),
+//                        ),
+//                      ),
+//                    ],
+//                  ),
+//                ),
+//              ),
+//              InkWell(
+//                onTap: () {
+//                  Navigator.push(
+//                    context,
+//                    MaterialPageRoute(
+//                      builder: (context) => StudyMaterial
+//                      (
+//                        sub: 'Information Security',
+//                      ),
+//                    ),
+//                  );
+//                },
+//                child: Container(
+//                  margin: EdgeInsets.only(top: 15),
+//                  height: pHeight * 0.10
+//                  ,
+//
+//                  decoration: BoxDecoration(
+//                    gradient: LinearGradient(
+//                      colors: [
+//                        Color(0xFFE09FFF),
+//                        Color(0xFF8A46AB),
+//                      ],
+//                    ),
+//                    borderRadius: BorderRadius.circular(15),
+//                  ),
+//                  child: Stack(
+//                    children: <Widget>[
+//                      Positioned(
+//                        top: 0,
+//                        left: 0,
+//                        child: Image.asset('assets/images/Ellipse 3.png'),
+//                      ),
+//                      Positioned(
+//                        top: pHeight * 0.035,
+//                        left: pWidth * 0.08,
+//                        child: Text(
+//                          'Information Security',
+//                          style: TextStyle(
+//                              fontFamily: 'Montserrat',
+//                              color: Colors.white,
+//                              fontSize: pHeight * 0.035),
+//                        ),
+//                      ),
+//                    ],
+//                  ),
+//                ),
+//              ),
+//            ],
+//          ),
+//        ],
+//      ),
     );
   }
 }

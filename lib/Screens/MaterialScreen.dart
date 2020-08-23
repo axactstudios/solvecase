@@ -162,39 +162,39 @@ class _MaterialScreenState extends State<MaterialScreen> {
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          selected = 'Third Year';
-                          year = 2;
-                          setState(() {
-                            print('Third Year');
-                          });
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(left: 10),
-                          decoration: BoxDecoration(
-                            color: selected == 'Third Year'
-                                ? kPrimaryColor
-                                : Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: selected != 'Third Year'
-                                ? Border.all(color: kPrimaryColor, width: 1.0)
-                                : Border.all(color: Colors.white),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Third Year',
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  color: selected == 'Third Year'
-                                      ? Colors.white
-                                      : kPrimaryColor,
-                                  fontSize: pHeight * 0.02),
-                            ),
-                          ),
-                        ),
-                      ),
+//                      InkWell(
+//                        onTap: () {
+//                          selected = 'Third Year';
+//                          year = 2;
+//                          setState(() {
+//                            print('Third Year');
+//                          });
+//                        },
+//                        child: Container(
+//                          margin: EdgeInsets.only(left: 10),
+//                          decoration: BoxDecoration(
+//                            color: selected == 'Third Year'
+//                                ? kPrimaryColor
+//                                : Colors.white,
+//                            borderRadius: BorderRadius.circular(10),
+//                            border: selected != 'Third Year'
+//                                ? Border.all(color: kPrimaryColor, width: 1.0)
+//                                : Border.all(color: Colors.white),
+//                          ),
+//                          child: Padding(
+//                            padding: const EdgeInsets.all(8.0),
+//                            child: Text(
+//                              'Third Year',
+//                              style: TextStyle(
+//                                  fontFamily: 'Poppins',
+//                                  color: selected == 'Third Year'
+//                                      ? Colors.white
+//                                      : kPrimaryColor,
+//                                  fontSize: pHeight * 0.02),
+//                            ),
+//                          ),
+//                        ),
+//                      ),
                     ],
                   ),
                 ),
@@ -257,266 +257,237 @@ class _FirstYearState extends State<FirstYear> {
     final pWidth = MediaQuery.of(context).size.width;
     return Container(
       height: pHeight * 0.6,
-      child: ListView(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
+      child: GridView.count(
+        childAspectRatio: 1.6,
+        crossAxisCount: 2,
         children: <Widget>[
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => StudyMaterial(
-                          sub: 'SDF', year: '1',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/SDFButton.png'),
-                      fit: BoxFit.fill,
-                    ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StudyMaterial(sub: 'SDF', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/SDFButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'Maths',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/MathsButton.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Maths', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/MathsButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'Physics',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/PhysicsButton.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Physics', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/PhyButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'ES',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/ESButton.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StudyMaterial(sub: 'ES', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/ESButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'EDD',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/EDDButton.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StudyMaterial(sub: 'EDD', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/EDDButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'Workshop',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/WorkshopButton.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Workshop', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/WorkshopButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'Physics Lab - 1',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/PhysicsLabButton.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Physics Lab - 1', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/PhysicsLabButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'SDF Lab - 1',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/SDFLabButton.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'SDF Lab - 1', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/SDFLabButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'Physics Lab - 2',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/PhysicsLab2Button.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Physics Lab - 2', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/PhysicsLab2ButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'SDF Lab - 2',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/SDFLab2Button.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'SDF Lab - 2', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/SDFLab2ButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'ES Lab - 1',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/ESLabButton.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'ES Lab - 1', year: '1'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/ESLabButtonV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-            ],
+            ),
           )
         ],
       ),
@@ -540,103 +511,92 @@ class _SecondYearState extends State<SecondYear> {
     final pWidth = MediaQuery.of(context).size.width;
     return Container(
       height: pHeight * 0.6,
-      child: ListView(
+      child: GridView.count(
+        childAspectRatio: 1.6,
+        crossAxisCount: 2,
         children: <Widget>[
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'Data Structures',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/DSButton.png'),
-                      fit: BoxFit.fill,
-                    ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Data Structures', year: '2'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/DSAlgoV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'Economics',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/EcoButton.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Economics', year: '2'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/EcoV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'ES 2',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/ES2Button.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StudyMaterial(sub: 'ES 2', year: '2'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/ESV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'Database',
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: pHeight * 0.12,
-                    width: double.infinity,
-                    child: FittedBox(
-                      child: Image.asset('assets/images/DSWButton.png'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Database', year: '2'),
                   ),
+                );
+              },
+              child: Container(
+                height: pHeight * 0.10,
+                child: FittedBox(
+                  child: Image.asset('assets/images/DSWV2.png'),
+                  fit: BoxFit.fill,
                 ),
               ),
-            ],
+            ),
           ),
         ],
       ),
@@ -668,7 +628,8 @@ class _ThirdYearState extends State<ThirdYear> {
 //                  Navigator.push(
 //                    context,
 //                    MaterialPageRoute(
-//                      builder: (context) => Solutions(
+//                      builder: (context) => StudyMaterial
+//                      (
 //                        sub: 'Algorithms',
 //                      ),
 //                    ),
@@ -676,8 +637,9 @@ class _ThirdYearState extends State<ThirdYear> {
 //                },
 //                child: Container(
 //                  margin: EdgeInsets.only(top: 15),
-//                  height: pHeight * 0.12,
-//                  width: double.infinity,
+//                  height: pHeight * 0.10
+//                  ,
+//
 //                  decoration: BoxDecoration(
 //                    gradient: LinearGradient(
 //                      colors: [
@@ -714,7 +676,8 @@ class _ThirdYearState extends State<ThirdYear> {
 //                  Navigator.push(
 //                    context,
 //                    MaterialPageRoute(
-//                      builder: (context) => Solutions(
+//                      builder: (context) => StudyMaterial
+//                      (
 //                        sub: 'OS',
 //                      ),
 //                    ),
@@ -722,8 +685,9 @@ class _ThirdYearState extends State<ThirdYear> {
 //                },
 //                child: Container(
 //                  margin: EdgeInsets.only(top: 15),
-//                  height: pHeight * 0.12,
-//                  width: double.infinity,
+//                  height: pHeight * 0.10
+//                  ,
+//
 //                  decoration: BoxDecoration(
 //                    gradient: LinearGradient(
 //                      colors: [
@@ -760,7 +724,8 @@ class _ThirdYearState extends State<ThirdYear> {
 //                  Navigator.push(
 //                    context,
 //                    MaterialPageRoute(
-//                      builder: (context) => Solutions(
+//                      builder: (context) => StudyMaterial
+//                      (
 //                        sub: 'Open Source',
 //                      ),
 //                    ),
@@ -768,8 +733,9 @@ class _ThirdYearState extends State<ThirdYear> {
 //                },
 //                child: Container(
 //                  margin: EdgeInsets.only(top: 15),
-//                  height: pHeight * 0.12,
-//                  width: double.infinity,
+//                  height: pHeight * 0.10
+//                  ,
+//
 //                  decoration: BoxDecoration(
 //                    gradient: LinearGradient(
 //                      colors: [
@@ -806,7 +772,8 @@ class _ThirdYearState extends State<ThirdYear> {
 //                  Navigator.push(
 //                    context,
 //                    MaterialPageRoute(
-//                      builder: (context) => Solutions(
+//                      builder: (context) => StudyMaterial
+//                      (
 //                        sub: 'Information Security',
 //                      ),
 //                    ),
@@ -814,8 +781,9 @@ class _ThirdYearState extends State<ThirdYear> {
 //                },
 //                child: Container(
 //                  margin: EdgeInsets.only(top: 15),
-//                  height: pHeight * 0.12,
-//                  width: double.infinity,
+//                  height: pHeight * 0.10
+//                  ,
+//
 //                  decoration: BoxDecoration(
 //                    gradient: LinearGradient(
 //                      colors: [
