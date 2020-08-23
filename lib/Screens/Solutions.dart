@@ -1,18 +1,68 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:solvecase/Classes/Constants.dart';
+import 'package:solvecase/Classes/solution.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Solutions extends StatefulWidget {
-  String sub;
-  Solutions({this.sub});
+  String sub, year;
+  Solutions({this.sub, this.year});
 
   @override
   _SolutionsState createState() => _SolutionsState();
 }
 
 class _SolutionsState extends State<Solutions> {
+  String subject;
+  sahikro(String sub) {
+    List<String> arr = [' ', '-'];
+    for (int i = 0; i < sub.length; i++) {
+      if (sub[i] == arr[0] || sub[i] == arr[1]) {
+        sub[i];
+        i = i - 1;
+      }
+    }
+    setState(() {
+      print(sub);
+      subject = sub;
+    });
+  }
+
+  List<Solution> solutions = [];
+
+  getDatabaseRef() async {
+    DatabaseReference dbref = FirebaseDatabase.instance
+        .reference()
+        .child("JIIT")
+        .child('Sem${widget.year}')
+        .child('CSE')
+        .child(subject);
+    await dbref.once().then((DataSnapshot snap) {
+      // ignore: non_constant_identifier_names
+      var KEYS = snap.value.keys;
+      // ignore: non_constant_identifier_names
+      var DATA = snap.value;
+      solutions.clear();
+      for (var key in KEYS) {
+        Solution d = Solution(DATA[key]['Name'], DATA[key]['Url']);
+        solutions.add(d);
+      }
+      setState(() {
+        print(solutions.length);
+      });
+    });
+  }
+
   TextEditingController search = new TextEditingController(text: '');
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  @override
+  void initState() {
+    sahikro(widget.sub);
+    getDatabaseRef();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,29 +157,34 @@ class _SolutionsState extends State<Solutions> {
             child: Container(
               height: pHeight * 0.7,
               child: ListView.builder(
-                  itemCount: 15,
+                  itemCount: solutions.length,
                   itemBuilder: (context, index) {
-                    return Card(
-                      margin: EdgeInsets.only(bottom: 20),
-                      elevation: 1,
-                      shadowColor: Colors.black.withOpacity(0.75),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
+                    return InkWell(
+                      onTap: () {
+                        _launchURL1(solutions[index].url);
+                      },
+                      child: Card(
+                        margin: EdgeInsets.only(bottom: 20),
+                        elevation: 1,
+                        shadowColor: Colors.black.withOpacity(0.75),
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            '${widget.sub} Solutions - Assignment ${index + 1}',
-                            style: TextStyle(
-                                color: Colors.black.withOpacity(0.75),
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.bold,
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.025),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '${solutions[index].name}',
+                              style: TextStyle(
+                                  color: Colors.black.withOpacity(0.75),
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: MediaQuery.of(context).size.height *
+                                      0.025),
+                            ),
                           ),
                         ),
                       ),
@@ -140,5 +195,13 @@ class _SolutionsState extends State<Solutions> {
         ],
       ),
     );
+  }
+
+  _launchURL1(url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

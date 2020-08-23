@@ -356,7 +356,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         showCupertinoDialog(
             context: context,
             builder: (context) {
-              return AlertDialog(
+              return CupertinoAlertDialog(
                 title: Text(
                     'This email is already registered. Use a different email account.'),
                 actions: <Widget>[

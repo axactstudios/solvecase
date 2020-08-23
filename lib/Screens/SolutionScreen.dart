@@ -274,9 +274,7 @@ class _FirstYearState extends State<FirstYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'SDF',
-                      ),
+                      builder: (context) => Solutions(sub: 'SDF', year: '1'),
                     ),
                   );
                 },
@@ -321,6 +319,7 @@ class _FirstYearState extends State<FirstYear> {
                     MaterialPageRoute(
                       builder: (context) => Solutions(
                         sub: 'Maths',
+                        year: '1',
                       ),
                     ),
                   );
@@ -365,9 +364,8 @@ class _FirstYearState extends State<FirstYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'Physics',
-                      ),
+                      builder: (context) =>
+                          Solutions(sub: 'Physics', year: '1'),
                     ),
                   );
                 },
@@ -411,9 +409,7 @@ class _FirstYearState extends State<FirstYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'EDD',
-                      ),
+                      builder: (context) => Solutions(sub: 'EDD', year: '1'),
                     ),
                   );
                 },
@@ -457,9 +453,7 @@ class _FirstYearState extends State<FirstYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'ES',
-                      ),
+                      builder: (context) => Solutions(sub: 'ES', year: '1'),
                     ),
                   );
                 },
@@ -510,9 +504,8 @@ class _FirstYearState extends State<FirstYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'Workshop',
-                      ),
+                      builder: (context) =>
+                          Solutions(sub: 'Workshop', year: '1'),
                     ),
                   );
                 },
@@ -556,9 +549,8 @@ class _FirstYearState extends State<FirstYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'Physics Lab - 1',
-                      ),
+                      builder: (context) =>
+                          Solutions(sub: 'Physics Lab - 1', year: '1'),
                     ),
                   );
                 },
@@ -602,9 +594,8 @@ class _FirstYearState extends State<FirstYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'SDF Lab - 1',
-                      ),
+                      builder: (context) =>
+                          Solutions(sub: 'SDF Lab - 1', year: '1'),
                     ),
                   );
                 },
@@ -648,9 +639,8 @@ class _FirstYearState extends State<FirstYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'ES Lab - 1',
-                      ),
+                      builder: (context) =>
+                          Solutions(sub: 'ES Lab - 1', year: '1'),
                     ),
                   );
                 },
@@ -701,9 +691,8 @@ class _FirstYearState extends State<FirstYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'Physics Lab - 2',
-                      ),
+                      builder: (context) =>
+                          Solutions(sub: 'Physics Lab - 2', year: '1'),
                     ),
                   );
                 },
@@ -747,9 +736,8 @@ class _FirstYearState extends State<FirstYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'SDF Lab - 2',
-                      ),
+                      builder: (context) =>
+                          Solutions(sub: 'SDF Lab - 2', year: '1'),
                     ),
                   );
                 },
@@ -821,9 +809,8 @@ class _SecondYearState extends State<SecondYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'Data Structures',
-                      ),
+                      builder: (context) =>
+                          Solutions(sub: 'Data Structures', year: '2'),
                     ),
                   );
                 },
@@ -867,9 +854,8 @@ class _SecondYearState extends State<SecondYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'Economics',
-                      ),
+                      builder: (context) =>
+                          Solutions(sub: 'Economics', year: '2'),
                     ),
                   );
                 },
@@ -913,9 +899,7 @@ class _SecondYearState extends State<SecondYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'ES 2',
-                      ),
+                      builder: (context) => Solutions(sub: 'ES 2', year: '2'),
                     ),
                   );
                 },
@@ -959,9 +943,8 @@ class _SecondYearState extends State<SecondYear> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Solutions(
-                        sub: 'Database',
-                      ),
+                      builder: (context) =>
+                          Solutions(sub: 'Database', year: '2'),
                     ),
                   );
                 },
