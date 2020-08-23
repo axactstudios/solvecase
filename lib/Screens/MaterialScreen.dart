@@ -2,15 +2,10 @@ import 'package:fancy_drawer/fancy_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
+import 'package:solvecase/Screens/Solutions.dart';
 
 import '../Classes/Constants.dart';
-import '../Classes/Constants.dart';
-import 'Authentication/Materials.dart';
-import 'Bookmarks.dart';
-import 'History.dart';
-import 'Invite.dart';
-import 'MainScreen.dart';
-import 'Solutions.dart';
+import '../Material.dart';
 
 // ignore: must_be_immutable
 class MaterialScreen extends StatefulWidget {
@@ -275,8 +270,8 @@ class _FirstYearState extends State<FirstYear> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Solutions(
-                          sub: 'SDF',
+                        builder: (context) => StudyMaterial(
+                          sub: 'SDF', year: '1',
                         ),
                       ),
                     );

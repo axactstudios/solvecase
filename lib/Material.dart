@@ -6,15 +6,15 @@ import 'package:solvecase/Classes/solution.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Solutions extends StatefulWidget {
+class StudyMaterial extends StatefulWidget {
   String sub, year;
-  Solutions({this.sub, this.year});
+  StudyMaterial({this.sub, this.year});
 
   @override
-  _SolutionsState createState() => _SolutionsState();
+  _StudyMaterialState createState() => _StudyMaterialState();
 }
 
-class _SolutionsState extends State<Solutions> {
+class _StudyMaterialState extends State<StudyMaterial> {
   String subject, uid, college, course;
   void replaceCharAt(String oldString, int index, String newChar) {
     subject = oldString.substring(0, index) +
@@ -72,7 +72,7 @@ class _SolutionsState extends State<Solutions> {
     DatabaseReference dbref = FirebaseDatabase.instance
         .reference()
         .child(college)
-        .child('Solutions')
+        .child('StudyMaterial')
         .child('Sem${widget.year}')
         .child(course)
         .child(subject);
