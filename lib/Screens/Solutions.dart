@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:solvecase/Classes/Constants.dart';
@@ -14,19 +15,55 @@ class Solutions extends StatefulWidget {
 }
 
 class _SolutionsState extends State<Solutions> {
-  String subject;
+  String subject, uid, college, course;
+  void replaceCharAt(String oldString, int index, String newChar) {
+    subject = oldString.substring(0, index) +
+        newChar +
+        oldString.substring(index + 1);
+  }
+
+  getUser() async {
+    FirebaseAuth mAuth = FirebaseAuth.instance;
+    FirebaseUser user = await mAuth.currentUser();
+    setState(() {
+      uid = user.uid;
+      print(uid);
+    });
+  }
+
   sahikro(String sub) {
+    subject = sub;
     List<String> arr = [' ', '-'];
     for (int i = 0; i < sub.length; i++) {
       if (sub[i] == arr[0] || sub[i] == arr[1]) {
-        sub[i];
-        i = i - 1;
+        replaceCharAt(subject, i, 's');
       }
     }
     setState(() {
-      print(sub);
-      subject = sub;
+      print(subject);
     });
+  }
+
+  getUserData() async {
+    DatabaseReference dbref =
+        FirebaseDatabase.instance.reference().child("Users");
+    await dbref.once().then((DataSnapshot snap) {
+      // ignore: non_constant_identifier_names
+      var KEYS = snap.value.keys;
+      // ignore: non_constant_identifier_names
+      var DATA = snap.value;
+
+      for (var key in KEYS) {
+        if (key == uid) {
+          college = DATA[key]['college'];
+          course = DATA[key]['course'];
+        }
+      }
+      setState(() {
+        print(college);
+      });
+    });
+    getDatabaseRef();
   }
 
   List<Solution> solutions = [];
@@ -34,9 +71,9 @@ class _SolutionsState extends State<Solutions> {
   getDatabaseRef() async {
     DatabaseReference dbref = FirebaseDatabase.instance
         .reference()
-        .child("JIIT")
+        .child(college)
         .child('Sem${widget.year}')
-        .child('CSE')
+        .child(course)
         .child(subject);
     await dbref.once().then((DataSnapshot snap) {
       // ignore: non_constant_identifier_names
@@ -58,8 +95,10 @@ class _SolutionsState extends State<Solutions> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
+    getUser();
+    getUserData();
+
     sahikro(widget.sub);
-    getDatabaseRef();
 
     super.initState();
   }
