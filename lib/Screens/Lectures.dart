@@ -118,7 +118,7 @@ class _LecturesState extends State<Lectures> {
       body: Column(
         children: <Widget>[
           Container(
-            height: pHeight * 0.18,
+            height: pHeight * 0.19,
             width: pWidth,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -140,11 +140,11 @@ class _LecturesState extends State<Lectures> {
                 ),
                 IconButton(
                   icon: Icon(
-                    Icons.menu,
+                    Icons.arrow_back,
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    _scaffoldKey.currentState.openDrawer();
+                    Navigator.pop(context);
                   },
                 ),
                 SizedBox(
@@ -214,7 +214,7 @@ class _LecturesState extends State<Lectures> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(pWidth * 0.01),
                               child: Row(
                                 children: <Widget>[
                                   ClipRRect(
@@ -222,7 +222,7 @@ class _LecturesState extends State<Lectures> {
                                     child: Image.network(
                                       'https://img.youtube.com/vi/${lectures[index].key}/0.jpg',
                                       height: pHeight * 0.15,
-                                      width: pHeight * 0.25,
+                                      width: pWidth * 0.5,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -234,17 +234,18 @@ class _LecturesState extends State<Lectures> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text(
-                                        lectures[index].name,
-                                        style: TextStyle(
-                                            color:
-                                                Colors.black.withOpacity(0.75),
-                                            fontFamily: 'Poppins',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.025),
+                                      Container(
+                                        width: pWidth * 0.4,
+                                        child: Text(
+                                          lectures[index].name,
+                                          style: TextStyle(
+                                              color: Colors.black
+                                                  .withOpacity(0.75),
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: pWidth * 0.055),
+                                          overflow: TextOverflow.fade,
+                                        ),
                                       ),
                                       Text(
                                         '${widget.sub}',
@@ -253,10 +254,7 @@ class _LecturesState extends State<Lectures> {
                                                 Colors.black.withOpacity(0.55),
                                             fontFamily: 'Poppins',
                                             fontWeight: FontWeight.bold,
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.018),
+                                            fontSize: pWidth * 0.05),
                                       ),
                                     ],
                                   ),

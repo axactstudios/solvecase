@@ -44,7 +44,7 @@ class _LectureScreenState extends State<LectureScreen> {
       body: Column(
         children: <Widget>[
           Container(
-            height: pHeight * 0.25,
+            height: pHeight * 0.26,
             width: pWidth,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -118,7 +118,7 @@ class _LectureScreenState extends State<LectureScreen> {
                                 : Border.all(color: Colors.white, width: 1),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(pHeight * 0.01),
                             child: Text(
                               'Sem 1',
                               style: TextStyle(
@@ -151,7 +151,7 @@ class _LectureScreenState extends State<LectureScreen> {
                                 : Border.all(color: Colors.white),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(pHeight * 0.01),
                             child: Text(
                               'Sem 3',
                               style: TextStyle(

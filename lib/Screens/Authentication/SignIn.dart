@@ -52,190 +52,192 @@ class _SignInState extends State<SignIn> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        height: pHeight * 0.05,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                  child: Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: pHeight * 0.05,
                         ),
-                      ),
-                      SizedBox(
-                        height: pHeight * 0.035,
-                      ),
-                      Text(
-                        'Welcome\nBack!',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
                             color: Colors.white,
-                            fontFamily: 'Circular',
-                            fontSize: pHeight * 0.035),
-                      ),
-                      SizedBox(
-                        height: pHeight * 0.22,
-                      ),
-                      Text(
-                        'Sign In',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            color: txtColor,
-                            fontFamily: 'Circular',
-                            fontSize: pHeight * 0.035),
-                      ),
-                      SizedBox(
-                        height: pHeight * 0.05,
-                      ),
-                      Container(
-                        width: pWidth * 0.9,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFE9E9E9),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: TextFormField(
-                            controller: emailC,
-                            validator: (value) {
-                              if (!validator.email(value)) {
-                                return 'Invalid Email';
-                              } else {
-                                return null;
-                              }
-                            },
-                            decoration: InputDecoration(
-                              hintText: 'Email',
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none),
-                              hintStyle: TextStyle(
-                                  fontFamily: 'Circular',
-                                  fontSize: pHeight * 0.02),
-                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: pHeight * 0.02,
-                      ),
-                      Container(
-                        width: pWidth * 0.9,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFE9E9E9),
-                          borderRadius: BorderRadius.circular(10),
+                        SizedBox(
+                          height: pHeight * 0.035,
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: TextFormField(
-                            controller: pwC,
-                            obscureText: isObscured,
-                            validator: (value) {
-                              if (value.length < 6) {
-                                return 'Invalid Password';
-                              } else {
-                                return null;
-                              }
-                            },
-                            decoration: InputDecoration(
-                              suffix: isObscured
-                                  ? InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          isObscured = false;
-                                        });
-                                      },
-                                      child: Icon(
-                                        Icons.visibility,
-                                        color: Color(0xFF4E4E4E),
-                                      ),
-                                    )
-                                  : InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          isObscured = true;
-                                        });
-                                      },
-                                      child: Icon(
-                                        Icons.visibility_off,
-                                        color: Color(0xFF4E4E4E),
-                                      ),
-                                    ),
-                              hintText: 'Password',
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none),
-                              hintStyle: TextStyle(
-                                  fontFamily: 'Circular',
-                                  fontSize: pHeight * 0.02),
-                            ),
-                          ),
+                        Text(
+                          'Welcome\nBack!',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Circular',
+                              fontSize: pHeight * 0.04),
                         ),
-                      ),
-                      SizedBox(
-                        height: pHeight * 0.01,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            CupertinoPageRoute(
-                              builder: (context) => ForgotPassword(),
-                            ),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 2.0),
-                          child: Text(
-                            'Forgot Password?',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                                color: txtColor,
-                                fontFamily: 'Circular',
-                                fontSize: pHeight * 0.018),
-                          ),
+                        SizedBox(
+                          height: pHeight * 0.25,
                         ),
-                      ),
-                      SizedBox(
-                        height: pHeight * 0.04,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          if (_formKey.currentState.validate()) {
-                            signIn();
-                          }
-                        },
-                        child: Container(
+                        Text(
+                          'Sign In',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              color: txtColor,
+                              fontFamily: 'Circular',
+                              fontSize: pHeight * 0.035),
+                        ),
+                        SizedBox(
+                          height: pHeight * 0.05,
+                        ),
+                        Container(
                           width: pWidth * 0.9,
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFFF04F4E),
-                                Color(0xFFFFB199),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
+                            color: Color(0xFFE9E9E9),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Center(
-                              child: Text(
-                                'Sign In',
-                                style: TextStyle(
-                                    color: Colors.white,
+                            padding: const EdgeInsets.all(2.0),
+                            child: TextFormField(
+                              controller: emailC,
+                              validator: (value) {
+                                if (!validator.email(value)) {
+                                  return 'Invalid Email';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              decoration: InputDecoration(
+                                hintText: 'Email',
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none),
+                                hintStyle: TextStyle(
                                     fontFamily: 'Circular',
-                                    fontSize: pHeight * 0.03),
+                                    fontSize: pHeight * 0.02),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: pHeight * 0.02,
+                        ),
+                        Container(
+                          width: pWidth * 0.9,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFE9E9E9),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: TextFormField(
+                              controller: pwC,
+                              obscureText: isObscured,
+                              validator: (value) {
+                                if (value.length < 6) {
+                                  return 'Invalid Password';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              decoration: InputDecoration(
+                                suffix: isObscured
+                                    ? InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            isObscured = false;
+                                          });
+                                        },
+                                        child: Icon(
+                                          Icons.visibility,
+                                          color: Color(0xFF4E4E4E),
+                                        ),
+                                      )
+                                    : InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            isObscured = true;
+                                          });
+                                        },
+                                        child: Icon(
+                                          Icons.visibility_off,
+                                          color: Color(0xFF4E4E4E),
+                                        ),
+                                      ),
+                                hintText: 'Password',
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none),
+                                hintStyle: TextStyle(
+                                    fontFamily: 'Circular',
+                                    fontSize: pHeight * 0.02),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: pHeight * 0.01,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                builder: (context) => ForgotPassword(),
+                              ),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 2.0),
+                            child: Text(
+                              'Forgot Password?',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: txtColor,
+                                  fontFamily: 'Circular',
+                                  fontSize: pHeight * 0.018),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: pHeight * 0.04,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (_formKey.currentState.validate()) {
+                              signIn();
+                            }
+                          },
+                          child: Container(
+                            width: pWidth * 0.9,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0xFFF04F4E),
+                                  Color(0xFFFFB199),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Center(
+                                child: Text(
+                                  'Sign In',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Circular',
+                                      fontSize: pHeight * 0.03),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

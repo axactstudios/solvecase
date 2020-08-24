@@ -41,7 +41,7 @@ class _BookmarksState extends State<Bookmarks> {
       body: Column(
         children: <Widget>[
           Container(
-            height: pHeight * 0.18,
+            height: pHeight * 0.19,
             width: pWidth,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -126,7 +126,6 @@ class _BookmarksState extends State<Bookmarks> {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
-                        margin: EdgeInsets.only(bottom: 20),
                         elevation: 1,
                         shadowColor: Colors.black.withOpacity(0.75),
                         shape: RoundedRectangleBorder(

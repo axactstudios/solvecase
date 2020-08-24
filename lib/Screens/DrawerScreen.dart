@@ -97,10 +97,13 @@ class _DrawerScreenState extends State<DrawerScreen>
               Positioned(
                 top: 0,
                 left: 0,
-                child: Image.asset('assets/images/Shapes.png'),
+                child: Image.asset(
+                  'assets/images/Shapes.png',
+                  width: pWidth * 0.8,
+                ),
               ),
               Positioned(
-                top: pHeight * 0.08,
+                top: pHeight * 0.05,
                 left: pWidth * 0.05,
                 child: Image.asset(
                   'assets/images/Group 13.png',
@@ -108,7 +111,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                 ),
               ),
               Positioned(
-                top: pHeight * 0.185,
+                top: pHeight * 0.16,
                 left: pWidth * 0.05,
                 child: Text(
                   '$fName $lName',
@@ -120,7 +123,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                 ),
               ),
               Positioned(
-                top: pHeight * 0.22,
+                top: pHeight * 0.20,
                 left: pWidth * 0.05,
                 child: Text(
                   '$college',
@@ -212,17 +215,17 @@ class _DrawerScreenState extends State<DrawerScreen>
                           fontSize: pHeight * 0.025,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
-                      height: pHeight * 0.04,
-                    ),
-                    Text(
-                      'SETTINGS',
-                      style: TextStyle(
-                          fontFamily: 'Circular',
-                          color: txtColor,
-                          fontSize: pHeight * 0.025,
-                          fontWeight: FontWeight.bold),
-                    ),
+//                    SizedBox(
+//                      height: pHeight * 0.04,
+//                    ),
+//                    Text(
+//                      'SETTINGS',
+//                      style: TextStyle(
+//                          fontFamily: 'Circular',
+//                          color: txtColor,
+//                          fontSize: pHeight * 0.025,
+//                          fontWeight: FontWeight.bold),
+//                    ),
                   ],
                 ),
               ),
