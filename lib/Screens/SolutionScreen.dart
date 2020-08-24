@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
 import '../Classes/Constants.dart';
+import '../main.dart';
 import 'Solutions.dart';
 
 // ignore: must_be_immutable
@@ -31,11 +32,11 @@ class _SolutionScreenState extends State<SolutionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(mode);
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
       drawer: DrawerScreen(),
       body: Column(
         children: <Widget>[

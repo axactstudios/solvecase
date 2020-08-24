@@ -2,6 +2,7 @@ import 'package:device_info/device_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:solvecase/Classes/Constants.dart';
 import 'package:solvecase/Screens/Intro1.dart';
 import 'package:solvecase/Screens/MainScreen.dart';
 import 'firstscreen.dart';
@@ -111,7 +112,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Center(
         child: InkWell(
           onTap: () {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solvecase/Classes/Constants.dart';
 
 class ResetLinkSent extends StatefulWidget {
   @override
@@ -12,7 +13,7 @@ class _ResetLinkSentState extends State<ResetLinkSent> {
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: SingleChildScrollView(
         child: Container(
           width: pWidth,
@@ -58,7 +59,7 @@ class _ResetLinkSentState extends State<ResetLinkSent> {
                       'A password recovery link has been sent to your email. Click the link and set a new password.',
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                          color: Colors.black,
+                          color: txtColor,
                           fontFamily: 'Circular',
                           fontSize: pHeight * 0.025),
                     ),

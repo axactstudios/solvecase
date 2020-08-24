@@ -13,9 +13,9 @@ import 'package:solvecase/Screens/MorePageScreens/ContactSupport.dart';
 import 'package:solvecase/Screens/MorePageScreens/FAQ.dart';
 import 'package:solvecase/Screens/MorePageScreens/Profile.dart';
 import '../Classes/Constants.dart';
+import '../main.dart';
 import 'Bookmarks.dart';
-import 'History.dart';
-import 'Invite.dart';
+
 import 'MainScreen.dart';
 
 class More extends StatefulWidget {
@@ -94,7 +94,7 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
   bool status = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  List<Widget> myWidgets = [MainScreen(), History(), Bookmarks(), Invite()];
+  List<Widget> myWidgets = [MainScreen(), Bookmarks()];
   @override
   Widget build(BuildContext context) {
     final pHeight = MediaQuery.of(context).size.height;
@@ -102,7 +102,7 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
     return Scaffold(
       drawer: DrawerScreen(),
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Stack(
         children: <Widget>[
           Positioned(
@@ -208,12 +208,13 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
                         Text(
                           'PROFILE SETTINGS',
                           style: TextStyle(
+                              color: txtColor,
                               fontFamily: 'Circular',
                               fontSize: pHeight * 0.025),
                         ),
                         Icon(
                           Icons.arrow_forward_ios,
-                          color: Colors.black,
+                          color: txtColor,
                         )
                       ],
                     ),
@@ -233,12 +234,13 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
                         Text(
                           'FAQ',
                           style: TextStyle(
+                              color: txtColor,
                               fontFamily: 'Circular',
                               fontSize: pHeight * 0.025),
                         ),
                         Icon(
                           Icons.arrow_forward_ios,
-                          color: Colors.black,
+                          color: txtColor,
                         )
                       ],
                     ),
@@ -258,12 +260,13 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
                         Text(
                           'CONTACT SUPPORT',
                           style: TextStyle(
+                              color: txtColor,
                               fontFamily: 'Circular',
                               fontSize: pHeight * 0.025),
                         ),
                         Icon(
                           Icons.arrow_forward_ios,
-                          color: Colors.black,
+                          color: txtColor,
                         )
                       ],
                     ),
@@ -283,12 +286,13 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
                         Text(
                           'ABOUT',
                           style: TextStyle(
+                              color: txtColor,
                               fontFamily: 'Circular',
                               fontSize: pHeight * 0.025),
                         ),
                         Icon(
                           Icons.arrow_forward_ios,
-                          color: Colors.black,
+                          color: txtColor,
                         )
                       ],
                     ),
@@ -304,7 +308,9 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
                       Text(
                         'DARK MODE',
                         style: TextStyle(
-                            fontFamily: 'Circular', fontSize: pHeight * 0.025),
+                            color: txtColor,
+                            fontFamily: 'Circular',
+                            fontSize: pHeight * 0.025),
                       ),
                       FlutterSwitch(
                         width: pWidth * 0.15,
@@ -317,6 +323,8 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
                         onToggle: (val) {
                           setState(() {
                             status = val;
+                            mode == 'light' ? mode = 'dark' : mode = 'light';
+                            changeMode();
                           });
                         },
                       ),

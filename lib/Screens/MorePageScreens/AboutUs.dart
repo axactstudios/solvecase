@@ -12,7 +12,7 @@ class _AboutUsState extends State<AboutUs> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Stack(
         children: <Widget>[
           Positioned(
@@ -64,7 +64,7 @@ class _AboutUsState extends State<AboutUs> {
                           fontFamily: 'Poppins',
                           fontSize: pHeight * 0.03,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black),
+                          color: txtColor),
                     ),
                     SizedBox(
                       width: pWidth * 0.02,

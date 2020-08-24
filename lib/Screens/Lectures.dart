@@ -114,7 +114,7 @@ class _LecturesState extends State<Lectures> {
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Column(
         children: <Widget>[
           Container(

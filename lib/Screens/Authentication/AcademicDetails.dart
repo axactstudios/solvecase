@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:solvecase/Screens/Authentication/PersonalDetails.dart';
+import 'package:solvecase/Classes/Constants.dart';
 
 class AcademicDetails extends StatefulWidget {
   @override
@@ -17,7 +18,7 @@ class _AcademicDetailsState extends State<AcademicDetails> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Container(
         width: pWidth,
         child: Stack(
@@ -62,7 +63,7 @@ class _AcademicDetailsState extends State<AcademicDetails> {
                     'Sign Up',
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                        color: Colors.black,
+                        color: txtColor,
                         fontFamily: 'Circular',
                         fontSize: pHeight * 0.035),
                   ),

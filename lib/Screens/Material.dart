@@ -115,7 +115,7 @@ class _StudyMaterialState extends State<StudyMaterial> {
     return Scaffold(
       drawer: DrawerScreen(),
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Column(
         children: <Widget>[
           Container(

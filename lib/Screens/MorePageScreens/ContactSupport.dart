@@ -17,7 +17,7 @@ class _ContactSupportState extends State<ContactSupport> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Stack(
         children: <Widget>[
           Positioned(
@@ -86,7 +86,7 @@ class _ContactSupportState extends State<ContactSupport> {
                         fontFamily: 'Poppins',
                         fontSize: pHeight * 0.03,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        color: txtColor),
                   ),
                   SizedBox(
                     height: pHeight * 0.01,
@@ -121,7 +121,7 @@ class _ContactSupportState extends State<ContactSupport> {
                                 fontFamily: 'Poppins',
                                 fontSize: pHeight * 0.018,
                                 fontWeight: FontWeight.w400,
-                                color: Colors.black),
+                                color: txtColor),
                           ),
                         ],
                       ),
@@ -151,7 +151,7 @@ class _ContactSupportState extends State<ContactSupport> {
                                 fontFamily: 'Poppins',
                                 fontSize: pHeight * 0.018,
                                 fontWeight: FontWeight.w400,
-                                color: Colors.black),
+                                color: txtColor),
                           ),
                         ],
                       ),

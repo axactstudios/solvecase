@@ -15,7 +15,7 @@ class _Intro1State extends State<Intro1> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Stack(
         children: <Widget>[
           Positioned(
@@ -168,7 +168,7 @@ class _Intro2State extends State<Intro2> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Stack(
         children: <Widget>[
           Positioned(
@@ -321,7 +321,7 @@ class _Intro3State extends State<Intro3> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Stack(
         children: <Widget>[
           Positioned(

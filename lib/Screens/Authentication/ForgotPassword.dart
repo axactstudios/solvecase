@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:regexed_validator/regexed_validator.dart';
 import 'package:solvecase/Screens/Authentication/ResetLinkSent.dart';
+import 'package:solvecase/Classes/Constants.dart';
 
 class ForgotPassword extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -67,7 +68,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         'A password recovery link will be sent to your email. Click the link and set a new password.',
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            color: Colors.black,
+                            color: txtColor,
                             fontFamily: 'Circular',
                             fontSize: pHeight * 0.025),
                       ),

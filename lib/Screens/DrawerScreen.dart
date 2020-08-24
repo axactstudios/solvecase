@@ -1,13 +1,13 @@
 import 'package:fancy_drawer/fancy_drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../Classes/Constants.dart';
 import '../Classes/Constants.dart';
 import 'Bookmarks.dart';
-import 'Invite.dart';
 
-import 'History.dart';
 import 'MainScreen.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -18,6 +18,48 @@ class DrawerScreen extends StatefulWidget {
 class _DrawerScreenState extends State<DrawerScreen>
     with SingleTickerProviderStateMixin {
   FancyDrawerController _controller;
+  String fName = 'Darrell';
+  String lName = 'Steward';
+  String college = 'JIIT';
+  String course = 'CSE';
+  String year = 'First Year';
+  String subject, uid;
+  getUser() async {
+    FirebaseAuth mAuth = FirebaseAuth.instance;
+    FirebaseUser user = await mAuth.currentUser();
+    setState(() {
+      uid = user.uid;
+      print(uid);
+    });
+    getUserData();
+  }
+
+  getUserData() async {
+    DatabaseReference dbref =
+        FirebaseDatabase.instance.reference().child("Users");
+    await dbref.once().then((DataSnapshot snap) {
+      // ignore: non_constant_identifier_names
+      var KEYS = snap.value.keys;
+      // ignore: non_constant_identifier_names
+      var DATA = snap.value;
+
+      for (var key in KEYS) {
+        if (key == uid) {
+          setState(() {
+            fName = DATA[key]['fName'];
+            lName = DATA[key]['lName'];
+            college = DATA[key]['college'];
+            course = DATA[key]['course'];
+            year = DATA[key]['year'];
+          });
+        }
+      }
+      setState(() {
+        print(college);
+        print(fName);
+      });
+    });
+  }
 
   @override
   void initState() {
@@ -27,6 +69,7 @@ class _DrawerScreenState extends State<DrawerScreen>
       ..addListener(() {
         setState(() {});
       });
+    getUser();
   }
 
   @override
@@ -37,7 +80,7 @@ class _DrawerScreenState extends State<DrawerScreen>
 
   int index = 0;
 
-  List<Widget> myWidgets = [MainScreen(), History(), Bookmarks(), Invite()];
+  List<Widget> myWidgets = [MainScreen(), Bookmarks()];
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +89,7 @@ class _DrawerScreenState extends State<DrawerScreen>
     return Drawer(
       child: Container(
         width: pWidth * 0.8,
-        color: Colors.white,
+        color: darkColor,
         child: Container(
           width: pWidth,
           child: Stack(
@@ -68,7 +111,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                 top: pHeight * 0.185,
                 left: pWidth * 0.05,
                 child: Text(
-                  'Darrell Steward',
+                  '$fName $lName',
                   style: TextStyle(
                       fontFamily: 'Circular',
                       color: Color(0xFFE9E9E9),
@@ -80,7 +123,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                 top: pHeight * 0.22,
                 left: pWidth * 0.05,
                 child: Text(
-                  'JIIT Noida',
+                  '$college',
                   style: TextStyle(
                       fontFamily: 'Circular',
                       color: Color(0xFFE9E9E9),
@@ -92,7 +135,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                 top: pHeight * 0.24,
                 left: pWidth * 0.05,
                 child: Text(
-                  'B. Tech',
+                  '$course',
                   style: TextStyle(
                       fontFamily: 'Circular',
                       color: Color(0xFFE9E9E9),
@@ -118,7 +161,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                         'HOME',
                         style: TextStyle(
                             fontFamily: 'Circular',
-                            color: Colors.black,
+                            color: txtColor,
                             fontSize: pHeight * 0.025,
                             fontWeight: FontWeight.bold),
                       ),
@@ -135,7 +178,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                         'BOOKMARKS',
                         style: TextStyle(
                             fontFamily: 'Circular',
-                            color: Colors.black,
+                            color: txtColor,
                             fontSize: pHeight * 0.025,
                             fontWeight: FontWeight.bold),
                       ),
@@ -153,7 +196,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                         'INVITE FRIENDS',
                         style: TextStyle(
                             fontFamily: 'Circular',
-                            color: Colors.black,
+                            color: txtColor,
                             fontSize: pHeight * 0.025,
                             fontWeight: FontWeight.bold),
                       ),
@@ -165,7 +208,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                       'RATE ON PLAYSTORE',
                       style: TextStyle(
                           fontFamily: 'Circular',
-                          color: Colors.black,
+                          color: txtColor,
                           fontSize: pHeight * 0.025,
                           fontWeight: FontWeight.bold),
                     ),
@@ -176,7 +219,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                       'SETTINGS',
                       style: TextStyle(
                           fontFamily: 'Circular',
-                          color: Colors.black,
+                          color: txtColor,
                           fontSize: pHeight * 0.025,
                           fontWeight: FontWeight.bold),
                     ),

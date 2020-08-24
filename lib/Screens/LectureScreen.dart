@@ -5,8 +5,7 @@ import 'package:solvecase/Screens/DrawerScreen.dart';
 
 import '../Classes/Constants.dart';
 import 'Bookmarks.dart';
-import 'History.dart';
-import 'Invite.dart';
+
 import 'Lectures.dart';
 import 'MainScreen.dart';
 
@@ -40,7 +39,7 @@ class _LectureScreenState extends State<LectureScreen> {
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       drawer: DrawerScreen(),
       body: Column(
         children: <Widget>[

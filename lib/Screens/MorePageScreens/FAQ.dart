@@ -14,7 +14,7 @@ class _FAQState extends State<FAQ> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Column(
         children: <Widget>[
           Container(
@@ -100,7 +100,7 @@ class _FAQState extends State<FAQ> {
             child: Container(
               height: pHeight * 0.7,
               child: ListView.builder(
-                  itemCount: 15,
+                  itemCount: 5,
                   itemBuilder: (context, index) {
                     return Card(
                       margin: EdgeInsets.only(bottom: 20),

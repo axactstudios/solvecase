@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:solvecase/Classes/Constants.dart';
 
 class ProfileSettings extends StatefulWidget {
   @override
@@ -64,7 +65,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Stack(
         children: <Widget>[
           Positioned(

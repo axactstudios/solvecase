@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:regexed_validator/regexed_validator.dart';
 import 'package:solvecase/Screens/Authentication/SignIn.dart';
+import 'package:solvecase/Classes/Constants.dart';
 
 class PersonalDetails extends StatefulWidget {
   String college, course, year;
@@ -40,7 +41,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -88,7 +89,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         'Sign Up',
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            color: Colors.black,
+                            color: txtColor,
                             fontFamily: 'Circular',
                             fontSize: pHeight * 0.035),
                       ),
@@ -334,7 +335,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
           'uid': user.uid,
           'fName': fName.text,
           'lName': lName.text,
-          'college': widget.college,
+          'college': widget.college == 'JIIT-128' ? 'JIIT' : widget.college,
           'course': widget.course,
           'year': widget.year,
           'deviceUid': deviceUid,

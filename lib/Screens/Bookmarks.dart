@@ -37,7 +37,7 @@ class _BookmarksState extends State<Bookmarks> {
     return Scaffold(
       drawer: DrawerScreen(),
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: Column(
         children: <Widget>[
           Container(

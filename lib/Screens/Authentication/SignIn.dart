@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:regexed_validator/regexed_validator.dart';
 import 'package:solvecase/Screens/Authentication/ForgotPassword.dart';
 import 'package:solvecase/Screens/MainScreen.dart';
+import 'package:solvecase/Classes/Constants.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -36,7 +37,7 @@ class _SignInState extends State<SignIn> {
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -84,7 +85,7 @@ class _SignInState extends State<SignIn> {
                         'Sign In',
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            color: Colors.black,
+                            color: txtColor,
                             fontFamily: 'Circular',
                             fontSize: pHeight * 0.035),
                       ),
@@ -192,7 +193,7 @@ class _SignInState extends State<SignIn> {
                             'Forgot Password?',
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                                color: Colors.black,
+                                color: txtColor,
                                 fontFamily: 'Circular',
                                 fontSize: pHeight * 0.018),
                           ),

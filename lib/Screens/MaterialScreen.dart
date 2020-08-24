@@ -37,7 +37,7 @@ class _MaterialScreenState extends State<MaterialScreen> {
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: darkColor,
       drawer: DrawerScreen(),
       body: Column(
         children: <Widget>[
