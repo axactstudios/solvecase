@@ -23,6 +23,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
       uid = user.uid;
       print(uid);
     });
+    getUserData();
   }
 
   getUserData() async {
@@ -36,14 +37,26 @@ class _ProfileSettingsState extends State<ProfileSettings> {
 
       for (var key in KEYS) {
         if (key == uid) {
-          college = DATA[key]['college'];
-          course = DATA[key]['course'];
+          setState(() {
+            fName = TextEditingController(text: DATA[key]['fName']);
+            lName = TextEditingController(text: DATA[key]['lName']);
+            college = DATA[key]['college'];
+            course = DATA[key]['course'];
+            year = DATA[key]['year'];
+          });
         }
       }
       setState(() {
         print(college);
       });
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    getUser();
   }
 
   @override

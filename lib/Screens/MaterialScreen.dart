@@ -5,7 +5,7 @@ import 'package:solvecase/Screens/DrawerScreen.dart';
 import 'package:solvecase/Screens/Solutions.dart';
 
 import '../Classes/Constants.dart';
-import '../Material.dart';
+import 'Material.dart';
 
 // ignore: must_be_immutable
 class MaterialScreen extends StatefulWidget {

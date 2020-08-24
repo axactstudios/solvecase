@@ -6,14 +6,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:solvecase/Screens/Authentication/SignIn.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
 import 'package:solvecase/Screens/Intro1.dart';
 import 'package:solvecase/Screens/MorePageScreens/AboutUs.dart';
 import 'package:solvecase/Screens/MorePageScreens/ContactSupport.dart';
 import 'package:solvecase/Screens/MorePageScreens/FAQ.dart';
 import 'package:solvecase/Screens/MorePageScreens/Profile.dart';
-
 import '../Classes/Constants.dart';
 import 'Bookmarks.dart';
 import 'History.dart';
@@ -28,10 +26,53 @@ class More extends StatefulWidget {
 class _MoreState extends State<More> with TickerProviderStateMixin {
   FancyDrawerController _controller;
   String deviceUid, deviceType;
+  String fName = 'Darrell';
+  String lName = 'Steward';
+  String college = 'JIIT';
+  String course = 'CSE';
+  String year = 'First Year';
+  String subject, uid;
+  getUser() async {
+    FirebaseAuth mAuth = FirebaseAuth.instance;
+    FirebaseUser user = await mAuth.currentUser();
+    setState(() {
+      uid = user.uid;
+      print(uid);
+    });
+    getUserData();
+  }
+
+  getUserData() async {
+    DatabaseReference dbref =
+        FirebaseDatabase.instance.reference().child("Users");
+    await dbref.once().then((DataSnapshot snap) {
+      // ignore: non_constant_identifier_names
+      var KEYS = snap.value.keys;
+      // ignore: non_constant_identifier_names
+      var DATA = snap.value;
+
+      for (var key in KEYS) {
+        if (key == uid) {
+          setState(() {
+            fName = DATA[key]['fName'];
+            lName = DATA[key]['lName'];
+            college = DATA[key]['college'];
+            course = DATA[key]['course'];
+            year = DATA[key]['year'];
+          });
+        }
+      }
+      setState(() {
+        print(college);
+        print(fName);
+      });
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    getUser();
     _controller = FancyDrawerController(
       vsync: this,
       duration: Duration(milliseconds: 250),
@@ -116,13 +157,13 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Darrell Steward',
+                            '$fName $lName',
                             style: TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: pHeight * 0.03),
                           ),
                           Text(
-                            'IIT Bombay',
+                            college,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: pHeight * 0.025,
@@ -130,7 +171,7 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
                             ),
                           ),
                           Text(
-                            'B.Tech',
+                            course,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: pHeight * 0.02,
@@ -138,7 +179,7 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
                             ),
                           ),
                           Text(
-                            'CSE',
+                            year,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: pHeight * 0.02,
