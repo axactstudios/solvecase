@@ -264,8 +264,16 @@ class _LecturesState extends State<Lectures> {
                           ),
                         ),
                       );
-                    })
-                : Text('No videos'),
+                    },
+                  )
+                : Text(
+                    'No videos',
+                    style: TextStyle(
+                        color: Colors.black.withOpacity(0.55),
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold,
+                        fontSize: MediaQuery.of(context).size.height * 0.025),
+                  ),
           ),
         ],
       ),

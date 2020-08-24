@@ -129,25 +129,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                     InkWell(
                       onTap: () {
                         pushNewScreen(context,
-                            screen: History(), withNavBar: false);
-                      },
-                      child: Text(
-                        'HISTORY',
-                        style: TextStyle(
-                            fontFamily: 'Circular',
-                            color: Colors.black,
-                            fontSize: pHeight * 0.025,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    SizedBox(
-                      height: pHeight * 0.04,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          index = 2;
-                        });
+                            screen: Bookmarks(), withNavBar: false);
                       },
                       child: Text(
                         'BOOKMARKS',

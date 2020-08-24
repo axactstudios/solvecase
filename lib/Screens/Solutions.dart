@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:solvecase/Classes/Constants.dart';
+import 'package:solvecase/Classes/DatabaseHelper.dart';
 import 'package:solvecase/Classes/solution.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,6 +17,8 @@ class Solutions extends StatefulWidget {
 }
 
 class _SolutionsState extends State<Solutions> {
+  final dbHelper = DatabaseHelper.instance;
+
   String subject, uid, college, course;
   void replaceCharAt(String oldString, int index, String newChar) {
     subject = oldString.substring(0, index) +
@@ -197,10 +201,8 @@ class _SolutionsState extends State<Solutions> {
               child: ListView.builder(
                   itemCount: solutions.length,
                   itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        _launchURL1(solutions[index].url);
-                      },
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Card(
                         margin: EdgeInsets.only(bottom: 20),
                         elevation: 1,
@@ -214,14 +216,48 @@ class _SolutionsState extends State<Solutions> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              '${solutions[index].name}',
-                              style: TextStyle(
-                                  color: Colors.black.withOpacity(0.75),
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      0.025),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  '${solutions[index].name}',
+                                  style: TextStyle(
+                                      color: Colors.black.withOpacity(0.75),
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize:
+                                          MediaQuery.of(context).size.height *
+                                              0.025),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: <Widget>[
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.file_download,
+                                        color: Colors.black.withOpacity(0.75),
+                                      ),
+                                      onPressed: () {
+                                        _launchURL1(solutions[index].url);
+                                      },
+                                    ),
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.bookmark,
+                                        color: Colors.black.withOpacity(0.75),
+                                      ),
+                                      onPressed: () {
+                                        print(solutions[index].url);
+                                        addToCart(
+                                            name:
+                                                '${widget.sub} - ${solutions[index].name}',
+                                            fileUrl: solutions[index].url);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -233,6 +269,20 @@ class _SolutionsState extends State<Solutions> {
         ],
       ),
     );
+  }
+
+  void addToCart({String name, String fileUrl}) async {
+    print(name);
+    print(fileUrl);
+    Map<String, dynamic> row = {
+      DatabaseHelper.columnFileName: name,
+      DatabaseHelper.columnFileUrl: fileUrl,
+    };
+
+    Solution item = Solution.fromMap(row);
+    final id = await dbHelper.insert(item);
+    Fluttertoast.showToast(
+        msg: 'Bookmark added', toastLength: Toast.LENGTH_SHORT);
   }
 
   _launchURL1(url) async {

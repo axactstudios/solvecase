@@ -27,7 +27,7 @@ class _MaterialScreenState extends State<MaterialScreen> {
 
   @override
   void initState() {
-    selected = 'First Year';
+    selected = 'Sem 1';
   }
 
   List<Widget> years = [FirstYear(), SecondYear(), ThirdYear()];
@@ -99,29 +99,29 @@ class _MaterialScreenState extends State<MaterialScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          selected = 'First Year';
+                          selected = 'Sem 1';
                           year = 0;
                           setState(() {
-                            print('First Year');
+                            print('Sem 1');
                           });
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: selected == 'First Year'
+                            color: selected != 'Sem 1'
                                 ? kPrimaryColor
                                 : Colors.white,
                             borderRadius: BorderRadius.circular(10),
-                            border: selected != 'First Year'
+                            border: selected == 'Sem 1'
                                 ? Border.all(color: kPrimaryColor, width: 1.0)
                                 : Border.all(color: Colors.white, width: 1),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'First Year',
+                              'Sem 1',
                               style: TextStyle(
                                   fontFamily: 'Poppins',
-                                  color: selected == 'First Year'
+                                  color: selected != 'Sem 1'
                                       ? Colors.white
                                       : kPrimaryColor,
                                   fontSize: pHeight * 0.02),
@@ -131,30 +131,30 @@ class _MaterialScreenState extends State<MaterialScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          selected = 'Second Year';
+                          selected = 'Sem 3';
                           year = 1;
                           setState(() {
-                            print('Second Year');
+                            print('Sem 3');
                           });
                         },
                         child: Container(
                           margin: EdgeInsets.only(left: 10),
                           decoration: BoxDecoration(
-                            color: selected == 'Second Year'
+                            color: selected != 'Sem 3'
                                 ? kPrimaryColor
                                 : Colors.white,
                             borderRadius: BorderRadius.circular(10),
-                            border: selected != 'Second Year'
+                            border: selected == 'Sem 3'
                                 ? Border.all(color: kPrimaryColor, width: 1.0)
                                 : Border.all(color: Colors.white),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'Second Year',
+                              'Sem 3',
                               style: TextStyle(
                                   fontFamily: 'Poppins',
-                                  color: selected == 'Second Year'
+                                  color: selected != 'Sem 3'
                                       ? Colors.white
                                       : kPrimaryColor,
                                   fontSize: pHeight * 0.02),
@@ -330,14 +330,15 @@ class _FirstYearState extends State<FirstYear> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => StudyMaterial(sub: 'ES', year: '1'),
+                    builder: (context) =>
+                        StudyMaterial(sub: 'Physics Lab - 1', year: '1'),
                   ),
                 );
               },
               child: Container(
                 height: pHeight * 0.10,
                 child: FittedBox(
-                  child: Image.asset('assets/images/ESButtonV2.png'),
+                  child: Image.asset('assets/images/PhysicsLabButtonV2.png'),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -384,27 +385,27 @@ class _FirstYearState extends State<FirstYear> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        StudyMaterial(sub: 'Physics Lab - 1', year: '1'),
-                  ),
-                );
-              },
-              child: Container(
-                height: pHeight * 0.10,
-                child: FittedBox(
-                  child: Image.asset('assets/images/PhysicsLabButtonV2.png'),
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-          ),
+//          Padding(
+//            padding: const EdgeInsets.all(8.0),
+//            child: InkWell(
+//              onTap: () {
+//                Navigator.push(
+//                  context,
+//                  MaterialPageRoute(
+//                    builder: (context) =>
+//                        StudyMaterial(sub: 'Physics Lab - 1', year: '1'),
+//                  ),
+//                );
+//              },
+//              child: Container(
+//                height: pHeight * 0.10,
+//                child: FittedBox(
+//                  child: Image.asset('assets/images/PhysicsLabButtonV2.png'),
+//                  fit: BoxFit.fill,
+//                ),
+//              ),
+//            ),
+//          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
@@ -426,69 +427,69 @@ class _FirstYearState extends State<FirstYear> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        StudyMaterial(sub: 'Physics Lab - 2', year: '1'),
-                  ),
-                );
-              },
-              child: Container(
-                height: pHeight * 0.10,
-                child: FittedBox(
-                  child: Image.asset('assets/images/PhysicsLab2ButtonV2.png'),
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        StudyMaterial(sub: 'SDF Lab - 2', year: '1'),
-                  ),
-                );
-              },
-              child: Container(
-                height: pHeight * 0.10,
-                child: FittedBox(
-                  child: Image.asset('assets/images/SDFLab2ButtonV2.png'),
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        StudyMaterial(sub: 'ES Lab - 1', year: '1'),
-                  ),
-                );
-              },
-              child: Container(
-                height: pHeight * 0.10,
-                child: FittedBox(
-                  child: Image.asset('assets/images/ESLabButtonV2.png'),
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-          )
+//          Padding(
+//            padding: const EdgeInsets.all(8.0),
+//            child: InkWell(
+//              onTap: () {
+//                Navigator.push(
+//                  context,
+//                  MaterialPageRoute(
+//                    builder: (context) =>
+//                        StudyMaterial(sub: 'Physics Lab - 2', year: '1'),
+//                  ),
+//                );
+//              },
+//              child: Container(
+//                height: pHeight * 0.10,
+//                child: FittedBox(
+//                  child: Image.asset('assets/images/PhysicsLab2ButtonV2.png'),
+//                  fit: BoxFit.fill,
+//                ),
+//              ),
+//            ),
+//          ),
+//          Padding(
+//            padding: const EdgeInsets.all(8.0),
+//            child: InkWell(
+//              onTap: () {
+//                Navigator.push(
+//                  context,
+//                  MaterialPageRoute(
+//                    builder: (context) =>
+//                        StudyMaterial(sub: 'SDF Lab - 2', year: '1'),
+//                  ),
+//                );
+//              },
+//              child: Container(
+//                height: pHeight * 0.10,
+//                child: FittedBox(
+//                  child: Image.asset('assets/images/SDFLab2ButtonV2.png'),
+//                  fit: BoxFit.fill,
+//                ),
+//              ),
+//            ),
+//          ),
+//          Padding(
+//            padding: const EdgeInsets.all(8.0),
+//            child: InkWell(
+//              onTap: () {
+//                Navigator.push(
+//                  context,
+//                  MaterialPageRoute(
+//                    builder: (context) =>
+//                        StudyMaterial(sub: 'ES Lab - 1', year: '1'),
+//                  ),
+//                );
+//              },
+//              child: Container(
+//                height: pHeight * 0.10,
+//                child: FittedBox(
+//                  child: Image.asset('assets/images/ESLabButtonV2.png'),
+//                  fit: BoxFit.fill,
+//                ),
+//              ),
+//            ),
+//          )
         ],
       ),
     );
