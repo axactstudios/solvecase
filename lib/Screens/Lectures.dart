@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:solvecase/Classes/Constants.dart';
+import 'package:solvecase/Classes/Videos.dart';
 import 'package:solvecase/Classes/solution.dart';
 
 class Lectures extends StatefulWidget {
@@ -65,7 +67,7 @@ class _LecturesState extends State<Lectures> {
     getDatabaseRef();
   }
 
-  List<Solution> solutions = [];
+  List<Videos> lectures = [];
 
   getDatabaseRef() async {
     DatabaseReference dbref = FirebaseDatabase.instance
@@ -80,13 +82,16 @@ class _LecturesState extends State<Lectures> {
       var KEYS = snap.value.keys;
       // ignore: non_constant_identifier_names
       var DATA = snap.value;
-      solutions.clear();
+      lectures.clear();
       for (var key in KEYS) {
-        Solution d = Solution(DATA[key]['Name'], DATA[key]['Url']);
-        solutions.add(d);
+        Videos v = Videos(
+            url: DATA[key]['Url'],
+            name: DATA[key]['Name'],
+            key: DATA[key]['VideoKey']);
+        lectures.add(v);
       }
       setState(() {
-        print(solutions.length);
+        print(lectures.length);
       });
     });
   }
@@ -113,7 +118,7 @@ class _LecturesState extends State<Lectures> {
       body: Column(
         children: <Widget>[
           Container(
-            height: pHeight * 0.22,
+            height: pHeight * 0.18,
             width: pWidth,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -156,49 +161,46 @@ class _LecturesState extends State<Lectures> {
                         color: Colors.white),
                   ),
                 ),
-                SizedBox(
-                  height: pHeight * 0.005,
-                ),
-                Center(
-                  child: Container(
-                    width: pWidth * 0.92,
-                    height: pHeight * 0.05,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFF7A1A1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Center(
-                      child: TextFormField(
-                        controller: search,
-                        decoration: InputDecoration(
-                          suffixIcon: Icon(
-                            Icons.search,
-                            color: kPrimaryColor,
-                          ),
-                          hintText: 'Search',
-                          hintStyle: TextStyle(
-                              color: kPrimaryColor,
-                              fontSize: pHeight * 0.02,
-                              fontFamily: 'Poppins'),
-                          border:
-                              OutlineInputBorder(borderSide: BorderSide.none),
-                        ),
-                      ),
-                    ),
-                  ),
-                )
+//                Center(
+//                  child: Container(
+//                    width: pWidth * 0.92,
+//                    height: pHeight * 0.05,
+//                    decoration: BoxDecoration(
+//                      color: Color(0xFFF7A1A1),
+//                      borderRadius: BorderRadius.circular(8),
+//                    ),
+//                    child: Center(
+//                      child: TextFormField(
+//                        controller: search,
+//                        decoration: InputDecoration(
+//                          suffixIcon: Icon(
+//                            Icons.search,
+//                            color: kPrimaryColor,
+//                          ),
+//                          hintText: 'Search',
+//                          hintStyle: TextStyle(
+//                              color: kPrimaryColor,
+//                              fontSize: pHeight * 0.02,
+//                              fontFamily: 'Poppins'),
+//                          border:
+//                              OutlineInputBorder(borderSide: BorderSide.none),
+//                        ),
+//                      ),
+//                    ),
+//                  ),
+//                )
               ],
             ),
           ),
           Container(
             height: pHeight * 0.7,
-            child: solutions.length != 0
+            child: lectures.length != 0
                 ? ListView.builder(
-                    itemCount: 15,
+                    itemCount: lectures.length,
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          // TODO: Pass this url to video player https://www.youtube.com/watch?v=${solutions[index].url}
+                          playVideo(lectures[index].url);
                         },
                         child: Card(
                           margin: EdgeInsets.only(bottom: 20),
@@ -218,9 +220,9 @@ class _LecturesState extends State<Lectures> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.network(
-                                      'https://img.youtube.com/vi/${solutions[index].url}/0.jpg',
+                                      'https://img.youtube.com/vi/${lectures[index].key}/0.jpg',
                                       height: pHeight * 0.15,
-                                      width: pHeight * 0.45,
+                                      width: pHeight * 0.25,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -233,7 +235,7 @@ class _LecturesState extends State<Lectures> {
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
-                                        solutions[index].name,
+                                        lectures[index].name,
                                         style: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.75),
@@ -278,5 +280,12 @@ class _LecturesState extends State<Lectures> {
         ],
       ),
     );
+  }
+
+  void playVideo(String url) {
+    FlutterYoutube.playYoutubeVideoByUrl(
+        apiKey: 'AIzaSyDc1hCen9iG3B95E5EVj_TyBKdEaKQNGxU', //Enter your API key
+        videoUrl: url,
+        fullScreen: true);
   }
 }
