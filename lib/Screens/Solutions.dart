@@ -69,11 +69,6 @@ class _SolutionsState extends State<Solutions> {
   List<Solution> solutions = [];
 
   getDatabaseRef() async {
-    print(widget.year);
-    print("--------------------------$course");
-
-    print(subject);
-
     DatabaseReference dbref = FirebaseDatabase.instance
         .reference()
         .child(college)

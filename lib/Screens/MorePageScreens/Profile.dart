@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,37 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   String college = 'JIIT';
   String course = 'CSE';
   String year = 'First Year';
+  String subject, uid;
+
+  getUser() async {
+    FirebaseAuth mAuth = FirebaseAuth.instance;
+    FirebaseUser user = await mAuth.currentUser();
+    setState(() {
+      uid = user.uid;
+      print(uid);
+    });
+  }
+
+  getUserData() async {
+    DatabaseReference dbref =
+        FirebaseDatabase.instance.reference().child("Users");
+    await dbref.once().then((DataSnapshot snap) {
+      // ignore: non_constant_identifier_names
+      var KEYS = snap.value.keys;
+      // ignore: non_constant_identifier_names
+      var DATA = snap.value;
+
+      for (var key in KEYS) {
+        if (key == uid) {
+          college = DATA[key]['college'];
+          course = DATA[key]['course'];
+        }
+      }
+      setState(() {
+        print(college);
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

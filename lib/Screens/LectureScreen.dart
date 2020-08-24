@@ -271,7 +271,7 @@ class _FirstYearState extends State<FirstYear> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => StudyMaterial(sub: 'SDF', year: '1'),
+                    builder: (context) => Lectures(sub: 'SDF', year: '1'),
                   ),
                 );
               },
@@ -291,8 +291,7 @@ class _FirstYearState extends State<FirstYear> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        StudyMaterial(sub: 'Maths', year: '1'),
+                    builder: (context) => Lectures(sub: 'Maths', year: '1'),
                   ),
                 );
               },
@@ -312,8 +311,7 @@ class _FirstYearState extends State<FirstYear> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        StudyMaterial(sub: 'Physics', year: '1'),
+                    builder: (context) => Lectures(sub: 'Physics', year: '1'),
                   ),
                 );
               },
@@ -333,7 +331,7 @@ class _FirstYearState extends State<FirstYear> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => StudyMaterial(sub: 'ES', year: '1'),
+                    builder: (context) => Lectures(sub: 'ES', year: '1'),
                   ),
                 );
               },
@@ -353,7 +351,7 @@ class _FirstYearState extends State<FirstYear> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => StudyMaterial(sub: 'EDD', year: '1'),
+                    builder: (context) => Lectures(sub: 'EDD', year: '1'),
                   ),
                 );
               },
@@ -373,8 +371,7 @@ class _FirstYearState extends State<FirstYear> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        StudyMaterial(sub: 'Workshop', year: '1'),
+                    builder: (context) => Lectures(sub: 'Workshop', year: '1'),
                   ),
                 );
               },
@@ -395,7 +392,7 @@ class _FirstYearState extends State<FirstYear> {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        StudyMaterial(sub: 'Physics Lab - 1', year: '1'),
+                        Lectures(sub: 'Physics Lab - 1', year: '1'),
                   ),
                 );
               },
@@ -416,7 +413,7 @@ class _FirstYearState extends State<FirstYear> {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        StudyMaterial(sub: 'SDF Lab - 1', year: '1'),
+                        Lectures(sub: 'SDF Lab - 1', year: '1'),
                   ),
                 );
               },
@@ -437,7 +434,7 @@ class _FirstYearState extends State<FirstYear> {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        StudyMaterial(sub: 'Physics Lab - 2', year: '1'),
+                        Lectures(sub: 'Physics Lab - 2', year: '1'),
                   ),
                 );
               },
@@ -458,7 +455,7 @@ class _FirstYearState extends State<FirstYear> {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        StudyMaterial(sub: 'SDF Lab - 2', year: '1'),
+                        Lectures(sub: 'SDF Lab - 2', year: '1'),
                   ),
                 );
               },
@@ -479,7 +476,7 @@ class _FirstYearState extends State<FirstYear> {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        StudyMaterial(sub: 'ES Lab - 1', year: '1'),
+                        Lectures(sub: 'ES Lab - 1', year: '1'),
                   ),
                 );
               },
@@ -526,7 +523,7 @@ class _SecondYearState extends State<SecondYear> {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        StudyMaterial(sub: 'Data Structures', year: '2'),
+                        Lectures(sub: 'Data Structures', year: '2'),
                   ),
                 );
               },
@@ -546,8 +543,7 @@ class _SecondYearState extends State<SecondYear> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        StudyMaterial(sub: 'Economics', year: '2'),
+                    builder: (context) => Lectures(sub: 'Economics', year: '2'),
                   ),
                 );
               },
@@ -567,7 +563,7 @@ class _SecondYearState extends State<SecondYear> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => StudyMaterial(sub: 'ES 2', year: '2'),
+                    builder: (context) => Lectures(sub: 'ES 2', year: '2'),
                   ),
                 );
               },
@@ -587,8 +583,7 @@ class _SecondYearState extends State<SecondYear> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        StudyMaterial(sub: 'Database', year: '2'),
+                    builder: (context) => Lectures(sub: 'Database', year: '2'),
                   ),
                 );
               },
