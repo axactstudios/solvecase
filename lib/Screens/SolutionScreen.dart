@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
 import '../Classes/Constants.dart';
+import '../Classes/Constants.dart';
 import '../main.dart';
 import 'Solutions.dart';
 
@@ -42,6 +43,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _scaffoldKey,
+      backgroundColor: darkColor,
       drawer: DrawerScreen(),
       body: Column(
         children: <Widget>[

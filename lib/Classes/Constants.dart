@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:solvecase/Screens/SolutionScreen.dart';
-
 import '../main.dart';
 
 Color darkColor = Color(0xFFFFFFFF);
@@ -19,4 +19,14 @@ changeMode(State state) {
   });
 
   return darkColor;
+}
+
+changeMode2() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String colorMode = prefs.getString('mode');
+  print(colorMode);
+  colorMode == 'light'
+      ? darkColor = Color(0xFFFFFFFF)
+      : darkColor = Color(0xFF3A3A3A);
+  colorMode == 'dark' ? txtColor = Color(0xFFFFFFFF) : txtColor = Colors.black;
 }
