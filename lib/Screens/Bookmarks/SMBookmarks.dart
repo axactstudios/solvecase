@@ -1,112 +1,34 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:solvecase/Classes/Constants.dart';
-import 'package:solvecase/Classes/DatabaseHelper.dart';
-import 'package:solvecase/Classes/solution.dart';
-import 'package:solvecase/Screens/DrawerScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class StudyMaterial extends StatefulWidget {
-  String sub, year;
-  StudyMaterial({this.sub, this.year});
+import '../../Classes/Constants.dart';
+import '../../Classes/DatabaseHelper.dart';
+import '../../Classes/solution.dart';
+import '../DrawerScreen.dart';
 
+class SMBookmark extends StatefulWidget {
   @override
-  _StudyMaterialState createState() => _StudyMaterialState();
+  _SMBookmarkState createState() => _SMBookmarkState();
 }
 
-class _StudyMaterialState extends State<StudyMaterial> {
+class _SMBookmarkState extends State<SMBookmark> {
   final dbHelper = DatabaseHelper.instance;
 
-  String subject, uid, college, course;
-  void replaceCharAt(String oldString, int index, String newChar) {
-    subject = oldString.substring(0, index) +
-        newChar +
-        oldString.substring(index + 1);
+  List<Solution> bookmarks = [];
+
+  void getAllItems() async {
+    final allRows = await dbHelper.queryAllRows();
+    bookmarks.clear();
+    allRows.forEach((row) => bookmarks.add(Solution.fromMap(row)));
+    setState(() {});
   }
 
-  getUser() async {
-    FirebaseAuth mAuth = FirebaseAuth.instance;
-    FirebaseUser user = await mAuth.currentUser();
-    setState(() {
-      uid = user.uid;
-      print(uid);
-    });
-  }
-
-  sahikro(String sub) {
-    subject = sub;
-    List<String> arr = [' ', '-'];
-    for (int i = 0; i < sub.length; i++) {
-      if (sub[i] == arr[0] || sub[i] == arr[1]) {
-        replaceCharAt(subject, i, 's');
-      }
-    }
-    setState(() {
-      print(subject);
-    });
-  }
-
-  getUserData() async {
-    DatabaseReference dbref =
-        FirebaseDatabase.instance.reference().child("Users");
-    await dbref.once().then((DataSnapshot snap) {
-      // ignore: non_constant_identifier_names
-      var KEYS = snap.value.keys;
-      // ignore: non_constant_identifier_names
-      var DATA = snap.value;
-
-      for (var key in KEYS) {
-        if (key == uid) {
-          college = DATA[key]['college'];
-          course = DATA[key]['course'];
-        }
-      }
-      setState(() {
-        print(college);
-      });
-    });
-    getDatabaseRef();
-  }
-
-  List<Solution> solutions = [];
-
-  getDatabaseRef() async {
-    DatabaseReference dbref = FirebaseDatabase.instance
-        .reference()
-        .child(college)
-        .child('StudyMaterial')
-        .child('Sem${widget.year}')
-        .child(course)
-        .child(subject);
-    await dbref.once().then((DataSnapshot snap) {
-      // ignore: non_constant_identifier_names
-      var KEYS = snap.value.keys;
-      // ignore: non_constant_identifier_names
-      var DATA = snap.value;
-      solutions.clear();
-      for (var key in KEYS) {
-        Solution d = Solution(DATA[key]['Name'], DATA[key]['Url']);
-        solutions.add(d);
-      }
-      setState(() {
-        print(solutions.length);
-      });
-    });
-  }
-
-  TextEditingController search = new TextEditingController(text: '');
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
-    getUser();
-    getUserData();
-
-    sahikro(widget.sub);
-
-    super.initState();
+    getAllItems();
   }
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +41,7 @@ class _StudyMaterialState extends State<StudyMaterial> {
       body: Column(
         children: <Widget>[
           Container(
-            height: pHeight * 0.19,
+            height: pHeight * 0.18,
             width: pWidth,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -154,10 +76,10 @@ class _StudyMaterialState extends State<StudyMaterial> {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
-                    'Study Material - ${widget.sub}',
+                    'Bookmarks',
                     style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: pHeight * 0.032,
+                        fontSize: pHeight * 0.035,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
@@ -196,12 +118,10 @@ class _StudyMaterialState extends State<StudyMaterial> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          Expanded(
             child: Container(
-              height: pHeight * 0.7,
               child: ListView.builder(
-                  itemCount: solutions.length,
+                  itemCount: bookmarks.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -222,7 +142,7 @@ class _StudyMaterialState extends State<StudyMaterial> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text(
-                                  '${solutions[index].name}',
+                                  '${bookmarks[index].name}',
                                   style: TextStyle(
                                       color: Colors.black.withOpacity(0.75),
                                       fontFamily: 'Poppins',
@@ -241,29 +161,7 @@ class _StudyMaterialState extends State<StudyMaterial> {
                                         color: Colors.black.withOpacity(0.75),
                                       ),
                                       onPressed: () {
-                                        _launchURL1(solutions[index].url);
-                                      },
-                                    ),
-                                    IconButton(
-                                      icon: Icon(
-                                        Icons.bookmark,
-                                        color: Colors.black.withOpacity(0.75),
-                                      ),
-                                      onPressed: () async {
-                                        print(solutions[index].url);
-                                        bool status = await _query(
-                                            '${widget.sub} - ${solutions[index].name}');
-                                        if (!status) {
-                                          addToCart(
-                                              name:
-                                                  '${widget.sub} - ${solutions[index].name}',
-                                              fileUrl: solutions[index].url);
-                                        } else {
-                                          Fluttertoast.showToast(
-                                              msg: 'Already bookmarked',
-                                              textColor: Colors.black,
-                                              backgroundColor: Colors.white);
-                                        }
+                                        _launchURL1(bookmarks[index].url);
                                       },
                                     ),
                                   ],
@@ -280,31 +178,6 @@ class _StudyMaterialState extends State<StudyMaterial> {
         ],
       ),
     );
-  }
-
-  Future<bool> _query(String name) async {
-    Solution item;
-    final allRows = await dbHelper.queryRows(name);
-    allRows.forEach((row) => item = Solution.fromMap(row));
-    if (item == null) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  void addToCart({String name, String fileUrl}) async {
-    print(name);
-    print(fileUrl);
-    Map<String, dynamic> row = {
-      DatabaseHelper.columnFileName: name,
-      DatabaseHelper.columnFileUrl: fileUrl,
-    };
-
-    Solution item = Solution.fromMap(row);
-    final id = await dbHelper.insert(item);
-    Fluttertoast.showToast(
-        msg: 'Bookmark added', toastLength: Toast.LENGTH_SHORT);
   }
 
   _launchURL1(url) async {
