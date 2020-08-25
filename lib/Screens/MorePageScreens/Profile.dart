@@ -89,7 +89,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 },
               ),
               SizedBox(
-                height: pHeight * 0.01,
+                height: pHeight * 0.005,
                 width: pWidth,
               ),
               Padding(
@@ -104,7 +104,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 ),
               ),
               SizedBox(
-                height: pHeight * 0.04,
+                height: pHeight * 0.02,
                 width: pWidth,
               ),
               Row(
@@ -112,7 +112,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 children: <Widget>[
                   Image.asset(
                     'assets/images/Group 13.png',
-                    height: pHeight * 0.25,
+                    height: pHeight * 0.2,
                   ),
                 ],
               ),
@@ -128,24 +128,20 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       color: Color(0xFFE9E9E9),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: TextFormField(
-                        controller: fName,
-                        validator: (value) {
-                          if (value.length == 0) {
-                            return 'Invalid Name';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          hintText: 'First Name',
-                          border:
-                              OutlineInputBorder(borderSide: BorderSide.none),
-                          hintStyle: TextStyle(
-                              fontFamily: 'Circular', fontSize: pHeight * 0.02),
-                        ),
+                    child: TextFormField(
+                      controller: fName,
+                      validator: (value) {
+                        if (value.length == 0) {
+                          return 'Invalid Name';
+                        } else {
+                          return null;
+                        }
+                      },
+                      decoration: InputDecoration(
+                        hintText: 'First Name',
+                        border: OutlineInputBorder(borderSide: BorderSide.none),
+                        hintStyle: TextStyle(
+                            fontFamily: 'Circular', fontSize: pHeight * 0.01),
                       ),
                     ),
                   ),
@@ -158,24 +154,20 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       color: Color(0xFFE9E9E9),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: TextFormField(
-                        controller: lName,
-                        validator: (value) {
-                          if (value.length == 0) {
-                            return 'Invalid Name';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          hintText: 'Last Name',
-                          border:
-                              OutlineInputBorder(borderSide: BorderSide.none),
-                          hintStyle: TextStyle(
-                              fontFamily: 'Circular', fontSize: pHeight * 0.02),
-                        ),
+                    child: TextFormField(
+                      controller: lName,
+                      validator: (value) {
+                        if (value.length == 0) {
+                          return 'Invalid Name';
+                        } else {
+                          return null;
+                        }
+                      },
+                      decoration: InputDecoration(
+                        hintText: 'Last Name',
+                        border: OutlineInputBorder(borderSide: BorderSide.none),
+                        hintStyle: TextStyle(
+                            fontFamily: 'Circular', fontSize: pHeight * 0.01),
                       ),
                     ),
                   ),
@@ -197,7 +189,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: DropdownButton<String>(
                           value: college,
                           elevation: 16,
@@ -205,7 +197,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           dropdownColor: Color(0xFFE9E9E9),
                           icon: Icon(
                             Icons.keyboard_arrow_down,
-                            size: pHeight * 0.035,
+                            size: pHeight * 0.030,
                             color: Color(0xFF4E4E4E),
                           ),
                           style: TextStyle(
@@ -241,7 +233,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: DropdownButton<String>(
                           value: course,
                           elevation: 16,
@@ -249,7 +241,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           dropdownColor: Color(0xFFE9E9E9),
                           icon: Icon(
                             Icons.keyboard_arrow_down,
-                            size: pHeight * 0.035,
+                            size: pHeight * 0.030,
                             color: Color(0xFF4E4E4E),
                           ),
                           style: TextStyle(
@@ -285,7 +277,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: DropdownButton<String>(
                           value: year,
                           elevation: 16,
@@ -293,7 +285,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           dropdownColor: Color(0xFFE9E9E9),
                           icon: Icon(
                             Icons.keyboard_arrow_down,
-                            size: pHeight * 0.035,
+                            size: pHeight * 0.030,
                             color: Color(0xFF4E4E4E),
                           ),
                           style: TextStyle(
@@ -327,7 +319,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 ),
               ),
               SizedBox(
-                height: pHeight * 0.04,
+                height: pHeight * 0.02,
               ),
               Center(
                 child: InkWell(

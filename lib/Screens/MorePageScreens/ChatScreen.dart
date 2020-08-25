@@ -7,6 +7,8 @@ import 'package:ntp/ntp.dart';
 import 'package:solvecase/Classes/Constants.dart';
 
 class ChatScreen extends StatefulWidget {
+  String name, uid, college;
+  ChatScreen(this.name, this.college, this.uid);
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -15,50 +17,11 @@ DatabaseReference ref = FirebaseDatabase.instance.reference().child('Messages');
 FirebaseAuth mAuth = FirebaseAuth.instance;
 
 class _ChatScreenState extends State<ChatScreen> {
-  String uid, name, college;
-  getUser() async {
-    FirebaseAuth mAuth = FirebaseAuth.instance;
-    FirebaseUser user = await mAuth.currentUser();
-    setState(() {
-      uid = user.uid;
-      print(uid);
-    });
-    getUserData();
-  }
-
-  getUserData() async {
-    DatabaseReference dbref =
-        FirebaseDatabase.instance.reference().child("Users");
-    await dbref.once().then((DataSnapshot snap) {
-      // ignore: non_constant_identifier_names
-      var KEYS = snap.value.keys;
-      // ignore: non_constant_identifier_names
-      var DATA = snap.value;
-
-      for (var key in KEYS) {
-        if (key == uid) {
-          setState(() {
-            name = '${DATA[key]['fName']} ${DATA[key]['lName']}';
-
-            college = DATA[key]['college'];
-          });
-        }
-      }
-      setState(() {
-        print(name);
-      });
-    });
-  }
-
-  @override
-  void initState() {
-    getUser();
-    super.initState();
-  }
-
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+        key: _scaffoldkey,
         backgroundColor: darkColor,
         appBar: new AppBar(
           leading: InkWell(
@@ -69,8 +32,6 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           backgroundColor: kPrimaryColor,
           title: new Text("SolveCase Support"),
-          elevation:
-              Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
         ),
         body: new Column(children: <Widget>[
           new Flexible(
@@ -87,20 +48,21 @@ class _ChatScreenState extends State<ChatScreen> {
                     (index, data) => item.add({"key": index, ...data}));
                 List messages = [];
                 for (var msg in item) {
-                  if ((msg['Sender'] == name && msg['Receiver'] == 'BOSS') ||
-                      (msg['Receiver'] == name && msg['Sender'] == 'BOSS')) {
+                  if ((msg['Sender'] == widget.name &&
+                          msg['Receiver'] == 'BOSS') ||
+                      (msg['Receiver'] == widget.name &&
+                          msg['Sender'] == 'BOSS')) {
                     messages.add(msg);
                   }
                 }
                 Comparator timeComparator =
                     (a, b) => b['Time Stamp'].compareTo(a['Time Stamp']);
                 messages.sort(timeComparator);
-
                 return ListView.builder(
                   reverse: true,
                   itemCount: messages.length,
                   itemBuilder: (context, index) {
-                    return messages[index]['Sender'] == name
+                    return messages[index]['Sender'] == widget.name
                         ? Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Bubble(
@@ -179,14 +141,14 @@ class _ChatScreenState extends State<ChatScreen> {
       _isComposing = false;
     });
     var now = await NTP.now();
-    print('============================$name');
+    print('============================$widget.name');
     if (_textController.text != null) {
       ref.push().set({
         'Text': _textController.text,
-        'Sender': name,
+        'Sender': widget.name,
         'Time Stamp': now.toString(),
         'Receiver': 'BOSS',
-        'College': college
+        'College': widget.college
       }).then((value) => _textController.clear());
     } else {
       print('No Message');

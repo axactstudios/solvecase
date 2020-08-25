@@ -18,7 +18,7 @@ class _FAQState extends State<FAQ> {
       body: Column(
         children: <Widget>[
           Container(
-            height: pHeight * 0.22,
+            height: pHeight * 0.18,
             width: pWidth,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -36,7 +36,7 @@ class _FAQState extends State<FAQ> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SizedBox(
-                  height: pHeight * 0.04,
+                  height: pHeight * 0.03,
                 ),
                 IconButton(
                   icon: Icon(
@@ -48,7 +48,7 @@ class _FAQState extends State<FAQ> {
                   },
                 ),
                 SizedBox(
-                  height: pHeight * 0.01,
+                  height: pHeight * 0.005,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
@@ -61,37 +61,37 @@ class _FAQState extends State<FAQ> {
                         color: Colors.white),
                   ),
                 ),
-                SizedBox(
-                  height: pHeight * 0.005,
-                ),
-                Center(
-                  child: Container(
-                    width: pWidth * 0.92,
-                    height: pHeight * 0.05,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFF7A1A1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Center(
-                      child: TextFormField(
-                        controller: search,
-                        decoration: InputDecoration(
-                          suffixIcon: Icon(
-                            Icons.search,
-                            color: kPrimaryColor,
-                          ),
-                          hintText: 'Search',
-                          hintStyle: TextStyle(
-                              color: kPrimaryColor,
-                              fontSize: pHeight * 0.02,
-                              fontFamily: 'Poppins'),
-                          border:
-                              OutlineInputBorder(borderSide: BorderSide.none),
-                        ),
-                      ),
-                    ),
-                  ),
-                )
+//                SizedBox(
+//                  height: pHeight * 0.005,
+//                ),
+//                Center(
+//                  child: Container(
+//                    width: pWidth * 0.92,
+//                    height: pHeight * 0.05,
+//                    decoration: BoxDecoration(
+//                      color: Color(0xFFF7A1A1),
+//                      borderRadius: BorderRadius.circular(8),
+//                    ),
+//                    child: Center(
+//                      child: TextFormField(
+//                        controller: search,
+//                        decoration: InputDecoration(
+//                          suffixIcon: Icon(
+//                            Icons.search,
+//                            color: kPrimaryColor,
+//                          ),
+//                          hintText: 'Search',
+//                          hintStyle: TextStyle(
+//                              color: kPrimaryColor,
+//                              fontSize: pHeight * 0.02,
+//                              fontFamily: 'Poppins'),
+//                          border:
+//                              OutlineInputBorder(borderSide: BorderSide.none),
+//                        ),
+//                      ),
+//                    ),
+//                  ),
+//                )
               ],
             ),
           ),

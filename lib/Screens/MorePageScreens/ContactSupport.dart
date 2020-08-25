@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
@@ -95,7 +97,7 @@ class _ContactSupportState extends State<ContactSupport> {
                     width: pWidth,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Column(
                         children: <Widget>[
@@ -105,13 +107,13 @@ class _ContactSupportState extends State<ContactSupport> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Container(
-                              height: pHeight * 0.14,
-                              width: pWidth * 0.45,
+                              height: pHeight * 0.10,
+                              width: pWidth * 0.40,
                               child: Center(
                                 child: Icon(
                                   Icons.phone,
                                   color: Colors.white,
-                                  size: pHeight * 0.1,
+                                  size: pHeight * 0.08,
                                 ),
                               ),
                             ),
@@ -130,8 +132,10 @@ class _ContactSupportState extends State<ContactSupport> {
                       Column(
                         children: <Widget>[
                           InkWell(
-                            onTap: () {
-                              pushNewScreen(context, screen: ChatScreen());
+                            onTap: () async {
+                              await getUser();
+                              await pushNewScreen(context,
+                                  screen: ChatScreen(name, college, uid));
                             },
                             child: Card(
                               color: kPrimaryColor,
@@ -139,13 +143,13 @@ class _ContactSupportState extends State<ContactSupport> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Container(
-                                height: pHeight * 0.14,
-                                width: pWidth * 0.45,
+                                height: pHeight * 0.10,
+                                width: pWidth * 0.40,
                                 child: Center(
                                   child: Icon(
                                     Icons.chat_bubble,
                                     color: Colors.white,
-                                    size: pHeight * 0.1,
+                                    size: pHeight * 0.08,
                                   ),
                                 ),
                               ),
@@ -171,5 +175,38 @@ class _ContactSupportState extends State<ContactSupport> {
         ],
       ),
     );
+  }
+
+  String uid, name, college;
+  getUser() async {
+    FirebaseAuth mAuth = FirebaseAuth.instance;
+    FirebaseUser user = await mAuth.currentUser();
+    uid = await user.uid;
+
+    await getUserData();
+  }
+
+  getUserData() async {
+    DatabaseReference dbref =
+        FirebaseDatabase.instance.reference().child("Users");
+    await dbref.once().then((DataSnapshot snap) {
+      // ignore: non_constant_identifier_names
+      var KEYS = snap.value.keys;
+      // ignore: non_constant_identifier_names
+      var DATA = snap.value;
+
+      for (var key in KEYS) {
+        if (key == uid) {
+          setState(() {
+            name = '${DATA[key]['fName']} ${DATA[key]['lName']}';
+
+            college = DATA[key]['college'];
+          });
+        }
+      }
+//      setState(() {
+//        print(name);
+//      });
+    });
   }
 }
