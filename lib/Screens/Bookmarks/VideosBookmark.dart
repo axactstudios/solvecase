@@ -1,120 +1,32 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:solvecase/Classes/Constants.dart';
-import 'package:solvecase/Classes/Videos.dart';
 import 'package:solvecase/Classes/VideosDatabaseHelper.dart';
 
-import '../Classes/Videos.dart';
-import '../Classes/Videos.dart';
-import '../Classes/Videos.dart';
-import '../Classes/solution.dart';
+import '../../Classes/Constants.dart';
+import '../../Classes/Videos.dart';
+import '../../Classes/Videos.dart';
 
-class Lectures extends StatefulWidget {
-  String sub, year;
-  Lectures({this.sub, this.year});
-
+class VideoBookmarks extends StatefulWidget {
   @override
-  _LecturesState createState() => _LecturesState();
+  _VideoBookmarksState createState() => _VideoBookmarksState();
 }
 
-class _LecturesState extends State<Lectures> {
-  String subject, uid, college, course;
-  void replaceCharAt(String oldString, int index, String newChar) {
-    subject = oldString.substring(0, index) +
-        newChar +
-        oldString.substring(index + 1);
-  }
-
+class _VideoBookmarksState extends State<VideoBookmarks> {
   final dbHelper = VideosDatabaseHelper.instance;
+  List<Videos> bookmarks = [];
 
-  getUser() async {
-    FirebaseAuth mAuth = FirebaseAuth.instance;
-    FirebaseUser user = await mAuth.currentUser();
-    setState(() {
-      uid = user.uid;
-      print(uid);
-    });
-  }
-
-  sahikro(String sub) {
-    subject = sub;
-    List<String> arr = [' ', '-'];
-    for (int i = 0; i < sub.length; i++) {
-      if (sub[i] == arr[0] || sub[i] == arr[1]) {
-        replaceCharAt(subject, i, 's');
-      }
-    }
-    setState(() {
-      print(subject);
-    });
-  }
-
-  getUserData() async {
-    DatabaseReference dbref =
-        FirebaseDatabase.instance.reference().child("Users");
-    await dbref.once().then((DataSnapshot snap) {
-      // ignore: non_constant_identifier_names
-      var KEYS = snap.value.keys;
-      // ignore: non_constant_identifier_names
-      var DATA = snap.value;
-
-      for (var key in KEYS) {
-        if (key == uid) {
-          college = DATA[key]['college'];
-          course = DATA[key]['course'];
-        }
-      }
-      setState(() {
-        print(college);
-      });
-    });
-    getDatabaseRef();
-  }
-
-  List<Videos> lectures = [];
-
-  getDatabaseRef() async {
-    DatabaseReference dbref = FirebaseDatabase.instance
-        .reference()
-        .child(college)
-        .child('Lectures')
-        .child('Sem${widget.year}')
-        .child(course)
-        .child(subject);
-    await dbref.once().then((DataSnapshot snap) {
-      // ignore: non_constant_identifier_names
-      var KEYS = snap.value.keys;
-      // ignore: non_constant_identifier_names
-      var DATA = snap.value;
-      lectures.clear();
-      for (var key in KEYS) {
-        Videos v = Videos(
-            url: DATA[key]['Url'],
-            name: DATA[key]['Name'],
-            key: DATA[key]['VideoKey']);
-        lectures.add(v);
-      }
-      setState(() {
-        print(lectures.length);
-      });
-    });
+  void getAllItems() async {
+    final allRows = await dbHelper.queryAllRows();
+    bookmarks.clear();
+    allRows.forEach((row) => bookmarks.add(Videos.fromMap(row)));
+    setState(() {});
   }
 
   @override
   void initState() {
-    getUser();
-    getUserData();
-
-    sahikro(widget.sub);
-
-    super.initState();
+    getAllItems();
   }
 
-  TextEditingController search = new TextEditingController(text: '');
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -161,7 +73,7 @@ class _LecturesState extends State<Lectures> {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
-                    'Lectures - ${widget.sub}',
+                    'Lectures Bookmarks',
                     style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: pHeight * 0.035,
@@ -202,9 +114,9 @@ class _LecturesState extends State<Lectures> {
           ),
           Container(
             height: pHeight * 0.7,
-            child: lectures.length != 0
+            child: bookmarks.length != 0
                 ? ListView.builder(
-                    itemCount: lectures.length,
+                    itemCount: bookmarks.length,
                     itemBuilder: (context, index) {
                       return Card(
                         margin: EdgeInsets.only(bottom: 20),
@@ -223,12 +135,12 @@ class _LecturesState extends State<Lectures> {
                               children: <Widget>[
                                 InkWell(
                                   onTap: () {
-                                    playVideo(lectures[index].url);
+                                    playVideo(bookmarks[index].url);
                                   },
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.network(
-                                      'https://img.youtube.com/vi/${lectures[index].key}/0.jpg',
+                                      'https://img.youtube.com/vi/${bookmarks[index].key}/0.jpg',
                                       height: pHeight * 0.15,
                                       width: pWidth * 0.5,
                                       fit: BoxFit.cover,
@@ -245,7 +157,7 @@ class _LecturesState extends State<Lectures> {
                                     Container(
                                       width: pWidth * 0.4,
                                       child: Text(
-                                        lectures[index].name,
+                                        bookmarks[index].name,
                                         style: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.75),
@@ -254,47 +166,6 @@ class _LecturesState extends State<Lectures> {
                                             fontSize: pWidth * 0.055),
                                         overflow: TextOverflow.fade,
                                       ),
-                                    ),
-                                    Text(
-                                      '${widget.sub}',
-                                      style: TextStyle(
-                                          color: Colors.black.withOpacity(0.55),
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: pWidth * 0.05),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: <Widget>[
-                                        SizedBox(
-                                          width: pWidth * 0.4,
-                                        ),
-                                        IconButton(
-                                          icon: Icon(
-                                            Icons.bookmark,
-                                            color:
-                                                Colors.black.withOpacity(0.55),
-                                          ),
-                                          onPressed: () async {
-                                            bool status = await _query(
-                                                lectures[index].name);
-                                            if (!status) {
-                                              addToCart(
-                                                  name: lectures[index].name,
-                                                  key: lectures[index].key,
-                                                  fileUrl: lectures[index].url);
-                                            } else {
-                                              Fluttertoast.showToast(
-                                                  msg: 'Already bookmarked',
-                                                  textColor: Colors.black,
-                                                  backgroundColor:
-                                                      Colors.white);
-                                            }
-                                          },
-                                        ),
-                                      ],
                                     ),
                                   ],
                                 ),
@@ -317,32 +188,6 @@ class _LecturesState extends State<Lectures> {
         ],
       ),
     );
-  }
-
-  Future<bool> _query(String name) async {
-    Videos item;
-    final allRows = await dbHelper.queryRows(name);
-    allRows.forEach((row) => item = Videos.fromMap(row));
-    if (item == null) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  void addToCart({String name, String fileUrl, String key}) async {
-    print(name);
-    print(fileUrl);
-    Map<String, dynamic> row = {
-      VideosDatabaseHelper.columnFileName: name,
-      VideosDatabaseHelper.columnFileUrl: fileUrl,
-      VideosDatabaseHelper.columnVideoKey: key
-    };
-
-    Videos item = Videos.fromMap(row);
-    final id = await dbHelper.insert(item);
-    Fluttertoast.showToast(
-        msg: 'Bookmark added', toastLength: Toast.LENGTH_SHORT);
   }
 
   void playVideo(String url) {

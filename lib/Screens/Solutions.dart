@@ -8,6 +8,8 @@ import 'package:solvecase/Classes/solution.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../Classes/solution.dart';
+
 class Solutions extends StatefulWidget {
   String sub, year;
   Solutions({this.sub, this.year});
@@ -157,7 +159,7 @@ class _SolutionsState extends State<Solutions> {
                     'Solutions - ${widget.sub}',
                     style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: pHeight * 0.035,
+                        fontSize: pHeight * 0.032,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
@@ -247,12 +249,21 @@ class _SolutionsState extends State<Solutions> {
                                         Icons.bookmark,
                                         color: Colors.black.withOpacity(0.75),
                                       ),
-                                      onPressed: () {
+                                      onPressed: () async {
                                         print(solutions[index].url);
-                                        addToCart(
-                                            name:
-                                                '${widget.sub} - ${solutions[index].name}',
-                                            fileUrl: solutions[index].url);
+                                        bool status = await _query(
+                                            '${widget.sub} - ${solutions[index].name}');
+                                        if (!status) {
+                                          addToCart(
+                                              name:
+                                                  '${widget.sub} - ${solutions[index].name}',
+                                              fileUrl: solutions[index].url);
+                                        } else {
+                                          Fluttertoast.showToast(
+                                              msg: 'Already bookmarked',
+                                              textColor: Colors.black,
+                                              backgroundColor: Colors.white);
+                                        }
                                       },
                                     ),
                                   ],
@@ -290,6 +301,17 @@ class _SolutionsState extends State<Solutions> {
       await launch(url);
     } else {
       throw 'Could not launch $url';
+    }
+  }
+
+  Future<bool> _query(String name) async {
+    Solution item;
+    final allRows = await dbHelper.queryRows(name);
+    allRows.forEach((row) => item = Solution.fromMap(row));
+    if (item == null) {
+      return false;
+    } else {
+      return true;
     }
   }
 }

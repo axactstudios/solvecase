@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:solvecase/Classes/Constants.dart';
 import 'package:solvecase/Classes/DatabaseHelper.dart';
 import 'package:solvecase/Classes/solution.dart';
+import 'package:solvecase/Screens/Bookmarks/SMBookmarks.dart';
+import 'package:solvecase/Screens/Bookmarks/VideosBookmark.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'DrawerScreen.dart';
@@ -118,72 +120,48 @@ class _BookmarksState extends State<Bookmarks> {
               ],
             ),
           ),
-          Expanded(
-            child: Container(
-              child: ListView.builder(
-                  itemCount: bookmarks.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        elevation: 1,
-                        shadowColor: Colors.black.withOpacity(0.75),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  '${bookmarks[index].name}',
-                                  style: TextStyle(
-                                      color: Colors.black.withOpacity(0.75),
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize:
-                                          MediaQuery.of(context).size.height *
-                                              0.025),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: <Widget>[
-                                    IconButton(
-                                      icon: Icon(
-                                        Icons.file_download,
-                                        color: Colors.black.withOpacity(0.75),
-                                      ),
-                                      onPressed: () {
-                                        _launchURL1(bookmarks[index].url);
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
+          SizedBox(
+            height: pHeight * 0.05,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SMBookmark(),
+                  ),
+                );
+              },
+              child: Image.asset(
+                'assets/images/SM.png',
+                scale: 1.1,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: pHeight * 0.1,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => VideoBookmarks(),
+                  ),
+                );
+              },
+              child: Image.asset(
+                'assets/images/VL.png',
+                scale: 1.1,
+              ),
             ),
           ),
         ],
       ),
     );
-  }
-
-  _launchURL1(url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }
