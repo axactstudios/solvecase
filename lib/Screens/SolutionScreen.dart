@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
 import '../Classes/Constants.dart';
-import '../Classes/Constants.dart';
-import '../main.dart';
+
 import 'Solutions.dart';
 
 State main2;
@@ -168,71 +167,11 @@ class _SolutionScreenState extends State<SolutionScreen> {
                           ),
                         ),
                       ),
-//                      InkWell(
-//                        onTap: () {
-//                          selected = 'Third Year';
-//                          year = 2;
-//                          setState(() {
-//                            print('Third Year');
-//                          });
-//                        },
-//                        child: Container(
-//                          margin: EdgeInsets.only(left: 10),
-//                          decoration: BoxDecoration(
-//                            color: selected == 'Third Year'
-//                                ? kPrimaryColor
-//                                : Colors.white,
-//                            borderRadius: BorderRadius.circular(10),
-//                            border: selected != 'Third Year'
-//                                ? Border.all(color: kPrimaryColor, width: 1.0)
-//                                : Border.all(color: Colors.white),
-//                          ),
-//                          child: Padding(
-//                            padding: const EdgeInsets.all(8.0),
-//                            child: Text(
-//                              'Third Year',
-//                              style: TextStyle(
-//                                  fontFamily: 'Poppins',
-//                                  color: selected == 'Third Year'
-//                                      ? Colors.white
-//                                      : kPrimaryColor,
-//                                  fontSize: pHeight * 0.02),
-//                            ),
-//                          ),
-//                        ),
-//                      ),
+
                     ],
                   ),
                 ),
-//                Center(
-//                  child: Container(
-//                    width: pWidth * 0.92,
-//                    height: pHeight * 0.05,
-//                    decoration: BoxDecoration(
-//                      color: Color(0xFFF7A1A1),
-//                      borderRadius: BorderRadius.circular(10),
-//                    ),
-//                    child: Center(
-//                      child: TextFormField(
-//                        controller: search,
-//                        textAlign TextAlignVertical.center,
-//                        decoration: InputDecoration(
-//                          suffixIcon: Icon(
-//                            Icons.search,
-//                            color: kPrimaryColor,
-//                          ),
-//                          hintText: 'Search',
-//                          hintStyle: TextStyle(
-//                              color: kPrimaryColor,
-//                              fontSize: pHeight * 0.02,
-//                              fontFamily: 'Poppins'),
-//                          border:
-//                              OutlineInputBorder(borderSide: BorderSide.none),
-//                        ),
-//                      ),
-//                    ),
-//                  ),
-//                )
+
               ],
             ),
           ),
@@ -388,27 +327,7 @@ class _FirstYearState extends State<FirstYear> {
               ),
             ),
           ),
-//          Padding(
-//            padding: const EdgeInsets.all(8.0),
-//            child: InkWell(
-//              onTap: () {
-//                Navigator.push(
-//                  context,
-//                  MaterialPageRoute(
-//                    builder: (context) =>
-//                        Solutions(sub: 'Physics Lab - 1', year: '1'),
-//                  ),
-//                );
-//              },
-//              child: Container(
-//                height: pHeight * 0.10,
-//                child: FittedBox(
-//                  child: Image.asset('assets/images/PhysicsLabButtonV2.png'),
-//                  fit: BoxFit.fill,
-//                ),
-//              ),
-//            ),
-//          ),
+
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
@@ -430,69 +349,7 @@ class _FirstYearState extends State<FirstYear> {
               ),
             ),
           ),
-//          Padding(
-//            padding: const EdgeInsets.all(8.0),
-//            child: InkWell(
-//              onTap: () {
-//                Navigator.push(
-//                  context,
-//                  MaterialPageRoute(
-//                    builder: (context) =>
-//                        Solutions(sub: 'Physics Lab - 2', year: '1'),
-//                  ),
-//                );
-//              },
-//              child: Container(
-//                height: pHeight * 0.10,
-//                child: FittedBox(
-//                  child: Image.asset('assets/images/PhysicsLab2ButtonV2.png'),
-//                  fit: BoxFit.fill,
-//                ),
-//              ),
-//            ),
-//          ),
-//          Padding(
-//            padding: const EdgeInsets.all(8.0),
-//            child: InkWell(
-//              onTap: () {
-//                Navigator.push(
-//                  context,
-//                  MaterialPageRoute(
-//                    builder: (context) =>
-//                        Solutions(sub: 'SDF Lab - 2', year: '1'),
-//                  ),
-//                );
-//              },
-//              child: Container(
-//                height: pHeight * 0.10,
-//                child: FittedBox(
-//                  child: Image.asset('assets/images/SDFLab2ButtonV2.png'),
-//                  fit: BoxFit.fill,
-//                ),
-//              ),
-//            ),
-//          ),
-//          Padding(
-//            padding: const EdgeInsets.all(8.0),
-//            child: InkWell(
-//              onTap: () {
-//                Navigator.push(
-//                  context,
-//                  MaterialPageRoute(
-//                    builder: (context) =>
-//                        Solutions(sub: 'ES Lab - 1', year: '1'),
-//                  ),
-//                );
-//              },
-//              child: Container(
-//                height: pHeight * 0.10,
-//                child: FittedBox(
-//                  child: Image.asset('assets/images/ESLabButtonV2.png'),
-//                  fit: BoxFit.fill,
-//                ),
-//              ),
-//            ),
-//          )
+
         ],
       ),
     );

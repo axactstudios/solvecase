@@ -214,99 +214,14 @@ class _DrawerScreenState extends State<DrawerScreen>
                           fontSize: pHeight * 0.025,
                           fontWeight: FontWeight.bold),
                     ),
-//                    SizedBox(
-//                      height: pHeight * 0.04,
-//                    ),
-//                    Text(
-//                      'SETTINGS',
-//                      style: TextStyle(
-//                          fontFamily: 'Circular',
-//                          color: txtColor,
-//                          fontSize: pHeight * 0.025,
-//                          fontWeight: FontWeight.bold),
-//                    ),
+
                   ],
                 ),
               ),
             ],
           ),
         ),
-//        child: Scaffold(
-//          backgroundColor: Colors.white,
-//          body: Column(
-//            mainAxisSize: MainAxisSize.max,
-//            children: <Widget>[
-//              Container(
-//                height: pHeight * 0.22,
-//                width: pWidth,
-//                decoration: BoxDecoration(
-//                  gradient: LinearGradient(
-//                    colors: [
-//                      kPrimaryColor,
-//                      Color(0xFFF26969),
-//                    ],
-//                  ),
-//                  borderRadius: BorderRadius.only(
-//                    bottomRight: Radius.circular(30),
-//                    bottomLeft: Radius.circular(30),
-//                  ),
-//                ),
-//                child: Column(
-//                  crossAxisAlignment: CrossAxisAlignment.start,
-//                  children: <Widget>[
-//                    SizedBox(
-//                      height: pHeight * 0.04,
-//                    ),
-//                    IconButton(
-//                      icon: Icon(
-//                        Icons.menu,
-//                        color: Colors.white,
-//                      ),
-//                      onPressed: () {
-//                        _controller.toggle();
-//                      },
-//                    ),
-//                    SizedBox(
-//                      height: pHeight * 0.01,
-//                    ),
-//                    Padding(
-//                      padding: const EdgeInsets.only(left: 16.0),
-//                      child: Text(
-//                        'Solve case',
-//                        style: TextStyle(
-//                            fontFamily: 'Poppins',
-//                            fontSize: pHeight * 0.035,
-//                            fontWeight: FontWeight.bold,
-//                            color: Colors.white),
-//                      ),
-//                    ),
-//                    SizedBox(
-//                      height: pHeight * 0.01,
-//                    ),
-//                    Padding(
-//                      padding: const EdgeInsets.only(left: 16.0),
-//                      child: Text(
-//                        'Here to help you with all your problems',
-//                        style: TextStyle(
-//                          fontFamily: 'Poppins',
-//                          fontSize: pHeight * 0.025,
-//                          fontWeight: FontWeight.bold,
-//                          color: Colors.white.withOpacity(0.85),
-//                        ),
-//                      ),
-//                    )
-//                  ],
-//                ),
-//              ),
-//              Container(
-//                width: pWidth,
-//                color: Colors.white,
-//                height: pHeight * 0.78,
-//                child: myWidgets[index],
-//              ),
-//            ],
-//          ),
-//        ),
+
       ),
     );
   }

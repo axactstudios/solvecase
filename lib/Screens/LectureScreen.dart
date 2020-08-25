@@ -1,13 +1,13 @@
-import 'package:fancy_drawer/fancy_drawer.dart';
+
 import 'package:flutter/material.dart';
-import 'package:solvecase/Screens/Material.dart';
+
 import 'package:solvecase/Screens/DrawerScreen.dart';
 
 import '../Classes/Constants.dart';
-import 'Bookmarks.dart';
+
 
 import 'Lectures.dart';
-import 'MainScreen.dart';
+
 
 // ignore: must_be_immutable
 class LectureScreen extends StatefulWidget {
@@ -200,35 +200,7 @@ class _LectureScreenState extends State<LectureScreen> {
                     ],
                   ),
                 ),
-//                Center(
-//                  child: Container(
-//                    width: pWidth * 0.92,
-//                    height: pHeight * 0.05,
-//                    decoration: BoxDecoration(
-//                      color: Color(0xFFF7A1A1),
-//                      borderRadius: BorderRadius.circular(10),
-//                    ),
-//                    child: Center(
-//                      child: TextFormField(
-//                        controller: search,
-//                        textAlignVertical: TextAlignVertical.center,
-//                        decoration: InputDecoration(
-//                          suffixIcon: Icon(
-//                            Icons.search,
-//                            color: kPrimaryColor,
-//                          ),
-//                          hintText: 'Search',
-//                          hintStyle: TextStyle(
-//                              color: kPrimaryColor,
-//                              fontSize: pHeight * 0.02,
-//                              fontFamily: 'Poppins'),
-//                          border:
-//                              OutlineInputBorder(borderSide: BorderSide.none),
-//                        ),
-//                      ),
-//                    ),
-//                  ),
-//                )
+//              )
               ],
             ),
           ),
