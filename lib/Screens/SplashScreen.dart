@@ -2,9 +2,13 @@ import 'package:device_info/device_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:solvecase/Classes/Constants.dart';
 import 'package:solvecase/Screens/Intro1.dart';
 import 'package:solvecase/Screens/MainScreen.dart';
+import '../Classes/Constants.dart';
+import '../Classes/Constants.dart';
+import 'MainScreen.dart';
 import 'firstscreen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -91,6 +95,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     FirebaseAuth mAuth = FirebaseAuth.instance;
     new Future.delayed(Duration(seconds: 3), () async {
+      changeMode2();
       FirebaseUser user = await mAuth.currentUser();
       user == null
           ? Navigator.pushReplacement(

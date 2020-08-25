@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
 import 'package:solvecase/Screens/Intro1.dart';
 import 'package:solvecase/Screens/MorePageScreens/AboutUs.dart';
@@ -43,6 +44,16 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
     getUserData();
   }
 
+  getModeColor() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String colorMode = prefs.getString('mode');
+    colorMode == 'light' ? status = false : status = true;
+    setState(() {
+      print('Status updated');
+      print(status);
+    });
+  }
+
   getUserData() async {
     DatabaseReference dbref =
         FirebaseDatabase.instance.reference().child("Users");
@@ -73,6 +84,7 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    getModeColor();
     getUser();
     _controller = FancyDrawerController(
       vsync: this,
@@ -92,7 +104,7 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
 
   int index = 0;
 
-  bool status = false;
+  bool status;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   List<Widget> myWidgets = [MainScreen(), Bookmarks()];
@@ -321,10 +333,15 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
                         borderRadius: 30.0,
                         padding: 4.0,
                         showOnOff: false,
-                        onToggle: (val) {
+                        onToggle: (val) async {
+                          SharedPreferences pref =
+                              await SharedPreferences.getInstance();
+                          val
+                              ? pref.setString('mode', 'dark')
+                              : pref.setString('mode', 'light');
                           setState(() {
                             status = val;
-                            mode == 'light' ? mode = 'dark' : mode = 'light';
+                            val ? mode = 'dark' : mode = 'light';
                             changeMode(widget.state);
                           });
                         },
@@ -499,12 +516,15 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
                               borderRadius: 30.0,
                               padding: 4.0,
                               showOnOff: false,
-                              onToggle: (val) {
+                              onToggle: (val) async {
+                                SharedPreferences pref =
+                                    await SharedPreferences.getInstance();
+                                val
+                                    ? pref.setString('mode', 'dark')
+                                    : pref.setString('mode', 'light');
                                 setState(() {
                                   status = val;
-                                  mode == 'light'
-                                      ? mode = 'dark'
-                                      : mode = 'light';
+                                  val ? mode = 'dark' : mode = 'light';
                                   changeMode(widget.state);
                                 });
                               },
