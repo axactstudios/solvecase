@@ -3,12 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:solvecase/Screens/More.dart';
 
 import '../Classes/Constants.dart';
 import '../Classes/Constants.dart';
 import 'Bookmarks.dart';
 
 import 'MainScreen.dart';
+import 'SolutionScreen.dart';
 
 class DrawerScreen extends StatefulWidget {
   @override

@@ -8,6 +8,8 @@ import 'MaterialScreen.dart';
 import 'More.dart';
 import 'SolutionScreen.dart';
 
+State main1;
+
 // ignore: must_be_immutable
 class MainScreen extends StatefulWidget {
   String enroll;
@@ -24,6 +26,7 @@ class _MainScreenState extends State<MainScreen> {
       PersistentTabController(initialIndex: 0);
 
   List<Widget> _buildScreens() {
+    main1 = this;
     return [
       SolutionScreen(
         enroll: widget.enroll,
@@ -37,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
         enroll: widget.enroll,
         sem: widget.sem,
       ),
-      More()
+      More(this)
     ];
   }
 

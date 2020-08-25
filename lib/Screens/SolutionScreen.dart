@@ -5,6 +5,9 @@ import '../Classes/Constants.dart';
 import '../main.dart';
 import 'Solutions.dart';
 
+State main2;
+BuildContext cont;
+
 // ignore: must_be_immutable
 class SolutionScreen extends StatefulWidget {
   String enroll;
@@ -26,13 +29,15 @@ class _SolutionScreenState extends State<SolutionScreen> {
 
   TextEditingController search = new TextEditingController(text: '');
 
-  List<Widget> years = [FirstYear(), SecondYear(), ThirdYear()];
+  List<Widget> years = [FirstYear(), SecondYear()];
 
   int year = 0;
 
   @override
   Widget build(BuildContext context) {
-    print(mode);
+    main2 = this;
+    cont = context;
+    print(23);
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -596,221 +601,6 @@ class _SecondYearState extends State<SecondYear> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class ThirdYear extends StatefulWidget {
-  @override
-  _ThirdYearState createState() => _ThirdYearState();
-}
-
-class _ThirdYearState extends State<ThirdYear> {
-  @override
-  Widget build(BuildContext context) {
-    final pHeight = MediaQuery.of(context).size.height;
-    final pWidth = MediaQuery.of(context).size.width;
-    return Container(
-      height: pHeight * 0.6,
-      child: Center(
-        child: Text('Coming Soon...'),
-      ),
-//      child: ListView(
-//        children: <Widget>[
-//          Column(
-//            children: <Widget>[
-//              InkWell(
-//                onTap: () {
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(
-//                      builder: (context) => Solutions(
-//                        sub: 'Algorithms',
-//                      ),
-//                    ),
-//                  );
-//                },
-//                child: Container(
-//                  margin: EdgeInsets.only(top: 15),
-//                  height: pHeight * 0.10
-//                  ,
-//
-//                  decoration: BoxDecoration(
-//                    gradient: LinearGradient(
-//                      colors: [
-//                        Color(0xFFFF8787),
-//                        Color(0xFFC16A6A),
-//                      ],
-//                    ),
-//                    borderRadius: BorderRadius.circular(15),
-//                  ),
-//                  child: Stack(
-//                    children: <Widget>[
-//                      Positioned(
-//                        top: 0,
-//                        left: 0,
-//                        child: Image.asset('assets/images/Ellipse 9.png'),
-//                      ),
-//                      Positioned(
-//                        top: pHeight * 0.035,
-//                        left: pWidth * 0.08,
-//                        child: Text(
-//                          'Algorithms',
-//                          style: TextStyle(
-//                              fontFamily: 'Montserrat',
-//                              color: Colors.white,
-//                              fontSize: pHeight * 0.035),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
-//                ),
-//              ),
-//              InkWell(
-//                onTap: () {
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(
-//                      builder: (context) => Solutions(
-//                        sub: 'OS',
-//                      ),
-//                    ),
-//                  );
-//                },
-//                child: Container(
-//                  margin: EdgeInsets.only(top: 15),
-//                  height: pHeight * 0.10
-//                  ,
-//
-//                  decoration: BoxDecoration(
-//                    gradient: LinearGradient(
-//                      colors: [
-//                        Color(0xFF87F0FF),
-//                        Color(0xFF3AA2B1),
-//                      ],
-//                    ),
-//                    borderRadius: BorderRadius.circular(15),
-//                  ),
-//                  child: Stack(
-//                    children: <Widget>[
-//                      Positioned(
-//                        top: 0,
-//                        left: 0,
-//                        child: Image.asset('assets/images/Ellipse 1.png'),
-//                      ),
-//                      Positioned(
-//                        top: pHeight * 0.035,
-//                        left: pWidth * 0.08,
-//                        child: Text(
-//                          'Operating Systems',
-//                          style: TextStyle(
-//                              fontFamily: 'Montserrat',
-//                              color: Colors.white,
-//                              fontSize: pHeight * 0.035),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
-//                ),
-//              ),
-//              InkWell(
-//                onTap: () {
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(
-//                      builder: (context) => Solutions(
-//                        sub: 'Open Source',
-//                      ),
-//                    ),
-//                  );
-//                },
-//                child: Container(
-//                  margin: EdgeInsets.only(top: 15),
-//                  height: pHeight * 0.10
-//                  ,
-//
-//                  decoration: BoxDecoration(
-//                    gradient: LinearGradient(
-//                      colors: [
-//                        Color(0xFFFFCF87),
-//                        Color(0xFFCA9547),
-//                      ],
-//                    ),
-//                    borderRadius: BorderRadius.circular(15),
-//                  ),
-//                  child: Stack(
-//                    children: <Widget>[
-//                      Positioned(
-//                        top: 0,
-//                        left: 0,
-//                        child: Image.asset('assets/images/Ellipse 2.png'),
-//                      ),
-//                      Positioned(
-//                        top: pHeight * 0.035,
-//                        left: pWidth * 0.08,
-//                        child: Text(
-//                          'Open Source Softwares',
-//                          style: TextStyle(
-//                              fontFamily: 'Montserrat',
-//                              color: Colors.white,
-//                              fontSize: pHeight * 0.035),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
-//                ),
-//              ),
-//              InkWell(
-//                onTap: () {
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(
-//                      builder: (context) => Solutions(
-//                        sub: 'Information Security',
-//                      ),
-//                    ),
-//                  );
-//                },
-//                child: Container(
-//                  margin: EdgeInsets.only(top: 15),
-//                  height: pHeight * 0.10
-//                  ,
-//
-//                  decoration: BoxDecoration(
-//                    gradient: LinearGradient(
-//                      colors: [
-//                        Color(0xFFE09FFF),
-//                        Color(0xFF8A46AB),
-//                      ],
-//                    ),
-//                    borderRadius: BorderRadius.circular(15),
-//                  ),
-//                  child: Stack(
-//                    children: <Widget>[
-//                      Positioned(
-//                        top: 0,
-//                        left: 0,
-//                        child: Image.asset('assets/images/Ellipse 3.png'),
-//                      ),
-//                      Positioned(
-//                        top: pHeight * 0.035,
-//                        left: pWidth * 0.08,
-//                        child: Text(
-//                          'Information Security',
-//                          style: TextStyle(
-//                              fontFamily: 'Montserrat',
-//                              color: Colors.white,
-//                              fontSize: pHeight * 0.035),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
-//                ),
-//              ),
-//            ],
-//          ),
-//        ],
-//      ),
     );
   }
 }
