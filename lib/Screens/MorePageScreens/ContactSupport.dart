@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:solvecase/Classes/Constants.dart';
+import 'package:solvecase/Screens/MorePageScreens/ChatScreen.dart';
 
 class ContactSupport extends StatefulWidget {
   @override
@@ -127,19 +129,24 @@ class _ContactSupportState extends State<ContactSupport> {
                       ),
                       Column(
                         children: <Widget>[
-                          Card(
-                            color: kPrimaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Container(
-                              height: pHeight * 0.14,
-                              width: pWidth * 0.45,
-                              child: Center(
-                                child: Icon(
-                                  Icons.chat_bubble,
-                                  color: Colors.white,
-                                  size: pHeight * 0.1,
+                          InkWell(
+                            onTap: () {
+                              pushNewScreen(context, screen: ChatScreen());
+                            },
+                            child: Card(
+                              color: kPrimaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Container(
+                                height: pHeight * 0.14,
+                                width: pWidth * 0.45,
+                                child: Center(
+                                  child: Icon(
+                                    Icons.chat_bubble,
+                                    color: Colors.white,
+                                    size: pHeight * 0.1,
+                                  ),
                                 ),
                               ),
                             ),

@@ -19,6 +19,8 @@ dependencies:
   persistent_bottom_nav_bar: ^2.0.5
   fancy_drawer: ^1.0.0
   flutter_switch: ^0.1.1
+  ntp: ^1.0.7
+  bubble: ^1.1.9+1
   map: ^0.1.0+1
   latlng: ^0.0.2
   firebase_auth: ^0.16.1
