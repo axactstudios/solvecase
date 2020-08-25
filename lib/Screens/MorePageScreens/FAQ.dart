@@ -99,48 +99,54 @@ class _FAQState extends State<FAQ> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               height: pHeight * 0.7,
-              child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      margin: EdgeInsets.only(bottom: 20),
-                      elevation: 1,
-                      shadowColor: Colors.black.withOpacity(0.75),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                'FAQ ${index + 1}',
-                                style: TextStyle(
-                                    color: Colors.black.withOpacity(0.75),
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize:
-                                        MediaQuery.of(context).size.height *
-                                            0.025),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.black,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
+              child: ListView(
+                children: [
+                  faq('How to download on Android?'),
+                  faq('How to download on iOS?'),
+                  faq('Where do my downloaded files go?'),
+                  faq('When will I receive reply from support team?'),
+                  faq('Why bookmarks?'),
+                ],
+              ),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget faq(question) {
+    return Card(
+      margin: EdgeInsets.only(bottom: 20),
+      elevation: 1,
+      shadowColor: Colors.black.withOpacity(0.75),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                question,
+                style: TextStyle(
+                    color: Colors.black.withOpacity(0.75),
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.bold,
+                    fontSize: MediaQuery.of(context).size.height * 0.018),
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.black,
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
