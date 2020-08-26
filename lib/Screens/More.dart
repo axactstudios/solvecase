@@ -105,7 +105,7 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
 
   int index = 0;
 
-  bool status;
+  bool status = true;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   List<Widget> myWidgets = [MainScreen(), Bookmarks()];
@@ -124,280 +124,256 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
             left: 0,
             child: Image.asset('assets/images/Shapes.png'),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: pHeight * 0.04,
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  _scaffoldKey.currentState.openDrawer();
-                },
-              ),
-              SizedBox(
-                height: pHeight * 0.01,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: Text(
-                  'Settings',
-                  style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: pHeight * 0.035,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Card(
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Image.asset(
-                        'assets/images/Group 13.png',
-                        height: pHeight * 0.16,
-                        width: pHeight * 0.16,
+                      SizedBox(
+                        height: pHeight * 0.04,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            '$fName $lName',
-                            style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: pHeight * 0.03),
-                          ),
-                          Text(
-                            college,
-                            style: TextStyle(
+                      IconButton(
+                        icon: Icon(
+                          Icons.menu,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          _scaffoldKey.currentState.openDrawer();
+                        },
+                      ),
+                      SizedBox(
+                        height: pHeight * 0.01,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Settings',
+                          style: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: pHeight * 0.025,
-                              color: Colors.black.withOpacity(0.75),
-                            ),
+                              fontSize: pHeight * 0.035,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Card(
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          Text(
-                            course,
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: pHeight * 0.02,
-                              color: Colors.black.withOpacity(0.55),
-                            ),
+                          child: Row(
+                            children: <Widget>[
+                              Image.asset(
+                                'assets/images/Group 13.png',
+                                height: pHeight * 0.16,
+                                width: pHeight * 0.16,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    '$fName $lName',
+                                    style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        fontSize: pHeight * 0.03),
+                                  ),
+                                  Text(
+                                    college,
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: pHeight * 0.025,
+                                      color: Colors.black.withOpacity(0.75),
+                                    ),
+                                  ),
+                                  Text(
+                                    course,
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: pHeight * 0.02,
+                                      color: Colors.black.withOpacity(0.55),
+                                    ),
+                                  ),
+                                  Text(
+                                    year,
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: pHeight * 0.02,
+                                      color: Colors.black.withOpacity(0.55),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                          Text(
-                            year,
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: pHeight * 0.02,
-                              color: Colors.black.withOpacity(0.55),
-                            ),
-                          ),
-                        ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: pHeight * 0.02,
                       ),
                     ],
                   ),
                 ),
-              ),
-              SizedBox(
-                height: pHeight * 0.02,
-              ),
-              Expanded(
-                child: ListView(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        pushNewScreen(context, screen: ProfileSettings());
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                'PROFILE SETTINGS',
-                                style: TextStyle(
-                                    color: txtColor,
-                                    fontFamily: 'Circular',
-                                    fontSize: pHeight * 0.025),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
+                Spacer(),
+                InkWell(
+                  onTap: () {
+                    pushNewScreen(context, screen: ProfileSettings());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'PROFILE SETTINGS',
+                            style: TextStyle(
                                 color: txtColor,
-                              )
-                            ],
+                                fontFamily: 'Circular',
+                                fontSize: pHeight * 0.025),
                           ),
-                        ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: txtColor,
+                          )
+                        ],
                       ),
                     ),
-//                    InkWell(
-//                      onTap: () {
-//                        pushNewScreen(context, screen: FAQ());
-//                      },
-//                      child: Padding(
-//                        padding: const EdgeInsets.all(16.0),
-//                        child: Container(
-//                          child: Row(
-//                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                            children: <Widget>[
-//                              Text(
-//                                'FAQ',
-//                                style: TextStyle(
-//                                    color: txtColor,
-//                                    fontFamily: 'Circular',
-//                                    fontSize: pHeight * 0.025),
-//                              ),
-//                              Icon(
-//                                Icons.arrow_forward_ios,
-//                                color: txtColor,
-//                              )
-//                            ],
-//                          ),
-//                        ),
-//                      ),
-//                    ),
-                    InkWell(
-                      onTap: () {
-                        pushNewScreen(context, screen: ContactSupport());
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                'CONTACT SUPPORT',
-                                style: TextStyle(
-                                    color: txtColor,
-                                    fontFamily: 'Circular',
-                                    fontSize: pHeight * 0.025),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: txtColor,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        pushNewScreen(context, screen: AboutUs());
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                'ABOUT',
-                                style: TextStyle(
-                                    color: txtColor,
-                                    fontFamily: 'Circular',
-                                    fontSize: pHeight * 0.025),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: txtColor,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'DARK MODE',
-                              style: TextStyle(
-                                  color: txtColor,
-                                  fontFamily: 'Circular',
-                                  fontSize: pHeight * 0.025),
-                            ),
-                            FlutterSwitch(
-                              width: pWidth * 0.15,
-                              height: pHeight * 0.03,
-                              toggleSize: pHeight * 0.02,
-                              value: status,
-                              borderRadius: 30.0,
-                              padding: 4.0,
-                              showOnOff: false,
-                              onToggle: (val) async {
-                                SharedPreferences pref =
-                                    await SharedPreferences.getInstance();
-                                val
-                                    ? pref.setString('mode', 'dark')
-                                    : pref.setString('mode', 'light');
-                                setState(() {
-                                  status = val;
-                                  val ? mode = 'dark' : mode = 'light';
-                                  changeMode(widget.state);
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: InkWell(
-                        onTap: () async {
-                          FirebaseUser user =
-                              await FirebaseAuth.instance.currentUser();
-                          await _getId();
-                          var dbRef = FirebaseDatabase.instance
-                              .reference()
-                              .child('Users')
-                              .child(user.uid)
-                              .update({'is${deviceType}SignedIn': false});
-                          FirebaseAuth.instance.signOut();
-                          pushNewScreen(context,
-                              screen: Intro1(), withNavBar: false);
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(top: 25),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border:
-                                Border.all(color: kPrimaryColor, width: 2.5),
-                          ),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Text(
-                                'Sign Out',
-                                style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontSize: pHeight * 0.03,
-                                    fontFamily: 'Circular',
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              )
-            ],
+                InkWell(
+                  onTap: () {
+                    pushNewScreen(context, screen: ContactSupport());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'CONTACT SUPPORT',
+                            style: TextStyle(
+                                color: txtColor,
+                                fontFamily: 'Circular',
+                                fontSize: pHeight * 0.025),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: txtColor,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    pushNewScreen(context, screen: AboutUs());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'ABOUT',
+                            style: TextStyle(
+                                color: txtColor,
+                                fontFamily: 'Circular',
+                                fontSize: pHeight * 0.025),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: txtColor,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'DARK MODE',
+                          style: TextStyle(
+                              color: txtColor,
+                              fontFamily: 'Circular',
+                              fontSize: pHeight * 0.025),
+                        ),
+                        FlutterSwitch(
+                          width: pWidth * 0.15,
+                          height: pHeight * 0.03,
+                          toggleSize: pHeight * 0.02,
+                          value: status,
+                          borderRadius: 30.0,
+                          padding: 4.0,
+                          showOnOff: false,
+                          onToggle: (val) async {
+                            SharedPreferences pref =
+                                await SharedPreferences.getInstance();
+                            val
+                                ? pref.setString('mode', 'dark')
+                                : pref.setString('mode', 'light');
+                            setState(() {
+                              status = val;
+                              val ? mode = 'dark' : mode = 'light';
+                              changeMode(widget.state);
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: InkWell(
+                    onTap: () async {
+                      FirebaseUser user =
+                          await FirebaseAuth.instance.currentUser();
+                      await _getId();
+                      var dbRef = FirebaseDatabase.instance
+                          .reference()
+                          .child('Users')
+                          .child(user.uid)
+                          .update({'is${deviceType}SignedIn': false});
+                      FirebaseAuth.instance.signOut();
+                      pushNewScreen(context,
+                          screen: Intro1(), withNavBar: false);
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(top: 25),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: kPrimaryColor, width: 2.5),
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
+                            'Sign Out',
+                            style: TextStyle(
+                                color: kPrimaryColor,
+                                fontSize: pHeight * 0.03,
+                                fontFamily: 'Circular',
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -116,141 +116,143 @@ class _StudyMaterialState extends State<StudyMaterial> {
       drawer: DrawerScreen(),
       key: _scaffoldKey,
       backgroundColor: darkColor,
-      body: Column(
-        children: <Widget>[
-          Container(
-            height: pHeight * 0.19,
-            width: pWidth,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  kPrimaryColor,
-                  Color(0xFFF26969),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: pWidth,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    kPrimaryColor,
+                    Color(0xFFF26969),
+                  ],
+                ),
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(30),
+                  bottomLeft: Radius.circular(30),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: pHeight * 0.04,
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  SizedBox(
+                    height: pHeight * 0.01,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Container(
+                      width: pWidth * 0.9,
+                      child: Text(
+                        'Study Material - ${widget.sub}',
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: pHeight * 0.035,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: pHeight * 0.005,
+                  ),
                 ],
               ),
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(30),
-                bottomLeft: Radius.circular(30),
-              ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  height: pHeight * 0.04,
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                SizedBox(
-                  height: pHeight * 0.01,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Text(
-                    'Study Material - ${widget.sub}',
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: pHeight * 0.032,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
-                SizedBox(
-                  height: pHeight * 0.005,
-                ),
-
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: pHeight * 0.7,
-              child: ListView.builder(
-                  itemCount: solutions.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        margin: EdgeInsets.only(bottom: 20),
-                        elevation: 1,
-                        shadowColor: Colors.black.withOpacity(0.75),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
+            Expanded(
+              child: Container(
+                child: ListView.builder(
+                    itemCount: solutions.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          margin: EdgeInsets.only(bottom: 20),
+                          elevation: 1,
+                          shadowColor: Colors.black.withOpacity(0.75),
+                          shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  '${solutions[index].name}',
-                                  style: TextStyle(
-                                      color: Colors.black.withOpacity(0.75),
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize:
-                                          MediaQuery.of(context).size.height *
-                                              0.025),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: <Widget>[
-                                    IconButton(
-                                      icon: Icon(
-                                        Icons.file_download,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text(
+                                    '${solutions[index].name}',
+                                    style: TextStyle(
                                         color: Colors.black.withOpacity(0.75),
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            MediaQuery.of(context).size.height *
+                                                0.025),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: <Widget>[
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.file_download,
+                                          color: Colors.black.withOpacity(0.75),
+                                        ),
+                                        onPressed: () {
+                                          _launchURL1(solutions[index].url);
+                                        },
                                       ),
-                                      onPressed: () {
-                                        _launchURL1(solutions[index].url);
-                                      },
-                                    ),
-                                    IconButton(
-                                      icon: Icon(
-                                        Icons.bookmark,
-                                        color: Colors.black.withOpacity(0.75),
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.bookmark,
+                                          color: Colors.black.withOpacity(0.75),
+                                        ),
+                                        onPressed: () async {
+                                          print(solutions[index].url);
+                                          bool status = await _query(
+                                              '${widget.sub} - ${solutions[index].name}');
+                                          if (!status) {
+                                            addToCart(
+                                                name:
+                                                    '${widget.sub} - ${solutions[index].name}',
+                                                fileUrl: solutions[index].url);
+                                          } else {
+                                            Fluttertoast.showToast(
+                                                msg: 'Already bookmarked',
+                                                textColor: Colors.black,
+                                                backgroundColor: Colors.white);
+                                          }
+                                        },
                                       ),
-                                      onPressed: () async {
-                                        print(solutions[index].url);
-                                        bool status = await _query(
-                                            '${widget.sub} - ${solutions[index].name}');
-                                        if (!status) {
-                                          addToCart(
-                                              name:
-                                                  '${widget.sub} - ${solutions[index].name}',
-                                              fileUrl: solutions[index].url);
-                                        } else {
-                                          Fluttertoast.showToast(
-                                              msg: 'Already bookmarked',
-                                              textColor: Colors.black,
-                                              backgroundColor: Colors.white);
-                                        }
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
