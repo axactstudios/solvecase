@@ -340,7 +340,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
           'year': widget.year,
           'deviceUid': deviceUid,
           'deviceType': deviceType,
-          'is${deviceType}SignedIn': true
+          'is${deviceType}SignedIn': false
         });
         mAuth.signOut();
         Navigator.pushReplacement(

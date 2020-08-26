@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solvecase/Classes/Constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutUs extends StatefulWidget {
   @override
@@ -59,7 +60,7 @@ class _AboutUsState extends State<AboutUs> {
                 child: Row(
                   children: <Widget>[
                     Text(
-                      'Team',
+                      'Team Axact Studios',
                       style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: pHeight * 0.03,
@@ -70,28 +71,96 @@ class _AboutUsState extends State<AboutUs> {
                       width: pWidth * 0.02,
                     ),
                     SizedBox(
-                      width: pWidth * 0.75,
+                      width: pWidth * 0.25,
                       child: Divider(
                         thickness: 1.0,
-                        color: Colors.black.withOpacity(0.4),
+                        color: txtColor.withOpacity(0.4),
                       ),
                     ),
                   ],
                 ),
               ),
+              SizedBox(
+                height: 30,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset(
-                    'assets/images/sc logo.png',
-                    height: pHeight * 0.45,
+                  Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: Image.asset(
+                      'assets/images/Group 1.png',
+                      scale: 2.0,
+                    ),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'We code experiences that make your life easier, make your business grow and satisfies your costumers. ',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: txtColor,
+                      fontFamily: 'Circular',
+                      fontSize: pHeight * 0.025),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                        _launchURL(
+                            'https://www.facebook.com/axactstudios-116214423501663');
+                      },
+                      child: Image.asset(
+                        'assets/images/facebook 1.png',
+                        scale: 0.8,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        _launchURL('https://www.instagram.com/axactstudios/');
+                      },
+                      child: Image.asset(
+                        'assets/images/instagram 1.png',
+                        scale: 0.8,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        _launchURL(
+                            'https://www.linkedin.com/company/axactstudios/');
+                      },
+                      child: Image.asset(
+                        'assets/images/linkedin.png',
+                        scale: 12,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
         ],
       ),
     );
+  }
+
+  _launchURL(url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

@@ -13,6 +13,7 @@ import 'package:solvecase/Screens/MorePageScreens/AboutUs.dart';
 import 'package:solvecase/Screens/MorePageScreens/ContactSupport.dart';
 import 'package:solvecase/Screens/MorePageScreens/FAQ.dart';
 import 'package:solvecase/Screens/MorePageScreens/Profile.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../Classes/Constants.dart';
 import '../main.dart';
 import 'Bookmarks.dart';
@@ -237,32 +238,32 @@ class _MoreState extends State<More> with TickerProviderStateMixin {
                         ),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        pushNewScreen(context, screen: FAQ());
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                'FAQ',
-                                style: TextStyle(
-                                    color: txtColor,
-                                    fontFamily: 'Circular',
-                                    fontSize: pHeight * 0.025),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: txtColor,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+//                    InkWell(
+//                      onTap: () {
+//                        pushNewScreen(context, screen: FAQ());
+//                      },
+//                      child: Padding(
+//                        padding: const EdgeInsets.all(16.0),
+//                        child: Container(
+//                          child: Row(
+//                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                            children: <Widget>[
+//                              Text(
+//                                'FAQ',
+//                                style: TextStyle(
+//                                    color: txtColor,
+//                                    fontFamily: 'Circular',
+//                                    fontSize: pHeight * 0.025),
+//                              ),
+//                              Icon(
+//                                Icons.arrow_forward_ios,
+//                                color: txtColor,
+//                              )
+//                            ],
+//                          ),
+//                        ),
+//                      ),
+//                    ),
                     InkWell(
                       onTap: () {
                         pushNewScreen(context, screen: ContactSupport());

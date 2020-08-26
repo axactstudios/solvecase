@@ -6,6 +6,7 @@ import 'package:map/map.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:solvecase/Classes/Constants.dart';
 import 'package:solvecase/Screens/MorePageScreens/ChatScreen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactSupport extends StatefulWidget {
   @override
@@ -99,35 +100,40 @@ class _ContactSupportState extends State<ContactSupport> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          Card(
-                            color: kPrimaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Container(
-                              height: pHeight * 0.10,
-                              width: pWidth * 0.40,
-                              child: Center(
-                                child: Icon(
-                                  Icons.phone,
-                                  color: Colors.white,
-                                  size: pHeight * 0.08,
+                      InkWell(
+                        onTap: () {
+                          _launchURL('tel:+919027553376');
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            Card(
+                              color: kPrimaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Container(
+                                height: pHeight * 0.10,
+                                width: pWidth * 0.40,
+                                child: Center(
+                                  child: Icon(
+                                    Icons.phone,
+                                    color: Colors.white,
+                                    size: pHeight * 0.08,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Text(
-                            'Call SolveCase Support\nTeam',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: pHeight * 0.018,
-                                fontWeight: FontWeight.w400,
-                                color: txtColor),
-                          ),
-                        ],
+                            Text(
+                              'Call SolveCase Support\nTeam',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: pHeight * 0.018,
+                                  fontWeight: FontWeight.w400,
+                                  color: txtColor),
+                            ),
+                          ],
+                        ),
                       ),
                       Column(
                         children: <Widget>[
@@ -184,6 +190,14 @@ class _ContactSupportState extends State<ContactSupport> {
     uid = await user.uid;
 
     await getUserData();
+  }
+
+  _launchURL(url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   getUserData() async {
