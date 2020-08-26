@@ -81,34 +81,7 @@ class _VideoBookmarksState extends State<VideoBookmarks> {
                         color: Colors.white),
                   ),
                 ),
-//                Center(
-//                  child: Container(
-//                    width: pWidth * 0.92,
-//                    height: pHeight * 0.05,
-//                    decoration: BoxDecoration(
-//                      color: Color(0xFFF7A1A1),
-//                      borderRadius: BorderRadius.circular(8),
-//                    ),
-//                    child: Center(
-//                      child: TextFormField(
-//                        controller: search,
-//                        decoration: InputDecoration(
-//                          suffixIcon: Icon(
-//                            Icons.search,
-//                            color: kPrimaryColor,
-//                          ),
-//                          hintText: 'Search',
-//                          hintStyle: TextStyle(
-//                              color: kPrimaryColor,
-//                              fontSize: pHeight * 0.02,
-//                              fontFamily: 'Poppins'),
-//                          border:
-//                              OutlineInputBorder(borderSide: BorderSide.none),
-//                        ),
-//                      ),
-//                    ),
-//                  ),
-//                )
+
               ],
             ),
           ),

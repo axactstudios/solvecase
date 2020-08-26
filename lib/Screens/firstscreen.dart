@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:solvecase/Classes/Constants.dart';
 import 'package:solvecase/Screens/MainScreen.dart';
 
-// ignore: must_be_immutable
+
 class LoginPage extends StatefulWidget {
   String uid;
   LoginPage({this.uid});

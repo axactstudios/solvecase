@@ -218,9 +218,7 @@ class _ContactSupportState extends State<ContactSupport> {
           });
         }
       }
-//      setState(() {
-//        print(name);
-//      });
+
     });
   }
 }

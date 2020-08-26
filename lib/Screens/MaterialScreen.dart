@@ -1,8 +1,7 @@
-import 'package:fancy_drawer/fancy_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:solvecase/Screens/DrawerScreen.dart';
-import 'package:solvecase/Screens/Solutions.dart';
+
 
 import '../Classes/Constants.dart';
 import 'Material.dart';
@@ -162,71 +161,11 @@ class _MaterialScreenState extends State<MaterialScreen> {
                           ),
                         ),
                       ),
-//                      InkWell(
-//                        onTap: () {
-//                          selected = 'Third Year';
-//                          year = 2;
-//                          setState(() {
-//                            print('Third Year');
-//                          });
-//                        },
-//                        child: Container(
-//                          margin: EdgeInsets.only(left: 10),
-//                          decoration: BoxDecoration(
-//                            color: selected == 'Third Year'
-//                                ? kPrimaryColor
-//                                : Colors.white,
-//                            borderRadius: BorderRadius.circular(10),
-//                            border: selected != 'Third Year'
-//                                ? Border.all(color: kPrimaryColor, width: 1.0)
-//                                : Border.all(color: Colors.white),
-//                          ),
-//                          child: Padding(
-//                            padding: const EdgeInsets.all(8.0),
-//                            child: Text(
-//                              'Third Year',
-//                              style: TextStyle(
-//                                  fontFamily: 'Poppins',
-//                                  color: selected == 'Third Year'
-//                                      ? Colors.white
-//                                      : kPrimaryColor,
-//                                  fontSize: pHeight * 0.02),
-//                            ),
-//                          ),
-//                        ),
-//                      ),
+
                     ],
                   ),
                 ),
-//                Center(
-//                  child: Container(
-//                    width: pWidth * 0.92,
-//                    height: pHeight * 0.05,
-//                    decoration: BoxDecoration(
-//                      color: Color(0xFFF7A1A1),
-//                      borderRadius: BorderRadius.circular(10),
-//                    ),
-//                    child: Center(
-//                      child: TextFormField(
-//                        controller: search,
-//                        textAlignVertical: TextAlignVertical.center,
-//                        decoration: InputDecoration(
-//                          suffixIcon: Icon(
-//                            Icons.search,
-//                            color: kPrimaryColor,
-//                          ),
-//                          hintText: 'Search',
-//                          hintStyle: TextStyle(
-//                              color: kPrimaryColor,
-//                              fontSize: pHeight * 0.02,
-//                              fontFamily: 'Poppins'),
-//                          border:
-//                              OutlineInputBorder(borderSide: BorderSide.none),
-//                        ),
-//                      ),
-//                    ),
-//                  ),
-//                )
+
               ],
             ),
           ),
@@ -385,27 +324,7 @@ class _FirstYearState extends State<FirstYear> {
               ),
             ),
           ),
-//          Padding(
-//            padding: const EdgeInsets.all(8.0),
-//            child: InkWell(
-//              onTap: () {
-//                Navigator.push(
-//                  context,
-//                  MaterialPageRoute(
-//                    builder: (context) =>
-//                        StudyMaterial(sub: 'Physics Lab - 1', year: '1'),
-//                  ),
-//                );
-//              },
-//              child: Container(
-//                height: pHeight * 0.10,
-//                child: FittedBox(
-//                  child: Image.asset('assets/images/PhysicsLabButtonV2.png'),
-//                  fit: BoxFit.fill,
-//                ),
-//              ),
-//            ),
-//          ),
+
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
@@ -427,69 +346,7 @@ class _FirstYearState extends State<FirstYear> {
               ),
             ),
           ),
-//          Padding(
-//            padding: const EdgeInsets.all(8.0),
-//            child: InkWell(
-//              onTap: () {
-//                Navigator.push(
-//                  context,
-//                  MaterialPageRoute(
-//                    builder: (context) =>
-//                        StudyMaterial(sub: 'Physics Lab - 2', year: '1'),
-//                  ),
-//                );
-//              },
-//              child: Container(
-//                height: pHeight * 0.10,
-//                child: FittedBox(
-//                  child: Image.asset('assets/images/PhysicsLab2ButtonV2.png'),
-//                  fit: BoxFit.fill,
-//                ),
-//              ),
-//            ),
-//          ),
-//          Padding(
-//            padding: const EdgeInsets.all(8.0),
-//            child: InkWell(
-//              onTap: () {
-//                Navigator.push(
-//                  context,
-//                  MaterialPageRoute(
-//                    builder: (context) =>
-//                        StudyMaterial(sub: 'SDF Lab - 2', year: '1'),
-//                  ),
-//                );
-//              },
-//              child: Container(
-//                height: pHeight * 0.10,
-//                child: FittedBox(
-//                  child: Image.asset('assets/images/SDFLab2ButtonV2.png'),
-//                  fit: BoxFit.fill,
-//                ),
-//              ),
-//            ),
-//          ),
-//          Padding(
-//            padding: const EdgeInsets.all(8.0),
-//            child: InkWell(
-//              onTap: () {
-//                Navigator.push(
-//                  context,
-//                  MaterialPageRoute(
-//                    builder: (context) =>
-//                        StudyMaterial(sub: 'ES Lab - 1', year: '1'),
-//                  ),
-//                );
-//              },
-//              child: Container(
-//                height: pHeight * 0.10,
-//                child: FittedBox(
-//                  child: Image.asset('assets/images/ESLabButtonV2.png'),
-//                  fit: BoxFit.fill,
-//                ),
-//              ),
-//            ),
-//          )
+
         ],
       ),
     );
@@ -620,206 +477,7 @@ class _ThirdYearState extends State<ThirdYear> {
       child: Center(
         child: Text('Coming Soon...'),
       ),
-//      child: ListView(
-//        children: <Widget>[
-//          Column(
-//            children: <Widget>[
-//              InkWell(
-//                onTap: () {
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(
-//                      builder: (context) => StudyMaterial
-//                      (
-//                        sub: 'Algorithms',
-//                      ),
-//                    ),
-//                  );
-//                },
-//                child: Container(
-//                  margin: EdgeInsets.only(top: 15),
-//                  height: pHeight * 0.10
-//                  ,
-//
-//                  decoration: BoxDecoration(
-//                    gradient: LinearGradient(
-//                      colors: [
-//                        Color(0xFFFF8787),
-//                        Color(0xFFC16A6A),
-//                      ],
-//                    ),
-//                    borderRadius: BorderRadius.circular(15),
-//                  ),
-//                  child: Stack(
-//                    children: <Widget>[
-//                      Positioned(
-//                        top: 0,
-//                        left: 0,
-//                        child: Image.asset('assets/images/Ellipse 9.png'),
-//                      ),
-//                      Positioned(
-//                        top: pHeight * 0.035,
-//                        left: pWidth * 0.08,
-//                        child: Text(
-//                          'Algorithms',
-//                          style: TextStyle(
-//                              fontFamily: 'Montserrat',
-//                              color: Colors.white,
-//                              fontSize: pHeight * 0.035),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
-//                ),
-//              ),
-//              InkWell(
-//                onTap: () {
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(
-//                      builder: (context) => StudyMaterial
-//                      (
-//                        sub: 'OS',
-//                      ),
-//                    ),
-//                  );
-//                },
-//                child: Container(
-//                  margin: EdgeInsets.only(top: 15),
-//                  height: pHeight * 0.10
-//                  ,
-//
-//                  decoration: BoxDecoration(
-//                    gradient: LinearGradient(
-//                      colors: [
-//                        Color(0xFF87F0FF),
-//                        Color(0xFF3AA2B1),
-//                      ],
-//                    ),
-//                    borderRadius: BorderRadius.circular(15),
-//                  ),
-//                  child: Stack(
-//                    children: <Widget>[
-//                      Positioned(
-//                        top: 0,
-//                        left: 0,
-//                        child: Image.asset('assets/images/Ellipse 1.png'),
-//                      ),
-//                      Positioned(
-//                        top: pHeight * 0.035,
-//                        left: pWidth * 0.08,
-//                        child: Text(
-//                          'Operating Systems',
-//                          style: TextStyle(
-//                              fontFamily: 'Montserrat',
-//                              color: Colors.white,
-//                              fontSize: pHeight * 0.035),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
-//                ),
-//              ),
-//              InkWell(
-//                onTap: () {
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(
-//                      builder: (context) => StudyMaterial
-//                      (
-//                        sub: 'Open Source',
-//                      ),
-//                    ),
-//                  );
-//                },
-//                child: Container(
-//                  margin: EdgeInsets.only(top: 15),
-//                  height: pHeight * 0.10
-//                  ,
-//
-//                  decoration: BoxDecoration(
-//                    gradient: LinearGradient(
-//                      colors: [
-//                        Color(0xFFFFCF87),
-//                        Color(0xFFCA9547),
-//                      ],
-//                    ),
-//                    borderRadius: BorderRadius.circular(15),
-//                  ),
-//                  child: Stack(
-//                    children: <Widget>[
-//                      Positioned(
-//                        top: 0,
-//                        left: 0,
-//                        child: Image.asset('assets/images/Ellipse 2.png'),
-//                      ),
-//                      Positioned(
-//                        top: pHeight * 0.035,
-//                        left: pWidth * 0.08,
-//                        child: Text(
-//                          'Open Source Softwares',
-//                          style: TextStyle(
-//                              fontFamily: 'Montserrat',
-//                              color: Colors.white,
-//                              fontSize: pHeight * 0.035),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
-//                ),
-//              ),
-//              InkWell(
-//                onTap: () {
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(
-//                      builder: (context) => StudyMaterial
-//                      (
-//                        sub: 'Information Security',
-//                      ),
-//                    ),
-//                  );
-//                },
-//                child: Container(
-//                  margin: EdgeInsets.only(top: 15),
-//                  height: pHeight * 0.10
-//                  ,
-//
-//                  decoration: BoxDecoration(
-//                    gradient: LinearGradient(
-//                      colors: [
-//                        Color(0xFFE09FFF),
-//                        Color(0xFF8A46AB),
-//                      ],
-//                    ),
-//                    borderRadius: BorderRadius.circular(15),
-//                  ),
-//                  child: Stack(
-//                    children: <Widget>[
-//                      Positioned(
-//                        top: 0,
-//                        left: 0,
-//                        child: Image.asset('assets/images/Ellipse 3.png'),
-//                      ),
-//                      Positioned(
-//                        top: pHeight * 0.035,
-//                        left: pWidth * 0.08,
-//                        child: Text(
-//                          'Information Security',
-//                          style: TextStyle(
-//                              fontFamily: 'Montserrat',
-//                              color: Colors.white,
-//                              fontSize: pHeight * 0.035),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
-//                ),
-//              ),
-//            ],
-//          ),
-//        ],
-//      ),
+
     );
   }
 }
