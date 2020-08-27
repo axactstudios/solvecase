@@ -1,6 +1,6 @@
 # solvecase
 
-A new Flutter application.
+An application where students can find solutions of assignments and tutorials of several subjects which makes their college life easier.
 
 ## Getting Started
 
