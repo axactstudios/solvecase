@@ -10,7 +10,6 @@ import 'package:solvecase/Classes/VideosDatabaseHelper.dart';
 
 import '../Classes/Videos.dart';
 
-
 class Lectures extends StatefulWidget {
   String sub, year;
   Lectures({this.sub, this.year});
@@ -35,6 +34,37 @@ class _LecturesState extends State<Lectures> {
     setState(() {
       uid = user.uid;
       print(uid);
+    });
+  }
+
+  int count;
+  increase() async {
+    DatabaseReference dbref1 = FirebaseDatabase.instance
+        .reference()
+        .child('JIIT')
+        .child("Analysis")
+        .child('Study Material');
+    await dbref1.once().then((DataSnapshot snap) {
+      // ignore: non_constant_identifier_names
+      var KEYS = snap.value.keys;
+      // ignore: non_constant_identifier_names
+      var DATA = snap.value;
+
+      for (var key in KEYS) {
+        count = DATA[key]['Count'];
+      }
+      setState(() {
+        print(count);
+      });
+    });
+    DatabaseReference dbref = FirebaseDatabase.instance.reference();
+    await dbref
+        .child('JIIT')
+        .child("Analysis")
+        .child('Lecture Plays')
+        .child('Count')
+        .set({
+      "Count": count + 1,
     });
   }
 
@@ -167,7 +197,6 @@ class _LecturesState extends State<Lectures> {
                         color: Colors.white),
                   ),
                 ),
-
               ],
             ),
           ),
@@ -194,6 +223,7 @@ class _LecturesState extends State<Lectures> {
                               children: <Widget>[
                                 InkWell(
                                   onTap: () {
+                                    increase();
                                     playVideo(lectures[index].url);
                                   },
                                   child: ClipRRect(

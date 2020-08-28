@@ -70,6 +70,37 @@ class _StudyMaterialState extends State<StudyMaterial> {
     getDatabaseRef();
   }
 
+  int count;
+  increase() async {
+    DatabaseReference dbref1 = FirebaseDatabase.instance
+        .reference()
+        .child('JIIT')
+        .child("Analysis")
+        .child('Study Material');
+    await dbref1.once().then((DataSnapshot snap) {
+      // ignore: non_constant_identifier_names
+      var KEYS = snap.value.keys;
+      // ignore: non_constant_identifier_names
+      var DATA = snap.value;
+
+      for (var key in KEYS) {
+        count = DATA[key]['Count'];
+      }
+      setState(() {
+        print(count);
+      });
+    });
+    DatabaseReference dbref = FirebaseDatabase.instance.reference();
+    await dbref
+        .child('JIIT')
+        .child("Analysis")
+        .child('Study Material')
+        .child('Count')
+        .set({
+      "Count": count + 1,
+    });
+  }
+
   List<Solution> solutions = [];
 
   getDatabaseRef() async {
@@ -215,6 +246,7 @@ class _StudyMaterialState extends State<StudyMaterial> {
                                           color: Colors.black.withOpacity(0.75),
                                         ),
                                         onPressed: () {
+                                          increase();
                                           _launchURL1(solutions[index].url);
                                         },
                                       ),

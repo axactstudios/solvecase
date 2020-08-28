@@ -50,6 +50,37 @@ class _SolutionsState extends State<Solutions> {
     });
   }
 
+  int count;
+  increase() async {
+    DatabaseReference dbref1 = FirebaseDatabase.instance
+        .reference()
+        .child('JIIT')
+        .child("Analysis")
+        .child('Solutions');
+    await dbref1.once().then((DataSnapshot snap) {
+      // ignore: non_constant_identifier_names
+      var KEYS = snap.value.keys;
+      // ignore: non_constant_identifier_names
+      var DATA = snap.value;
+
+      for (var key in KEYS) {
+        count = DATA[key]['Count'];
+      }
+      setState(() {
+        print(count);
+      });
+    });
+    DatabaseReference dbref = FirebaseDatabase.instance.reference();
+    await dbref
+        .child('JIIT')
+        .child("Analysis")
+        .child('Solutions')
+        .child('Count')
+        .set({
+      "Count": count + 1,
+    });
+  }
+
   getUserData() async {
     DatabaseReference dbref =
         FirebaseDatabase.instance.reference().child("Users");
@@ -167,7 +198,6 @@ class _SolutionsState extends State<Solutions> {
                 SizedBox(
                   height: pHeight * 0.005,
                 ),
-
               ],
             ),
           ),
@@ -214,6 +244,7 @@ class _SolutionsState extends State<Solutions> {
                                         color: Colors.black.withOpacity(0.75),
                                       ),
                                       onPressed: () {
+                                        increase();
                                         _launchURL1(solutions[index].url);
                                       },
                                     ),
